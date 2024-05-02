@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=69.5.1", "setuptools-git-versioning"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bokeh_sampledata"
+dynamic = ["version"]
+description = "Sample datasets for Bokeh examples"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "icalendar",
+    "pandas >=1.2",
+]
+authors = [
+  {email = "info@bokeh.org"},
+  {name = "Bokeh Team"}
+]
+license = {file = "LICENSE.txt"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+[project.urls]
+homepage = "https://bokeh.org"
+documentation = "https://docs.bokeh.org"
+repository = "https://github.com/bokeh/bokeh_sampledata"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"bokeh_sampledata._data" = ["**"]
+
+[tool.setuptools-git-versioning]
+enabled = true
+dev_template = "{tag}+{ccount}.g{sha}"
+dirty_template = "{tag}+{ccount}.g{sha}.dirty"
+
+[tool.isort]
+force_grid_wrap = 4
+line_length = 100
+multi_line_output = 3
+combine_as_imports = true
+
+indented_import_headings = false
+include_trailing_comma = true
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src", "tests"]
+
+strict = true
+
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+show_error_context = true
+
+disallow_any_unimported = true
+implicit_reexport = true
+namespace_packages = true
+warn_return_any = false
+warn_unreachable = true
+
+[tool.ruff]
+line-length = 120
+lint.select = ["B", "COM", "E", "F", "RUF", "TID", "UP", "W"]
+lint.ignore = ["COM812"]
+target-version = "py310"

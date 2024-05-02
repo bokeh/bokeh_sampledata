@@ -1,0 +1,46 @@
+{% set data = load_file_data('../pyproject.toml', from_recipe_dir=True) %}
+
+package:
+  name: bokeh_sampledata
+  version: {{ VERSION }}
+
+source:
+  url: ../dist/bokeh_sampledata-{{ VERSION }}-py3-none-any.whl
+
+build:
+  noarch: python
+  script:
+     - {{ PYTHON }} -m pip install -vv --no-deps bokeh_sampledata-{{ VERSION }}-py3-none-any.whl
+  script_env:
+    - VERSION
+
+extra:
+  channels:
+    - bokeh
+    - conda-forge
+
+requirements:
+  build:
+    - python
+    - pyyaml
+    - ripgrep
+    - setuptools >=69.5.1
+    - yaml
+
+  host:
+    - python >=3.10
+
+  run:
+    - python >=3.10
+
+    {% for dep in data['project']['dependencies'] %}
+    - {{ dep.lower() }}
+    {% endfor %}
+
+about:
+  license: BSD-3-Clause
+  summary: {{ data['project']['description'] }}
+  description: {{ data['project']['readme'] }}
+  home: {{ data['project']['urls']['homepage'] }}
+  doc_url: {{ data['project']['urls']['documentation'] }}
+  dev_url: {{ data['project']['urls']['repository'] }}

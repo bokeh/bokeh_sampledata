@@ -1,0 +1,44 @@
+*.py[ocd]
+
+# setup.py things
+/build
+/dist
+/MANIFEST
+**/*.egg-info*
+
+# coverage reports
+/.coverage
+/coverage.xml
+
+# ipython files
+**/.ipynb_checkpoints
+
+# HTML files
+*.html
+
+# dev files
+*.patch
+*.diff
+*.rej
+
+# common editor cruft
+.#*
+[#]*#
+*~
+*$
+*.bak
+.project
+.pydevproject
+.*.sw[nop]
+.sw[nop]
+*.tmp
+.vscode
+
+# test files
+/.cache/
+/.pytest_cache/
+/.mypy_cache/
+/.ruff_cache/
+
+# OS junk
+.DS_Store
