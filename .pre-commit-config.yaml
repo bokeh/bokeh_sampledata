@@ -1,6 +1,9 @@
 default_language_version:
   python: python3.12
 
+ci:
+  autofix_prs: false
+
 repos:
   - repo: https://github.com/netromdk/vermin
     rev: v1.6.0
