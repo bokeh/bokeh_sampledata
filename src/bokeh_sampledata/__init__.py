@@ -14,12 +14,16 @@ must be pip or conda installed.
 
 from __future__ import annotations
 
+import importlib.metadata as importlib_metadata
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
 
-__all__ = ()
+__all__ = ("__version__",)
+
+
+__version__ = importlib_metadata.version("bokeh_sampledata")
 
 
 def package_csv(name: str, **kw: Any) -> pd.DataFrame:
