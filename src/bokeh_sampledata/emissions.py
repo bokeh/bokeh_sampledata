@@ -25,4 +25,4 @@ from . import package_csv
 
 __all__ = ("data",)
 
-data = package_csv("emmissions.csv")
+data = package_csv("emissions.csv")
