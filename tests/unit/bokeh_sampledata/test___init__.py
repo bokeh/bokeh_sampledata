@@ -10,4 +10,4 @@ import bokeh_sampledata as m
 
 
 def test_all() -> None:
-    assert m.__all__ == ()
+    assert m.__all__ == ("__version__",)
