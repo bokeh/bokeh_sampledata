@@ -38,7 +38,7 @@ __all__ = ("browsers_nov_2013", "icons")
 
 def _read_data() -> pd.DataFrame:
     df = package_csv("browsers_nov_2013.csv", names=("Version", "Share"), skiprows=1)
-    versions = df.Version.map(lambda x: x.rsplit(" ", 1))
+    versions = df["Version"].map(lambda x: x.rsplit(" ", 1))
     df["Browser"] = versions.map(lambda x: x[0])
     df["VersionNumber"] = versions.map(lambda x: x[1] if len(x) == 2 else "0")
     return df
