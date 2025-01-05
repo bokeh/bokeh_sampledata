@@ -70,7 +70,7 @@ class CountyData(TypedDict):
 def _read_data() -> dict[tuple[int, int], CountyData]:
     data: dict[tuple[int, int], CountyData] = {}
 
-    with open(package_path("US_Counties.csv")) as f:
+    with open(package_path("US_Counties.csv"), encoding="utf-8") as f:
         next(f)
         reader = csv.reader(f, delimiter=",", quotechar='"')
         for row in reader:

@@ -30,7 +30,7 @@ from . import package_path
 
 __all__ = ("data",)
 
-with open(package_path("airports.json")) as f:
+with open(package_path("airports.json"), "rb") as f:
     airports = json.load(f)
     data = pd.json_normalize(
         airports["features"],
