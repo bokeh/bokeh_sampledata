@@ -24,9 +24,11 @@ from . import package_csv
 
 __all__ = ("cycling",)
 
+
 def _read_data() -> pd.DataFrame:
     df = package_csv("cycling.csv")
     df["time"] = pd.to_timedelta(df["time"])
     return df
+
 
 cycling = _read_data()
