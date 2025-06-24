@@ -6,6 +6,10 @@
 # -----------------------------------------------------------------------------
 """Exercise data (including altitude, speed and power) from a cycling workout.
 
+License: `CC0`_
+
+Sourced from personal data.
+
 This module contains one pandas Dataframe: ``cycling``.
 
 .. rubric:: ``cycling``
