@@ -8,7 +8,9 @@
 
 License: `ODbL 1.0`_
 
-Sourced from https://openflights.org/data.html on September 07, 2017.
+Sourced from `https:/openflights.org/data.html/` on September 07, 2017.
+This historic link is not active anymore, but https:/openflights.org/ is
+still available.
 
 This module contains two pandas Dataframes: ``airports`` and ``routes``.
 
