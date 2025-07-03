@@ -21,3 +21,14 @@ def test_cycling() -> None:
     assert isinstance(c.cycling, pd.DataFrame)
 
     assert len(c.cycling) == 4391
+    expected_columns = {
+        "position_lat",
+        "position_long",
+        "altitude",
+        "power",
+        "cadence",
+        "distance",
+        "speed",
+        "time",
+    }
+    assert set(c.cycling.columns) == expected_columns
