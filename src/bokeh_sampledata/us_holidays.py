@@ -37,7 +37,7 @@ from . import package_path
 
 __all__ = ("us_holidays",)
 
-with open(package_path("USHolidays.ics")) as f:
+with open(package_path("USHolidays.ics"), encoding="utf-8") as f:
     data = ic.Calendar.from_ical(f.read())
 
 us_holidays = sorted((elt.get("dtstart").dt, str(elt.get("summary"))) for elt in data.walk() if elt.name == "VEVENT")

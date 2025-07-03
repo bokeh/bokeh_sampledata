@@ -22,5 +22,5 @@ from . import package_path
 
 __all__ = ("geojson",)
 
-with open(package_path("sample_geojson.geojson")) as f:
+with open(package_path("sample_geojson.geojson"), encoding="utf-8") as f:
     geojson = f.read()

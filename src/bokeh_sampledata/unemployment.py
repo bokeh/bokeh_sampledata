@@ -37,7 +37,7 @@ __all__ = ("data",)
 
 data = {}
 
-with open(package_path("unemployment09.csv")) as f:
+with open(package_path("unemployment09.csv"), encoding="utf-8") as f:
     reader = csv.reader(f, delimiter=",", quotechar='"')
     for row in reader:
         _, state_id, county_id, _, _, _, _, _, rate = row
