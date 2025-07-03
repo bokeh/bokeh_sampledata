@@ -22,7 +22,7 @@ This module contains one pandas Dataframe: ``flowers``.
 
 .. bokeh-sampledata-xref:: iris
 
-.. _Fisher's Iris dataset: https://en.wikipedia.org/wiki/Iris_flower_data_se
+.. _Fisher's Iris dataset: https://en.wikipedia.org/wiki/Iris_flower_data_set
 .. _alternatives to Iris: https://www.meganstodel.com/posts/no-to-iris/
 
 """
