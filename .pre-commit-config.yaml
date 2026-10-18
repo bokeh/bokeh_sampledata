@@ -3,19 +3,17 @@ default_language_version:
 
 ci:
   autofix_prs: false
-  # Pixi hooks run in the GitHub Actions quality job.
-  skip: [mypy, pyright, dependencies, actionlint]
 
 repos:
   - repo: https://github.com/netromdk/vermin
-    rev: v1.6.0
+    rev: db02e9e95a3f89da1788e268ef3fb506187f35db  # frozen: v1.6.0
     hooks:
     - id: vermin
       name: check minimum Python version
       args: ['-t=3.10-', '--violations']
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
     hooks:
       - id: no-commit-to-branch
         name: "don't commit to main branch"
@@ -24,6 +22,10 @@ repos:
         exclude: ^(src/bokeh_sampledata/_data/|licenses/.*\.txt$)
       - id: end-of-file-fixer
         exclude: ^(src/bokeh_sampledata/_data/|licenses/.*\.txt$)
+      - id: check-symlinks
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+        exclude: ^src/bokeh_sampledata/_data/
       - id: check-json
       - id: check-toml
       - id: check-yaml
@@ -33,7 +35,7 @@ repos:
       - id: detect-private-key
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.4
+    rev: a27a2e47c7751b639d2b5badf0ef6ff11fee893f  # frozen: v0.15.4
     hooks:
     - id: ruff-check
       args: ['--fix']
@@ -41,30 +43,18 @@ repos:
 
   - repo: local
     hooks:
-      - id: mypy
-        name: mypy (locked Pixi environment)
-        entry: pixi run --locked typecheck-mypy
-        language: system
-        types: [python]
-        pass_filenames: false
-
-      - id: pyright
-        name: pyright (locked Pixi environment)
-        entry: pixi run --locked typecheck-pyright
-        language: system
-        types: [python]
-        pass_filenames: false
-
       - id: dependencies
         name: runtime dependency consistency
-        entry: pixi run --locked dependency-check
-        language: system
+        entry: python tools/check_dependencies.py
+        language: python
+        additional_dependencies: [packaging==26.3]
         files: ^(pyproject\.toml|pixi\.toml|tools/check_dependencies\.py)$
         pass_filenames: false
 
       - id: actionlint
         name: GitHub Actions workflow checks
-        entry: pixi run --locked workflow-check
-        language: system
+        entry: actionlint
+        language: python
+        additional_dependencies: [actionlint-py==1.7.12.25, shellcheck-py==0.11.0.1]
         files: ^\.github/workflows/.*\.ya?ml$
         pass_filenames: false

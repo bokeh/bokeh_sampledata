@@ -43,6 +43,8 @@ jobs:
           pixi-version: v0.76.1
           locked: true
       - run: pixi run --locked setup
+      - name: Run type checks
+        run: pixi run --locked typecheck
       - name: Run repository checks
         run: pixi run --locked pre-commit run --all-files
         env:

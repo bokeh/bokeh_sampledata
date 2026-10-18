@@ -51,13 +51,18 @@ import sorting.
 
 `check` also runs actionlint on GitHub Actions workflows. The same check runs
 from pre-commit when a workflow changes. Hooks check for merge conflict markers,
-case-conflicting filenames, and private keys, alongside formatting and typing.
+case-conflicting filenames, broken symlinks, private keys, and large additions
+outside the dataset directory, alongside formatting.
 Install the hooks locally with `pixi run --locked pre-commit install`.
+Hooks use isolated pre-commit environments and also run on pre-commit.ci without
+Pixi. Hook revisions are pinned to commit hashes and local hook tools use exact
+versions. Update remote hooks with `pre-commit autoupdate --freeze`.
 
 Type checking uses both Mypy (strict mode) and Pyright (standard mode), targeting
 Python 3.10 across `src`, `tests`, and `tools`. Run both with
 `pixi run --locked typecheck`, or individually with `typecheck-mypy` and
-`typecheck-pyright`. Both also run through `check` and pre-commit.
+`typecheck-pyright`. Both also run through `check` and the CI quality job, using
+the locked Pixi environment rather than pre-commit environments.
 
 ## Releases
 
