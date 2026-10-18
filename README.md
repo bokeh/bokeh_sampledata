@@ -26,11 +26,12 @@ pixi run --locked -e build build-conda
 ```
 
 `build-py` creates a wheel and sdist in `dist/`. `build-conda` builds a fresh
-wheel and passes its actual metadata version to **rattler-build**, using
+wheel and passes its encoded version to **rattler-build**, using
 `conda/recipe.yaml`. It creates and tests a noarch package in `dist/conda/`,
 including legacy imports and Shapely records. Neither command publishes packages;
 no `conda` or `conda-build` command is required. The isolated `build` environment
-contains the declared wheel backend and rattler-build.
+contains the declared wheel backend and rattler-build. The shell-based
+`build-conda` task requires Linux or macOS.
 
 Boundary storage and regeneration instructions are in [tools/README.md](tools/README.md).
 User-facing API, compatibility, and provenance documentation belongs in

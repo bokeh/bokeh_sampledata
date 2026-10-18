@@ -73,7 +73,7 @@ check = { depends-on = ["lint", "format-check", "isort-check", "typecheck"] }
 
 [feature.build.tasks]
 build-py = "python -m build --no-isolation"
-build-conda = "python tools/build_conda.py"
+build-conda = "bash tools/build_conda.sh"
 
 [feature.dev.tasks.regenerate-boundaries]
 cmd = "python tools/generate_boundaries.py work/ne_50m_admin_0_countries.zip"

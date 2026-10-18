@@ -2,6 +2,6 @@ include tools/README.md
 include tools/generate_boundaries.py
 include pixi.toml
 include pixi.lock
-include tools/build_conda.py
+include tools/build_conda.sh
 include conda/recipe.yaml
 recursive-include docs *.md
