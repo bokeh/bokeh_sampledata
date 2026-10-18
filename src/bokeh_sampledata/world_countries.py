@@ -48,7 +48,7 @@ with distributing the dataset alongside BSD-3-Clause software. The Natural
 Earth data itself remains public domain.
 
 Source terms and provenance also ship in
-``LICENSE-geographic-boundaries.txt``. Storage and regeneration
+``licenses/geographic-boundaries.txt``. Storage and regeneration
 instructions are in ``tools/README.md`` in the source repository.
 
 """

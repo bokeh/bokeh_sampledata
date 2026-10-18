@@ -8,7 +8,10 @@
 
 License: free to use and redistribute (see `this table`_ for details).
 
-Sourced from http://www.neracoos.org/erddap/tabledap/index.html (table *B01_sbe37_all*)
+Historical temperature observations from NERACOOS station B01, Western Maine
+Shelf, originally obtained from dataset ``B01_sbe37_all``. The `current station
+archive`_ is maintained by the University of Maine. Its observations may differ
+from this historical extract.
 
 This module contains one pandas Dataframe: ``sea_surface_temperature``.
 
@@ -18,7 +21,8 @@ This module contains one pandas Dataframe: ``sea_surface_temperature``.
 
 .. bokeh-sampledata-xref:: sea_surface_temperature
 
-.. _this table: http://www.neracoos.org/erddap/info/B01_sbe37_all/index.html
+.. _this table: https://data.neracoos.org/erddap/info/B01_ocean_agg/index.html
+.. _current station archive: https://data.neracoos.org/erddap/tabledap/B01_ocean_agg.html
 
 """
 

@@ -42,7 +42,7 @@ export intermediary remain unrecorded. These are historical samples.
 The Census source metadata permits use and redistribution with acknowledgement
 to the Census Bureau. Source: U.S. Census Bureau, TIGER/Line Shapefiles.
 These terms are compatible with distribution alongside BSD-3-Clause software.
-The packaged ``LICENSE-geographic-boundaries.txt`` contains the source
+The packaged ``licenses/geographic-boundaries.txt`` contains the source
 links, comparison evidence, attribution, and remaining provenance uncertainties.
 
 Invalid geometry in 45 counties is repaired using Shapely ``make_valid``,

@@ -13,13 +13,15 @@ dependencies = [
     "pandas >=2.2.3",
     "numpy >=1.26.4",
     "shapely >=2.0",
+    "tzdata",
 ]
 authors = [
   {email = "info@bokeh.org"},
   {name = "Bokeh Team"}
 ]
+# Each bundled component retains its own terms. See licenses/datasets.json.
 license = "BSD-3-Clause"
-license-files = ["LICENSE.txt", "LICENSE-geographic-boundaries.txt"]
+license-files = ["LICENSE.txt", "licenses/*"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",

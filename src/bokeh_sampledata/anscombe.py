@@ -6,9 +6,11 @@
 # -----------------------------------------------------------------------------
 """The four data series that comprise `Anscombe's Quartet`_.
 
-License: `CC BY-SA 3.0`_
+License: `Public Domain`_
 
-Sourced from: https://en.wikipedia.org/wiki/Anscombe%27s_quartet
+Francis J. Anscombe (1973), “Graphs in Statistical Analysis”,
+The American Statistician, 27(1), 17-21, https://doi.org/10.1080/00031305.1973.10478966.
+The historical scientific data values are public domain.
 
 This module contains one pandas Dataframe: ``data``.
 

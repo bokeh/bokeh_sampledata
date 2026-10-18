@@ -22,7 +22,7 @@ def test_geojson() -> None:
     assert isinstance(m.geojson, str)
 
 
-def test_area_team_features() -> None:
+def test_historical_area_team_features() -> None:
     collection = json.loads(m.geojson)
     assert collection["type"] == "FeatureCollection"
     features = collection["features"]
@@ -32,6 +32,7 @@ def test_area_team_features() -> None:
         assert feature["type"] == "Feature"
         properties = feature["properties"]
         assert properties["OrganisationType"] == "Area Team"
+        assert {"OrganisationCode", "OrganisationType", "OrganisationName"} <= properties.keys()
         assert properties["OrganisationName"]
         codes.add(properties["OrganisationCode"])
         geometry = feature["geometry"]

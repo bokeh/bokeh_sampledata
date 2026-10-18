@@ -38,9 +38,12 @@ def main() -> None:
     expected = requirements(project["project"]["dependencies"])
     # These base Pixi dependencies support editable installation and builds.
     build_tools = {"pip", "setuptools", "setuptools-git-versioning", "wheel"}
+    # Conda's tzdata contains system zoneinfo, while python-tzdata supplies
+    # the importable fallback distributed as tzdata on PyPI.
+    pypi_names = {"python-tzdata": "tzdata"}
     pixi_runtime = requirements(
         [
-            f"{name}{version if version != '*' else ''}"
+            f"{pypi_names.get(name, name)}{version if version != '*' else ''}"
             for name, version in pixi["dependencies"].items()
             if name not in build_tools
         ]

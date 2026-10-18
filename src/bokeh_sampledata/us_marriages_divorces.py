@@ -8,7 +8,8 @@
 
 License: `Public Domain`_
 
-Sourced from http://www.cdc.gov/nchs/
+Data organized by Randal S. Olson from CDC/NCHS historical statistics.
+Current program information: https://www.cdc.gov/nchs/nvss/marriage-divorce.htm
 
 This module contains one pandas Dataframe: ``data``.
 

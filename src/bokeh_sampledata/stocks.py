@@ -6,9 +6,28 @@
 # -----------------------------------------------------------------------------
 """Provide historical ticker data for selected stocks.
 
-Sourced from public news sources.
+License: `Public Domain`_.
 
-This module contains five dicts: ``AAPL``, ``FB``, ``GOOG``, ``IBM``, and ``MSFT``.
+Sourced from `Quandl WIKI Prices`_, using an `archived copy`_. Quandl declared
+the data public domain and permitted redistribution in its `publisher notice`_.
+The values are provided as supplied by the source.
+
+The series end on March 1, 2013. Open, high, low, close, and volume are
+unadjusted. ``adj_close`` contains the source's split- and dividend-adjusted
+closing prices, including adjustments for corporate actions after this period.
+The ``GOOG`` dictionary contains Google's pre-2014 history, filed under
+``GOOGL`` in the source.
+
+The ``data`` pandas DataFrame contains all five series, with columns ``ticker``,
+``date``, ``open``, ``high``, ``low``, ``close``, ``volume``, and ``adj_close``.
+Dates are parsed as pandas timestamps. Rows are ordered by ticker, then date.
+The DataFrame is constructed on first access.
+
+.. rubric:: ``data``
+
+:bokeh-dataframe:`bokeh.sampledata.stocks.data`
+
+The module also contains five dicts: ``AAPL``, ``FB``, ``GOOG``, ``IBM``, and ``MSFT``.
 
 Each dictionary has the structure:
 
@@ -24,12 +43,20 @@ Each dictionary has the structure:
 
 .. bokeh-sampledata-xref:: stocks
 
+.. _Quandl WIKI Prices: https://data.nasdaq.com/databases/WIKIP
+.. _archived copy: https://www.kaggle.com/datasets/marketneutral/quandl-wiki-prices-us-equites/versions/1
+.. _publisher notice: https://web.archive.org/web/20150411011214/https://www.quandl.com/data/WIKI
+
 """
 
 from __future__ import annotations
 
 import csv
-from typing import TypedDict
+import gzip
+from typing import TYPE_CHECKING, TypedDict
+
+if TYPE_CHECKING:
+    import pandas as pd
 
 from . import package_path
 
@@ -43,7 +70,31 @@ __all__ = (
     "GOOG",
     "IBM",
     "MSFT",
+    "data",
 )
+
+_TICKERS = ("AAPL", "FB", "GOOG", "IBM", "MSFT")
+
+if TYPE_CHECKING:
+    data: pd.DataFrame
+
+
+def __getattr__(name: str) -> object:
+    if name != "data":
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+    import pandas as pd
+
+    frames = []
+    for ticker in _TICKERS:
+        frame = pd.DataFrame(globals()[ticker])
+        frame.insert(0, "ticker", ticker)
+        frames.append(frame)
+    data = pd.concat(frames, ignore_index=True)
+    data["date"] = pd.to_datetime(data["date"])
+    globals()["data"] = data
+    return data
+
 
 # -----------------------------------------------------------------------------
 # General API
@@ -68,22 +119,17 @@ class StockData(TypedDict):
     adj_close: list[float]
 
 
-def _read_data(name: str) -> StockData:
-    filename = package_path(name + ".csv")
-    data = StockData(
-        date=[],
-        open=[],
-        high=[],
-        low=[],
-        close=[],
-        volume=[],
-        adj_close=[],
-    )
-    with open(filename) as f:
+def _read_data() -> dict[str, StockData]:
+    filename = package_path("stocks.csv.gz")
+    stocks = {
+        name: StockData(date=[], open=[], high=[], low=[], close=[], volume=[], adj_close=[]) for name in _TICKERS
+    }
+    with gzip.open(filename, "rt", encoding="utf-8", newline="") as f:
         next(f)
         reader = csv.reader(f, delimiter=",")
         for row in reader:
-            date, open_price, high, low, close, volume, adj_close = row
+            ticker, date, open_price, high, low, close, volume, adj_close = row
+            data = stocks[ticker]
             data["date"].append(date)
             data["open"].append(float(open_price))
             data["high"].append(float(high))
@@ -91,11 +137,13 @@ def _read_data(name: str) -> StockData:
             data["close"].append(float(close))
             data["volume"].append(int(volume))
             data["adj_close"].append(float(adj_close))
-    return data
+    return stocks
 
 
-AAPL = _read_data("AAPL")
-FB = _read_data("FB")
-GOOG = _read_data("GOOG")
-IBM = _read_data("IBM")
-MSFT = _read_data("MSFT")
+_stocks = _read_data()
+AAPL = _stocks["AAPL"]
+FB = _stocks["FB"]
+GOOG = _stocks["GOOG"]
+IBM = _stocks["IBM"]
+MSFT = _stocks["MSFT"]
+del _stocks

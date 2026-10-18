@@ -6,6 +6,10 @@
 # -----------------------------------------------------------------------------
 """Provide medal counts by country for the 2014 Olympics.
 
+License: BSD-3-Clause, under the original Bokeh contribution terms.
+Source credit: Bryan Van de Ven, original Bokeh contribution (2014).
+The BSD notice is in the top-level ``LICENSE.txt``.
+
 Sourced from public news sources in 2014.
 
 This module contains a single dict: ``data``.

@@ -9,7 +9,7 @@ efficacies.
 
 License: `MIT license`_
 
-Sourced from: https://bl.ocks.org/borgar/cd32f1d804951034b224
+Sourced from: https://gist.github.com/borgar/cd32f1d804951034b224
 
 This module contains one pandas Dataframe: ``data``.
 
@@ -19,7 +19,7 @@ This module contains one pandas Dataframe: ``data``.
 
 .. bokeh-sampledata-xref:: antibiotics
 
-.. _Will Burtin's historical data: https://medium.com/@harshdev_41068/burtins-legendary-data-on-antibiotics-9b32ecd5943f
+.. _Will Burtin's historical data: https://gist.github.com/borgar/cd32f1d804951034b224
 
 """
 

@@ -4,19 +4,20 @@
 #
 # The full license is in the file LICENSE.txt, distributed with this software.
 # -----------------------------------------------------------------------------
-"""Provide a Haar cascade file for face recognition.
+"""Provide a pretrained Haar cascade for frontal face detection.
 
-License: `MIT license`_
+License: Intel License Agreement for Open Source Computer Vision Library
+(a BSD-style license), embedded in the XML file and reproduced in
+``licenses/LicenseRef-Intel-OpenCV.txt``. Copyright (C) 2000, Intel
+Corporation. The classifier was created by Rainer Lienhart and is distributed
+unmodified from `OpenCV 4.4.0
+<https://github.com/opencv/opencv/blob/4.4.0/data/haarcascades/haarcascade_frontalface_default.xml>`_.
+Source hashes and provenance are recorded in ``licenses/datasets.json``.
 
-Sourced from the `OpenCV`_ project.
-
-This module contains an attribute ``frontalface_default_path`` . Use this
-attribute to obtain the path to a Haar cascade file for frontal face
-recognition that can be used by OpenCV.
+This module contains one attribute, ``frontalface_default_path``, a path usable
+with OpenCV's ``CascadeClassifier`` and ``detectMultiScale``.
 
 .. bokeh-sampledata-xref:: haar_cascade
-
-.. _OpenCV: https://opencv.org
 
 """
 

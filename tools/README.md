@@ -60,3 +60,41 @@ to each other and the checked-in database. Run it with the recorded generation
 toolchain. CI includes Shapely in its locked test environments to exercise the runtime API on all
 supported CI platforms. Lazy legacy imports and attribute caching are also
 tested in fresh subprocesses.
+
+## Historical stock data
+
+The combined `stocks.csv.gz` contains extracts of Quandl WIKI Prices from the archived
+copy linked in the stocks module docstring. The source archive and CSV hashes
+are recorded in `licenses/datasets.json`. Select the original date ranges
+through March 1, 2013, keep raw OHLCV and adjusted close, convert volume to
+integer, and sort each ticker's rows by date. Add a ticker column to identify
+each series. Use the source's `GOOGL` history for the legacy
+`GOOG` API. Gzip headers omit filenames and timestamps for reproducible output.
+
+## Browser icons
+
+The five SVG outlines come from Font Awesome Free tag `6.7.2`, under
+`svgs/brands/`: `chrome.svg`, `firefox.svg`, `internet-explorer.svg`, `opera.svg`,
+and `safari.svg`. Pinned source URLs and SHA-256 hashes are recorded in
+`licenses/datasets.json`.
+
+The PNGs were rendered with `@resvg/resvg-js` 2.6.2. Preserve each original path,
+scale it uniformly to fit a 28-by-28 area, and center it in a transparent
+32-by-32 canvas. Fill colors are Chrome `#4285f4`, Firefox `#e66000`, Internet
+Explorer `#0078d7`, Opera `#d80a1f`, and Safari `#007aff`. PNG `tEXt` metadata
+records Fonticons attribution, CC BY 4.0, the exact SVG URL and the changes.
+Retain those notices, `licenses/Font-Awesome.txt`, and the source hashes when
+replacing assets. Rendering is a one-off development step with no added runtime
+dependency. No Font Awesome font or JavaScript code is distributed.
+
+## Packaged text compression
+
+Larger CSV/JSON datasets and the consolidated stock table are
+stored as gzip. Small
+files, the boundary manifest, and formats consumed by external tools remain
+unchanged. Pandas infers gzip from the filename, while dictionary loaders open
+gzip streams directly. No extraction cache or additional dependency is needed.
+
+Preserve the original bytes when compressing data. Use level 9, an empty gzip
+filename, and timestamp zero. The inventory records both the packaged hash and
+the uncompressed content hash so a storage change does not obscure provenance.

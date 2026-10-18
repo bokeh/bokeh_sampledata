@@ -4,13 +4,17 @@
 #
 # The full license is in the file LICENSE.txt, distributed with this software.
 # -----------------------------------------------------------------------------
-"""A version of the Auto MPG data set.
+"""EPA fuel economy data for 1999 and 2008 vehicle models.
 
-License: `CC0`_
+License: `Public Domain`_
 
-Sourced from https://archive.ics.uci.edu/ml/datasets/auto+mpg
+Original source: `FuelEconomy.gov <https://www.fueleconomy.gov/>`_,
+provided by the US Department of Energy and Environmental Protection Agency.
+This sample contains public-domain EPA vehicle fuel economy records.
+The subset was distributed as ggplot2's ``mpg`` dataset.
+This is a different dataset from :ref:`sampledata_autompg`.
 
-This module contains one pandas Dataframe: ``autompg``.
+This module contains one pandas Dataframe: ``autompg2``.
 
 .. rubric:: ``autompg2``
 

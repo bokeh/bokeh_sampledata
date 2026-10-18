@@ -4,30 +4,22 @@
 #
 # The full license is in the file LICENSE.txt, distributed with this software.
 # -----------------------------------------------------------------------------
-"""Provide JSON data for co-occurrence of characters in Les Miserables.
+"""Character encounters in Les Misérables, from Donald Knuth's Stanford GraphBase.
 
-License: `CC BY-ND 4.0`_
+Derived from ``jean.dat``, Copyright 1993 Stanford University. This renamed JSON
+file is not part of the Stanford GraphBase. Knuth describes its programs and
+data as public domain. Its accompanying file notice permits redistribution
+and requires renamed, identified derivatives. See ``licenses/LicenseRef-Stanford-GraphBase.txt``.
 
-Source from http://ftp.cs.stanford.edu/pub/sgb/jean.dat
+The 77 characters and 254 weighted links retain the historical Bokeh graph.
+Groups are independently computed by deterministic Louvain community detection,
+rather than copied from Mike Bostock's visualization. They are illustrative
+clusters, not additional literary facts.
 
-This module contains one dictionary: ``data``.
+Source: https://www-cs-faculty.stanford.edu/~knuth/sgb.html
 
-.. rubric:: ``data``
-
-.. code-block::
-
-    {
-        'nodes': [
-            {'name': 'Myriel', 'group': 1},
-            ...
-            {'name': 'Mme.Hucheloup', 'group': 8}
-        ],
-        'links': [
-            {'source': 1, 'target': 0, 'value': 1},
-            ...
-            {'source': 76, 'target': 58, 'value': 1}
-        ]
-    }
+This module contains one dictionary, ``data``, with ``nodes`` (name and group)
+and ``links`` (integer source and target node indices, and encounter count value).
 
 .. bokeh-sampledata-xref:: les_mis
 

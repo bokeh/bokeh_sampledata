@@ -8,7 +8,8 @@
 
 License: `Public Domain`_
 
-Sourced from: https://www.bls.gov
+Sourced from the U.S. Bureau of Labor Statistics. Current program and
+historical data information: https://www.bls.gov/cps/prev_yrs.htm
 
 This module contains one pandas Dataframe: ``data``.
 

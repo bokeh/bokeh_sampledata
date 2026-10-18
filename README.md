@@ -69,3 +69,12 @@ publishing through the `pypi` GitHub environment. No PyPI API token is needed.
 Tags follow the existing version format, for example `2025.0`.
 
 The environment approval is the final step before uploading the tested artifacts.
+
+## License maintenance
+
+The software license is in [LICENSE.txt](LICENSE.txt). Dataset notices and
+provenance are collected in [licenses/](licenses/README.md).
+Update [the file inventory](licenses/datasets.json) when adding or replacing data,
+including original source evidence, attribution, applicable terms, and changes
+made to the source. Keep legal texts verbatim. Existing license declarations are accepted unless contrary evidence is found.
+Record explicit terms for new datasets before including them.

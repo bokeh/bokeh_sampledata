@@ -4,11 +4,12 @@
 #
 # The full license is in the file LICENSE.txt, distributed with this software.
 # -----------------------------------------------------------------------------
-"""Per-county unemployment data for Unites States in 2009.
+"""Per-county unemployment data for United States in 2009.
 
 License: `Public Domain`_
 
-Sourced from: https://www.bls.gov
+Sourced from the U.S. Bureau of Labor Statistics. Current program and
+historical data information: https://www.bls.gov/lau/
 
 This module contains one dict: ``data``.
 

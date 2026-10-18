@@ -33,7 +33,7 @@ or unofficial. Natural Earth provides the data without assurances of accuracy
 or fitness. See its boundary policy:
 https://www.naturalearthdata.com/about/disputed-boundaries-policy/
 
-Bokeh retains selected source metadata and converts the shapes to compressed
+Bokeh retains selected source metadata and converts the shapes to little-endian
 2D WKB in SQLite. No simplification or reprojection is applied. No country
 geometry required validity repair with the recorded generation toolchain.
 

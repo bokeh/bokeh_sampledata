@@ -6,6 +6,11 @@
 # -----------------------------------------------------------------------------
 """A CSV timeseries of blood glucose measurements.
 
+License: `Public Domain`_.
+
+Supplied directly to a Bokeh maintainer by a personal acquaintance as
+public-domain data.
+
 This module contains one pandas Dataframe: ``data``.
 
 .. rubric:: ``data``

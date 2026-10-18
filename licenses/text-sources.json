@@ -1,0 +1,49 @@
+{
+  "CC0-1.0.txt": {
+    "source": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/CC0-1.0.txt",
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+  },
+  "CC-BY-2.0.txt": {
+    "source": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/CC-BY-2.0.txt",
+    "sha256": "f892996eb4b6f2e54241432ed67b743772224e191ba3a0ae595eb4feca3df4c5"
+  },
+  "CC-BY-4.0.txt": {
+    "source": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/CC-BY-4.0.txt",
+    "sha256": "d557539df68e771cc1eedcc91d13f70fca930e508d11eedcafa4b15db49e3744"
+  },
+  "MIT.txt": {
+    "source": "https://raw.githubusercontent.com/zonination/perceptions/master/LICENSE",
+    "sha256": "6ee531c7f55761ff8dba80865bacd392abfd17f304ef24b91fb2d66cb0d77d0e"
+  },
+  "Font-Awesome.txt": {
+    "source": "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/LICENSE.txt",
+    "sha256": "9b914eae88817d63b576eab5aafde7068c7a1abae125d7cdfb034f1da43a9afc"
+  },
+  "CC-BY-SA-3.0.txt": {
+    "source": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/CC-BY-SA-3.0.txt",
+    "sha256": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f"
+  },
+  "CC-BY-3.0.txt": {
+    "source": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/CC-BY-3.0.txt",
+    "sha256": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76"
+  },
+  "CC-BY-3.0-IGO.txt": {
+    "source": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/CC-BY-3.0-IGO.txt",
+    "sha256": "26d9706f1a4fffe751365b249c23f8bcb0bb2aff2c76f57608bc6bffe002001d"
+  },
+  "OGL-UK-2.0.txt": {
+    "source": "https://raw.githubusercontent.com/spdx/license-list-data/31ba1a50e5397e00a304dbadc76531740e89ee48/text/OGL-UK-2.0.txt",
+    "sha256": "dea956be58d1944c806229baeb5f4c3ade45decc2c855a1d738ae0ad014ff408"
+  },
+  "LicenseRef-Intel-OpenCV.txt": {
+    "source": "https://raw.githubusercontent.com/opencv/opencv/4.4.0/data/haarcascades/haarcascade_frontalface_default.xml",
+    "excerpt": "Complete opening XML comment, without comment delimiters.",
+    "sha256": "f4a57bdbf0924970715610de34979b49fcae677427e499995269278301deaba4"
+  },
+  "LicenseRef-Stanford-GraphBase.txt": {
+    "source": "https://www-cs-faculty.stanford.edu/pub/sgb/sgb.tar.gz",
+    "source_member": "README",
+    "excerpt": "Complete copyright, permission, and disclaimer paragraph.",
+    "sha256": "b64f25fdf5e074e21e6c43d3998ff22406b4a9d1945162d5e3121b6712eb8164"
+  }
+}

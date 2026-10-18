@@ -10,6 +10,13 @@ Bokeh examples.
 In order to access these data sets, the separate ``bokeh_sampledata`` package
 must be pip or conda installed.
 
+Bokeh's loader code is BSD-3-Clause. Bundled datasets and browser logos retain
+separate terms. Source credits, legal texts, and dataset license declarations
+are documented in the distribution's license files, especially
+``licenses/datasets.json``. Installed wheels place these under the package's
+``.dist-info/licenses/`` directory. Module documentation gives the relevant per-dataset notice.
+No single BSD grant covers all bundled data.
+
 """
 
 from __future__ import annotations
