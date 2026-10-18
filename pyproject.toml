@@ -19,7 +19,7 @@ authors = [
   {name = "Bokeh Team"}
 ]
 license = "BSD-3-Clause"
-license-files = ["LICENSE.txt", "src/bokeh_sampledata/_data/geographic_boundaries.LICENSE.txt"]
+license-files = ["LICENSE.txt", "LICENSE-geographic-boundaries.txt"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
