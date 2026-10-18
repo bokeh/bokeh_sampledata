@@ -83,3 +83,8 @@ banned-module-level-imports = ["pandas"]
 [tool.ruff.lint.per-file-ignores]
 # Keep the package initializer lightweight. Dataframe modules may import pandas.
 "!src/bokeh_sampledata/__init__.py" = ["TID253"]
+
+[tool.pyright]
+include = ["src", "tests", "tools"]
+pythonVersion = "3.10"
+typeCheckingMode = "standard"

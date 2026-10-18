@@ -137,16 +137,21 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
             **{ext: io.BytesIO(archive_file.read(f"{stem}.{ext}")) for ext in ("shp", "shx", "dbf")}, encoding="utf-8"
         )
         for feature in reader.iterShapeRecords():
+            if feature.record is None or feature.shape is None:
+                raise ValueError("Natural Earth feature is missing its record or shape")
             attributes = feature.record.as_dict()
+            identifier = attributes["ADM0_A3"]
+            if not isinstance(identifier, str):
+                raise ValueError("Natural Earth ADM0_A3 must be a string")
             metadata = dict(
-                id=attributes["ADM0_A3"],
+                id=identifier,
                 name=attributes["NAME_EN"],
                 iso_a2=None if attributes["ISO_A2_EH"] == "-99" else attributes["ISO_A2_EH"],
                 iso_a3=None if attributes["ISO_A3_EH"] == "-99" else attributes["ISO_A3_EH"],
                 continent=attributes["CONTINENT"],
                 region=attributes["REGION_UN"],
             )
-            add("world_countries", metadata["id"], None, metadata, shape(feature.shape.__geo_interface__))
+            add("world_countries", identifier, None, metadata, shape(feature.shape.__geo_interface__))
     # Match the historical dictionary's last-row-wins handling of duplicate FIPS.
     for table, records in rows.items():
         rows[table] = list({record[0]: record for record in records}.values())

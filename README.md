@@ -54,6 +54,11 @@ from pre-commit when a workflow changes. Hooks check for merge conflict markers,
 case-conflicting filenames, and private keys, alongside formatting and typing.
 Install the hooks locally with `pixi run --locked pre-commit install`.
 
+Type checking uses both Mypy (strict mode) and Pyright (standard mode), targeting
+Python 3.10 across `src`, `tests`, and `tools`. Run both with
+`pixi run --locked typecheck`, or individually with `typecheck-mypy` and
+`typecheck-pyright`. Both also run through `check` and pre-commit.
+
 ## Releases
 
 Publishing a GitHub release runs `.github/workflows/release.yml`. The workflow

@@ -46,6 +46,8 @@ actionlint = "*"
 pre-commit = "*"
 ruff = "0.15.4.*"
 mypy = ">=1.19"
+pyright = "*"
+nodejs = "24.*"
 pandas-stubs = "*"
 types-shapely = "*"
 packaging = "*"
@@ -78,7 +80,9 @@ lint = "ruff check src tests tools"
 format-check = "ruff format --check src tests tools"
 dependency-check = "python tools/check_dependencies.py"
 workflow-check = "actionlint"
-typecheck = "mypy src tests tools"
+typecheck-mypy = "mypy src tests tools"
+typecheck-pyright = "pyright"
+typecheck = { depends-on = ["typecheck-mypy", "typecheck-pyright"] }
 check = { depends-on = ["lint", "format-check", "dependency-check", "workflow-check", "typecheck"] }
 
 [feature.build.tasks]

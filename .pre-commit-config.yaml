@@ -41,7 +41,14 @@ repos:
     hooks:
       - id: mypy
         name: mypy (locked Pixi environment)
-        entry: pixi run --locked typecheck
+        entry: pixi run --locked typecheck-mypy
+        language: system
+        types: [python]
+        pass_filenames: false
+
+      - id: pyright
+        name: pyright (locked Pixi environment)
+        entry: pixi run --locked typecheck-pyright
         language: system
         types: [python]
         pass_filenames: false
