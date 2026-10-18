@@ -7,8 +7,7 @@
 """This modules exposes geometry data for Unites States.
 
 The permanent ``data`` dictionary is loaded on first access.
-Use ``records()`` for Shapely-native polygons and metadata (requires the
-``geometry`` extra).
+Use ``records()`` for Shapely-native polygons and metadata.
 
 The data is indexed by two-tuples of ``(state_id, county_id)`` that
 have the following dictionaries as values:
@@ -94,8 +93,8 @@ def records(state: str | None = None) -> list[CountyRecord]:
     list; names, numeric FIPS codes, whitespace, and other formats raise
     ``ValueError``. Filtering uses an index before geometry decoding.
 
-    Coordinates are longitude/latitude degrees (WGS84). Requires the
-    ``geometry`` extra. Each call returns fresh records; ``data`` is independent.
+    Coordinates are longitude/latitude degrees (WGS84). Each call returns
+    fresh records; ``data`` is independent.
     """
     if state is not None:
         if not isinstance(state, str) or len(state) != 2 or not state.isascii() or not state.isalpha():

@@ -5,7 +5,7 @@ This package contains sample datasets for use with Bokeh examples.
 
 ## Geographic boundary records
 
-Install `bokeh_sampledata[geometry]` to use Shapely-native boundaries:
+Shapely is included as a standard dependency of `bokeh_sampledata`:
 
 ```python
 from bokeh_sampledata import us_states, us_counties, world_countries
@@ -44,12 +44,13 @@ missing values or an alternative code.
 The permanent `us_states.data` and `us_counties.data` compatibility APIs retain
 their historical dictionary schemas, NumPy array types, NaN separators, and
 metadata interfaces. Coordinates come from the shared valid geometries, so
-repairs, ring ordering, and closing points can differ from the old arrays. They are loaded and cached on first attribute access (including
-`from ... import data`). They require no Shapely and are independent of
-`records()`. Importing these modules performs no boundary I/O. Both APIs share the
-packaged WKB with no duplicate boundary dataset.
-The old KML-in-CSV files are no longer included in the package. No GeoPandas or PyArrow dependency is required.
-For conda installations, install Shapely separately to enable `records()`.
+repairs, ring ordering, and closing points can differ from the old arrays.
+They are loaded and cached on first attribute access (including
+`from ... import data`). Their reconstruction uses NumPy and the standard
+library, with a cache independent of `records()`. Importing these modules
+performs no boundary I/O. Both APIs share the packaged WKB with no duplicate
+boundary dataset. The old KML-in-CSV files are no longer included in the
+package. No GeoPandas or PyArrow dependency is required.
 
 ## Boundary data provenance
 
@@ -122,4 +123,4 @@ CI runs locked test environments on Linux, macOS, and Windows for Python
 3.10–3.14, plus repository checks and package builds on Linux. Python 3.10
 remains the package minimum. NumPy is declared directly because the package
 uses its arrays. Runtime requirements are mirrored in the Pixi manifest and
-rattler recipe; Shapely remains an optional `geometry` extra for package users.
+rattler recipe, including Shapely as a standard runtime dependency.

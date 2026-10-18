@@ -48,10 +48,7 @@ class CountryRecord(TypedDict):
 
 
 def read_records(table: str, state: str | None = None) -> list[Any]:
-    try:
-        from shapely import from_wkb
-    except ImportError as error:
-        raise ImportError("Boundary records require Shapely >=2. Install bokeh_sampledata[geometry].") from error
+    from shapely import from_wkb
 
     if table not in {"us_states", "us_counties", "world_countries"}:
         raise ValueError(f"Unknown boundary table: {table}")

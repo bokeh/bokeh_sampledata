@@ -12,6 +12,7 @@ dependencies = [
     "icalendar",
     "pandas >=1.2",
     "numpy >=1.21",
+    "shapely >=2.0",
 ]
 authors = [
   {email = "info@bokeh.org"},
@@ -28,9 +29,6 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
 ]
-
-[project.optional-dependencies]
-geometry = ["shapely >=2.0"]
 
 [project.urls]
 homepage = "https://bokeh.org"

@@ -27,6 +27,7 @@ requirements:
     - icalendar
     - pandas >=1.2
     - numpy >=1.21
+    - shapely >=2.0
 
 tests:
   - python:
@@ -41,9 +42,6 @@ tests:
       - python -c "from bokeh_sampledata.us_counties import data; assert len(data) == 3233"
   - script:
       - python -c "from bokeh_sampledata import us_counties, world_countries; assert len(us_counties.records('TX')) == 254; assert len(world_countries.records()) == 242"
-    requirements:
-      run:
-        - shapely >=2.0
 
 about:
   license: BSD-3-Clause

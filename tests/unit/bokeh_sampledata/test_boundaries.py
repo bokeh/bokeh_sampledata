@@ -79,7 +79,7 @@ for module in (states, counties):
     try:
         module.records()
     except ImportError as error:
-        assert 'bokeh_sampledata[geometry]' in str(error)
+        assert 'shapely' in str(error)
     else:
         raise AssertionError('Shapely should be required for records')
     assert 'data' not in vars(module)

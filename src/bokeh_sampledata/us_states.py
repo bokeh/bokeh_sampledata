@@ -7,8 +7,7 @@
 """Geometry data for US States.
 
 The permanent ``data`` dictionary is loaded on first access.
-Use ``records()`` for Shapely-native polygons and metadata (requires the
-``geometry`` extra).
+Use ``records()`` for Shapely-native polygons and metadata.
 
 The data is indexed by the two letter state code (e.g., 'CA', 'TX') and has the
 following structure:
@@ -72,7 +71,7 @@ if TYPE_CHECKING:
 def records() -> list[StateRecord]:
     """Return 51 state/DC records in code order, with Shapely geometry.
 
-    Coordinates are longitude/latitude degrees (WGS84). Requires the
-    ``geometry`` extra. Each call returns fresh records; ``data`` is independent.
+    Coordinates are longitude/latitude degrees (WGS84). Each call returns
+    fresh records; ``data`` is independent.
     """
     return cast(list[StateRecord], read_records("us_states"))

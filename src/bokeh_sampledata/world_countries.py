@@ -26,6 +26,6 @@ def records() -> list[CountryRecord]:
     source ISO_A2_EH/ISO_A3_EH codes, or None for -99 (these may be shared
     or unofficial, e.g. XK for Kosovo). Geometry is
     a Shapely Polygon/MultiPolygon in longitude/latitude degrees (WGS84).
-    Requires ``bokeh_sampledata[geometry]``. Each call returns fresh records.
+    Each call returns fresh records.
     """
     return cast(list[CountryRecord], read_records("world_countries"))

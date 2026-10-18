@@ -13,6 +13,7 @@ wheel = "*"
 icalendar = "*"
 pandas = ">=1.2"
 numpy = ">=1.21"
+shapely = ">=2.0"
 
 [feature.py310.dependencies]
 python = "3.10.*"
@@ -34,7 +35,6 @@ python-gil = "*"
 [feature.test.dependencies]
 pytest = "*"
 pytest-cov = "*"
-shapely = ">=2.0"
 
 [feature.dev.dependencies]
 pre-commit = "*"
