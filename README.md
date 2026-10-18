@@ -68,14 +68,4 @@ A separate job publishes those same distributions to PyPI using trusted
 publishing through the `pypi` GitHub environment. No PyPI API token is needed.
 Tags follow the existing version format, for example `2025.0`.
 
-Before the first automated release:
-
-1. Create the `pypi` environment in the `bokeh/bokeh_sampledata` repository.
-   Configure required maintainer approval and restrict deployment to release tags.
-2. In the PyPI project's publishing settings, add a GitHub trusted publisher
-   with owner `bokeh`, repository `bokeh_sampledata`, workflow `release.yml`,
-   and environment `pypi`.
-3. Merge the workflow before publishing a release whose tag contains it.
-
-See the [PyPI trusted publisher setup instructions](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).
 The environment approval is the final step before uploading the tested artifacts.
