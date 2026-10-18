@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import json
 import sqlite3
-import zlib
 from contextlib import closing
 from typing import TYPE_CHECKING, Any, TypedDict
 
@@ -61,7 +60,7 @@ def read_records(table: str, state: str | None = None) -> list[Any]:
     uri = package_path("geographic_boundaries.db").as_uri() + "?mode=ro"
     with closing(sqlite3.connect(uri, uri=True)) as connection:
         return [
-            dict(json.loads(metadata), geometry=from_wkb(zlib.decompress(wkb)))
+            dict(json.loads(metadata), geometry=from_wkb(wkb))
             for metadata, wkb in connection.execute(query, parameters)
         ]
 
@@ -99,7 +98,7 @@ def read_legacy(table: str) -> dict[Any, Any]:
         rows = connection.execute(f"SELECT metadata, geometry FROM {table} ORDER BY ordinal")
         for metadata, wkb in rows:
             record = json.loads(metadata)
-            lons, lats = exterior_coordinates(zlib.decompress(wkb))
+            lons, lats = exterior_coordinates(wkb)
             if table == "us_states":
                 key = record["code"]
                 value = dict(name=record["name"], region=record["region"])

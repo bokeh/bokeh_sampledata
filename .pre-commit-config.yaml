@@ -19,9 +19,9 @@ repos:
         name: "don't commit to main branch"
         args: ['--branch', 'main']
       - id: trailing-whitespace
-        exclude: ^src/bokeh_sampledata/_data/
+        exclude: ^(src/bokeh_sampledata/_data/|licenses/.*\.txt$)
       - id: end-of-file-fixer
-        exclude: ^src/bokeh_sampledata/_data/
+        exclude: ^(src/bokeh_sampledata/_data/|licenses/.*\.txt$)
       - id: check-json
       - id: check-toml
       - id: check-yaml

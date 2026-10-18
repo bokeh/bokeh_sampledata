@@ -26,4 +26,4 @@ from . import package_csv
 
 __all__ = ("data",)
 
-data = package_csv("SampleSuperstore.csv")
+data = package_csv("SampleSuperstore.csv.gz")

@@ -186,6 +186,7 @@ def test_state_filter_decodes_only_matches(monkeypatch: pytest.MonkeyPatch) -> N
 def test_packaged_manifest() -> None:
     path = package_path("geographic_boundaries.db")
     manifest = json.loads(path.with_suffix(".json").read_text())
+    assert manifest["geometry_encoding"] == "WKB"
     assert path.stat().st_size == manifest["bytes"]
     assert hashlib.sha256(path.read_bytes()).hexdigest() == manifest["sha256"]
     assert manifest["inputs"] == {

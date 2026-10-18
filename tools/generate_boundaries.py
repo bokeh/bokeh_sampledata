@@ -18,7 +18,6 @@ import sqlite3
 import sys
 import xml.etree.ElementTree as ET
 import zipfile
-import zlib
 from pathlib import Path
 from typing import Any
 
@@ -94,7 +93,7 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
                 identifier,
                 state,
                 json.dumps(metadata, sort_keys=True, ensure_ascii=False),
-                zlib.compress(wkb, level=9),
+                wkb,
             )
         )
 
@@ -156,7 +155,7 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
     output.unlink(missing_ok=True)
     with sqlite3.connect(output) as db:
         db.execute("PRAGMA page_size=4096")
-        db.execute("PRAGMA user_version=1")
+        db.execute("PRAGMA user_version=2")
         for table, records in rows.items():
             db.execute(
                 f"CREATE TABLE {table} "
@@ -177,7 +176,7 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
         geos=shapely.geos_version_string,
         sqlite=sqlite3.sqlite_version,
         python=sys.version.split()[0],
-        zlib=zlib.ZLIB_RUNTIME_VERSION,
+        geometry_encoding="WKB",
         pyshp=shapefile.__version__,
         bytes=output.stat().st_size,
         sha256=digest(output),

@@ -22,4 +22,4 @@ from . import package_csv
 
 __all__ = ("data",)
 
-data = package_csv("CGM.csv", sep=",", parse_dates=[1], index_col=1)
+data = package_csv("CGM.csv.gz", sep=",", parse_dates=[1], index_col=1)

@@ -30,6 +30,7 @@ has the unemployment rate (2009) as the value.
 from __future__ import annotations
 
 import csv
+import gzip
 
 from . import package_path
 
@@ -37,7 +38,7 @@ __all__ = ("data",)
 
 data = {}
 
-with open(package_path("unemployment09.csv"), encoding="utf-8") as f:
+with gzip.open(package_path("unemployment09.csv.gz"), "rt", encoding="utf-8") as f:
     reader = csv.reader(f, delimiter=",", quotechar='"')
     for row in reader:
         _, state_id, county_id, _, _, _, _, _, rate = row

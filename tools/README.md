@@ -2,14 +2,15 @@
 
 The database uses standard-library SQLite, as does the existing `movies.db`
 sample. Each table contains a stable identifier, indexed state code where
-applicable, JSON metadata, and **zlib-compressed little-endian 2D WKB** per row.
+applicable, JSON metadata, and **little-endian 2D WKB** per row.
 Each row also retains its original iteration ordinal. US legacy dictionaries
-are built lazily from shared WKB exteriors using a standard-library decoder,
-without Shapely. No duplicate coordinate payload or original CSV is packaged.
+are built lazily from shared WKB exteriors using Shapely.
+No duplicate coordinate payload or original CSV is packaged.
 The historical plotting schemas are preserved, while coordinates may differ
 due to repairs or polygon closing.
-Per-row compression and a county state index allow filtered reads without
-loading or decompressing all county geometries. Runtime requires only Shapely
+A county state index allows filtered reads without loading all county geometries.
+WKB is stored without per-row compression so wheel ZIP compression can exploit
+repeated coordinates across records. Runtime requires only Shapely
 and the standard library, alongside the package's existing dependencies.
 The public records API is independent of these implementation choices.
 
@@ -35,11 +36,11 @@ Their SHA-256 hashes are checked before conversion.
 No boundary downloads occur during generation, installation, or runtime.
 PyShp is a generation-only dependency, not a runtime requirement.
 
-Sorted insertion, fixed byte order, fixed compression level, and a fresh
+Sorted insertion, fixed byte order, and a fresh
 vacuumed database produce byte-identical output with the same toolchain.
 The checked-in generation used the locked default Pixi environment on macOS
-Apple Silicon: CPython 3.12.15, SQLite 3.54.1, zlib 1.3.2, Shapely 2.2.0 /
-GEOS 3.14.1 and PyShp 2.3.1. Different SQLite, zlib, or GEOS
+Apple Silicon: CPython 3.12.15, SQLite 3.54.1, Shapely 2.2.0 /
+GEOS 3.14.1 and PyShp 2.3.1. Different SQLite or GEOS
 versions can change binary bytes. Use the recorded versions for exact
 checksums and review/rebaseline the manifest deliberately on upgrades.
 The script accepts `--source-dir` to select the US input directory and `--output work/geographic_boundaries.db` for comparison
@@ -57,5 +58,5 @@ environment variable, the regeneration test skips. Other tests
 require no archive or PyShp. The test regenerates twice and compares the bytes
 to each other and the checked-in database. Run it with the recorded generation
 toolchain. CI includes Shapely in its locked test environments to exercise the runtime API on all
-supported CI platforms. Legacy imports/access are also tested in fresh
-subprocesses where Shapely is unavailable.
+supported CI platforms. Lazy legacy imports and attribute caching are also
+tested in fresh subprocesses.

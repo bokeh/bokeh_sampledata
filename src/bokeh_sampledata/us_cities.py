@@ -23,11 +23,12 @@ This module contains one dict: ``data``.
 
 from __future__ import annotations
 
+import gzip
 import json
 
 from . import package_path
 
 __all__ = ("data",)
 
-with open(package_path("us_cities.json"), "rb") as f:
+with gzip.open(package_path("us_cities.json.gz"), "rb") as f:
     data = json.load(f)

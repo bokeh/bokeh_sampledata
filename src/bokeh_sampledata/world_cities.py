@@ -26,4 +26,4 @@ from . import package_csv
 
 __all__ = ("data",)
 
-data = package_csv("world_cities.csv", na_filter=False)
+data = package_csv("world_cities.csv.gz", na_filter=False)

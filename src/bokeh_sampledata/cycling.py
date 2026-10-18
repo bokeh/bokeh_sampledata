@@ -30,7 +30,7 @@ __all__ = ("cycling",)
 
 
 def _read_data() -> pd.DataFrame:
-    df = package_csv("cycling.csv", index_col=0)
+    df = package_csv("cycling.csv.gz", index_col=0)
     df["time"] = pd.to_timedelta(df["time"])
     return df
 

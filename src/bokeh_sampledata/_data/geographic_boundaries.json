@@ -1,10 +1,11 @@
 {
-  "bytes": 11153408,
+  "bytes": 15101952,
   "counts": {
     "us_counties": 3233,
     "us_states": 51,
     "world_countries": 242
   },
+  "geometry_encoding": "WKB",
   "geos": "3.14.1",
   "inputs": {
     "US_Counties.csv": "db5efb4678f92006ffdf4bad2a1b6decbb4bf0b91ba15dadcc103a2a04718708",
@@ -65,8 +66,7 @@
       "AK"
     ]
   },
-  "sha256": "0df1e2a60a5c081d9f052dcebd98d54894b60259d40772cf183f8968c8c5c259",
+  "sha256": "0770c2d5a588c3fd23186e04c26bd4874b152fc7a7bf077f83c606b6cd4d8b15",
   "shapely": "2.2.0",
-  "sqlite": "3.54.1",
-  "zlib": "1.3.2"
+  "sqlite": "3.54.1"
 }
