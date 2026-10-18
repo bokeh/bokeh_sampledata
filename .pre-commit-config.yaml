@@ -50,5 +50,5 @@ repos:
         name: runtime dependency consistency
         entry: pixi run --locked dependency-check
         language: system
-        files: ^(pyproject\.toml|pixi\.toml|conda/recipe\.yaml|tools/check_dependencies\.py)$
+        files: ^(pyproject\.toml|pixi\.toml|tools/check_dependencies\.py)$
         pass_filenames: false

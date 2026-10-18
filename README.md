@@ -25,16 +25,11 @@ NumPy 1.26.4 and pandas 2.2.3 to verify the declared runtime floors on Python
 pixi run --locked -e test-py310 test
 pixi run --locked -e test-py310-minimum test
 pixi run --locked -e build build-py
-pixi run --locked -e build build-conda
 ```
 
-`build-py` creates a wheel and sdist in `dist/`. `build-conda` builds a fresh
-wheel and passes its encoded version to **rattler-build**, using
-`conda/recipe.yaml`. It creates and tests a noarch package in `dist/conda/`,
-including legacy imports and Shapely records. Neither command publishes packages.
-No `conda` or `conda-build` command is required. The isolated `build` environment
-contains the declared wheel backend and rattler-build. The shell-based
-`build-conda` task requires Linux or macOS.
+`build-py` creates a wheel and sdist in `dist/` using the isolated `build`
+environment. It does not publish packages. Conda-forge distribution is handled
+downstream, with no conda packaging recipe maintained in this repository.
 
 Boundary storage and regeneration instructions are in [tools/README.md](tools/README.md).
 User-facing API, compatibility, and provenance documentation lives in the public
@@ -47,9 +42,30 @@ installed wheel in a separate environment. To reproduce that check after
 `build-py`, run `pixi run --locked -e wheel-test test-wheel`.
 
 Python 3.10 remains the package minimum. NumPy is declared directly because the
-package uses its arrays. Runtime requirements are mirrored in the Pixi manifest
-and rattler recipe, including Shapely as a standard runtime dependency.
+package uses its arrays. Runtime requirements are mirrored in the Pixi manifest,
+including Shapely as a standard runtime dependency.
 
 `pixi run --locked dependency-check` checks that runtime requirements agree
-between the Python metadata, Pixi manifest, and rattler recipe. Ruff handles
-both linting and import sorting.
+between the Python metadata and Pixi manifest. Ruff handles both linting and
+import sorting.
+
+## Releases
+
+Publishing a GitHub release runs `.github/workflows/release.yml`. The workflow
+checks out the release tag, builds the sdist and a wheel from that sdist,
+checks that their versions match the tag, and tests the installed wheel.
+A separate job publishes those same distributions to PyPI using trusted
+publishing through the `pypi` GitHub environment. No PyPI API token is needed.
+Tags follow the existing version format, for example `2025.0`.
+
+Before the first automated release:
+
+1. Create the `pypi` environment in the `bokeh/bokeh_sampledata` repository.
+   Configure required maintainer approval and restrict deployment to release tags.
+2. In the PyPI project's publishing settings, add a GitHub trusted publisher
+   with owner `bokeh`, repository `bokeh_sampledata`, workflow `release.yml`,
+   and environment `pypi`.
+3. Merge the workflow before publishing a release whose tag contains it.
+
+See the [PyPI trusted publisher setup instructions](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).
+The environment approval is the final step before uploading the tested artifacts.

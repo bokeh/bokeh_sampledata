@@ -1,0 +1,74 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.repository == 'bokeh/bokeh_sampledata'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          fetch-depth: 0
+      - uses: prefix-dev/setup-pixi@v0.10.0
+        with:
+          pixi-version: v0.76.1
+          environments: build wheel-test
+          locked: true
+      - name: Build distributions
+        run: pixi run --locked -e build build-py
+      - name: Check release versions
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          pixi run --locked -e build python - <<'PY'
+          import os
+          from pathlib import Path
+          from packaging.utils import parse_sdist_filename, parse_wheel_filename
+          from packaging.version import Version
+
+          expected = Version(os.environ["RELEASE_TAG"])
+          assert not expected.is_devrelease and expected.local is None, expected
+          wheel, = Path("dist").glob("*.whl")
+          sdist, = Path("dist").glob("*.tar.gz")
+          wheel_name, wheel_version, _, _ = parse_wheel_filename(wheel.name)
+          sdist_name, sdist_version = parse_sdist_filename(sdist.name)
+          assert wheel_name == sdist_name == "bokeh-sampledata"
+          assert wheel_version == sdist_version == expected, (wheel_version, sdist_version, expected)
+          PY
+      - name: Test installed wheel
+        run: pixi run --locked -e wheel-test test-wheel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pypi-distributions
+          path: |
+            dist/*.whl
+            dist/*.tar.gz
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/bokeh_sampledata/
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: pypi-distributions
+          path: dist/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
