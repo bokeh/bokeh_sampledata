@@ -70,8 +70,8 @@ ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 120
-lint.select = ["B", "COM", "E", "F", "I", "RUF", "TID", "UP", "W"]
-lint.ignore = ["COM812"]
+lint.select = ["B", "COM", "E", "F", "I", "NPY", "PGH", "PT", "RUF", "T10", "TID", "UP", "W"]
+lint.ignore = ["COM812", "PT018"]
 target-version = "py310"
 
 [tool.ruff.lint.isort]
