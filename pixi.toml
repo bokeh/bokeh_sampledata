@@ -11,8 +11,8 @@ setuptools-git-versioning = "*"
 wheel = "*"
 # Keep synchronized with [project.dependencies] in pyproject.toml and conda/recipe.yaml.
 icalendar = "*"
-pandas = ">=1.2"
-numpy = ">=1.21"
+pandas = ">=2.2.3"
+numpy = ">=1.26.4"
 shapely = ">=2.0"
 
 [feature.py310.dependencies]
@@ -36,6 +36,11 @@ python-gil = "*"
 pytest = "*"
 pytest-cov = "*"
 
+# Exercise the NumPy and pandas floors on the oldest supported Python.
+[feature.minimum.dependencies]
+numpy = "==1.26.4"
+pandas = "==2.2.3"
+
 [feature.dev.dependencies]
 pre-commit = "*"
 ruff = "0.15.4.*"
@@ -53,6 +58,7 @@ rattler-build = "*"
 [environments]
 default = ["py312", "test", "dev", "build"]
 test-py310 = ["py310", "test"]
+test-py310-minimum = ["py310", "test", "minimum"]
 test-py311 = ["py311", "test"]
 test-py312 = ["py312", "test"]
 test-py313 = ["py313", "test"]

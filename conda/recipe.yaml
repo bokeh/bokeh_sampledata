@@ -26,8 +26,8 @@ requirements:
     - python >=3.10
     # Keep synchronized with [project.dependencies] in pyproject.toml.
     - icalendar
-    - pandas >=1.2
-    - numpy >=1.21
+    - pandas >=2.2.3
+    - numpy >=1.26.4
     - shapely >=2.0
 
 tests:
