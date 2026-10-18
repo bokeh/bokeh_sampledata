@@ -66,12 +66,22 @@ the locked Pixi environment rather than pre-commit environments.
 
 ## Releases
 
-Publishing a GitHub release runs `.github/workflows/release.yml`. The workflow
-checks out the release tag, builds the sdist and a wheel from that sdist,
+Pushing a version tag runs `.github/workflows/release.yml`. The workflow
+checks out the tagged commit, builds the sdist and a wheel from that sdist,
 checks that their versions match the tag, and tests the installed wheel.
 A separate job publishes those same distributions to PyPI using trusted
 publishing through the `pypi` GitHub environment. No PyPI API token is needed.
-Tags follow the existing version format, for example `2025.0`.
+Tags follow the existing year-based version format, for example `2026.0`.
+Prerelease tags such as `2026.0a1`, `2026.0b1`, and `2026.0rc1` use the same
+workflow and publish prerelease versions to PyPI. Development and local versions
+are rejected. A GitHub Release is not required.
+
+After the intended commit has passed CI, create and push its tag:
+
+```sh
+git tag 2026.0
+git push origin 2026.0
+```
 
 The environment approval is the final step before uploading the tested artifacts.
 

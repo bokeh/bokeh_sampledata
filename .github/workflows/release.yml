@@ -1,14 +1,15 @@
 name: Release
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - "[0-9][0-9][0-9][0-9].[0-9]*"
 
 permissions:
   contents: read
 
 concurrency:
-  group: release-${{ github.event.release.tag_name }}
+  group: release-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -18,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ github.sha }}
           fetch-depth: 0
       - uses: prefix-dev/setup-pixi@v0.10.0
         with:
@@ -29,7 +30,7 @@ jobs:
         run: pixi run --locked -e build build-py
       - name: Check release versions
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_TAG: ${{ github.ref_name }}
         run: |
           pixi run --locked -e build python - <<'PY'
           import os
