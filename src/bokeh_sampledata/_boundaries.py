@@ -67,49 +67,23 @@ def read_records(table: str, state: str | None = None) -> list[Any]:
 
 
 def exterior_coordinates(wkb: bytes) -> tuple[list[float], list[float]]:
-    """Decode exterior rings from our fixed little-endian 2D polygon WKB.
+    """Extract polygon exteriors, separating parts with NaNs and omitting holes."""
+    from shapely import from_wkb
+    from shapely.geometry import MultiPolygon, Polygon
 
-    This deliberately small reader supports only the two types produced by our
-    generator, keeping the historical API independent of Shapely.
-    """
-    import struct
-
-    offset = 0
+    geometry = from_wkb(wkb)
+    if not isinstance(geometry, Polygon | MultiPolygon):
+        raise ValueError("Expected polygon boundary geometry")
+    polygons = [geometry] if isinstance(geometry, Polygon) else geometry.geoms
     lons: list[float] = []
     lats: list[float] = []
-
-    def uint() -> int:
-        nonlocal offset
-        value: int = struct.unpack_from("<I", wkb, offset)[0]
-        offset += 4
-        return value
-
-    def geometry() -> None:
-        nonlocal offset
-        if wkb[offset] != 1:
-            raise ValueError("Expected little-endian boundary WKB")
-        offset += 1
-        kind = uint()
-        if kind == 6:
-            for _ in range(uint()):
-                geometry()
-        elif kind == 3:
-            if lons:
-                lons.append(float("nan"))
-                lats.append(float("nan"))
-            for ring in range(uint()):
-                count = uint()
-                if ring == 0:
-                    for x, y in struct.iter_unpack("<dd", wkb[offset : offset + count * 16]):
-                        lons.append(x)
-                        lats.append(y)
-                offset += count * 16
-        else:
-            raise ValueError(f"Unsupported boundary WKB type: {kind}")
-
-    geometry()
-    if offset != len(wkb):
-        raise ValueError("Trailing boundary WKB data")
+    for polygon in polygons:
+        if lons:
+            lons.append(float("nan"))
+            lats.append(float("nan"))
+        x, y = polygon.exterior.xy
+        lons.extend(x)
+        lats.extend(y)
     return lons, lats
 
 

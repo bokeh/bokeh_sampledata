@@ -63,26 +63,17 @@ def test_legacy_plotting_interface(name: str, count: int) -> None:
         assert data[(1, 1)]["lats"][0] == 32.4757
 
 
-def test_import_and_legacy_without_shapely() -> None:
+def test_lazy_legacy_attributes() -> None:
     subprocess.run(
         [
             sys.executable,
             "-c",
             """
-import sys
-sys.modules['shapely'] = None
 import bokeh_sampledata.us_states as states
 import bokeh_sampledata.us_counties as counties
 for module in (states, counties):
     assert 'data' not in vars(module)
     assert 'data' in dir(module)
-    try:
-        module.records()
-    except ImportError as error:
-        assert 'shapely' in str(error)
-    else:
-        raise AssertionError('Shapely should be required for records')
-    assert 'data' not in vars(module)
     assert isinstance(module.data, dict)
     assert module.data is module.data
     try:

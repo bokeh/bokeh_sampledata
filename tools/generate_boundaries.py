@@ -74,9 +74,7 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
         "world_countries": [],
     }
 
-    def add(
-        table: str, identifier: str, state: str | None, metadata: dict[str, Any], geometry: Any, kml: str | None = None
-    ) -> None:
+    def add(table: str, identifier: str, state: str | None, metadata: dict[str, Any], geometry: Any) -> None:
         if not geometry.is_valid:
             repairs.setdefault(table, []).append(identifier)
             geometry = shapely.make_valid(geometry)
