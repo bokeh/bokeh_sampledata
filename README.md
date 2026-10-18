@@ -16,9 +16,9 @@ pixi run --locked pre-commit run --all-files
 ```
 
 The default environment uses Python 3.12 and includes geometry, checks, generation,
-and build tools. `test-py310`, `test-py311`, `test-py312`, `test-py313`, and
-`test-py314` provide explicit test environments. `test-py310-minimum` pins
-NumPy 1.26.4 and pandas 2.2.3 to verify the declared runtime floors on Python
+and build tools. `test-py310`, `test-py311`, `test-py312`, `test-py313`,
+`test-py314`, and `test-py315` provide explicit test environments.
+`test-py310-minimum` pins NumPy 1.26.4 and pandas 2.2.3 to verify the declared runtime floors on Python
 3.10. For example:
 
 ```sh
@@ -36,7 +36,7 @@ User-facing API, compatibility, and provenance documentation lives in the public
 module/function docstrings, which are included in the main Bokeh documentation.
 
 CI runs locked test environments on Linux, macOS, and Windows for Python
-3.10–3.14, the minimum-dependency environment on Linux, plus repository checks
+3.10–3.15, the minimum-dependency environment on Linux, plus repository checks
 and package builds on Linux. The package job runs the unit suite against an
 installed wheel in a separate environment. To reproduce that check after
 `build-py`, run `pixi run --locked -e wheel-test test-wheel`.
