@@ -3,6 +3,8 @@ default_language_version:
 
 ci:
   autofix_prs: false
+  # Pixi hooks run in the GitHub Actions quality job.
+  skip: [mypy, pyright, dependencies, actionlint]
 
 repos:
   - repo: https://github.com/netromdk/vermin
