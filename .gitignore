@@ -42,3 +42,7 @@
 
 # OS junk
 .DS_Store
+
+# Pixi environments and task scratch data
+/.pixi/
+/work/

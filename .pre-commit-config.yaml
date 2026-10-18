@@ -23,24 +23,28 @@ repos:
     rev: v5.0.0
     hooks:
     - id: trailing-whitespace
+      exclude: ^src/bokeh_sampledata/_data/
     - id: end-of-file-fixer
+      exclude: ^src/bokeh_sampledata/_data/
     - id: check-json
     - id: check-toml
     - id: check-yaml
-      exclude: conda/meta.yaml
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.1
+    rev: v0.15.4
     hooks:
-    - id: ruff
+    - id: ruff-check
       args: ['--fix']
     - id: ruff-format
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.16.1
+  - repo: local
     hooks:
-    - id: mypy
-      additional_dependencies: [pandas-stubs, pytest, shapely, types-shapely, pyshp, "numpy<2.3"]
+      - id: mypy
+        name: mypy (locked Pixi environment)
+        entry: pixi run --locked typecheck
+        language: system
+        types: [python]
+        pass_filenames: false
 
   - repo: https://github.com/pycqa/isort
     rev: 6.0.1

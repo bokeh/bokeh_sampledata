@@ -46,7 +46,7 @@ def _clean_data(df: pd.DataFrame) -> pd.DataFrame:
     df.loc[df.mfr == "vw", "mfr"] = "volkswagen"
 
     ORIGINS = {1: "North America", 2: "Europe", 3: "Asia"}
-    df.origin = [ORIGINS[x] for x in df.origin]
+    df["origin"] = [ORIGINS[x] for x in df["origin"]]
 
     return df
 

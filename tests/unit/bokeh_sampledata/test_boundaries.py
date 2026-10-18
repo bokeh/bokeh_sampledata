@@ -230,7 +230,7 @@ def test_deterministic_generation(tmp_path: Path) -> None:
     output = tmp_path / "geographic_boundaries.db"
     command = [
         sys.executable,
-        str(ROOT / "scripts/generate_boundaries.py"),
+        str(ROOT / "tools/generate_boundaries.py"),
         os.environ["NATURAL_EARTH_ARCHIVE"],
         "--output",
         str(output),

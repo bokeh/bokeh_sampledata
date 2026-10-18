@@ -1,0 +1,84 @@
+[workspace]
+name = "bokeh_sampledata"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+requires-pixi = ">=0.76.1"
+
+[dependencies]
+pip = "*"
+setuptools = ">=69.5.1"
+setuptools-git-versioning = "*"
+wheel = "*"
+# Keep synchronized with [project.dependencies] in pyproject.toml and conda/recipe.yaml.
+icalendar = "*"
+pandas = ">=1.2"
+numpy = ">=1.21"
+
+[feature.py310.dependencies]
+python = "3.10.*"
+
+[feature.py311.dependencies]
+python = "3.11.*"
+
+[feature.py312.dependencies]
+python = "3.12.*"
+
+[feature.py313.dependencies]
+python = "3.13.*"
+python-gil = "*"
+
+[feature.py314.dependencies]
+python = "3.14.*"
+python-gil = "*"
+
+[feature.test.dependencies]
+pytest = "*"
+pytest-cov = "*"
+shapely = ">=2.0"
+
+[feature.dev.dependencies]
+pre-commit = "*"
+ruff = "0.15.4.*"
+mypy = ">=1.19"
+pandas-stubs = "*"
+types-shapely = "*"
+isort = "6.0.1.*"
+python-build = "*"
+pyshp = "2.3.1.*"
+
+[feature.build.dependencies]
+python-build = "*"
+rattler-build = "*"
+
+[environments]
+default = ["py312", "test", "dev", "build"]
+test-py310 = ["py310", "test"]
+test-py311 = ["py311", "test"]
+test-py312 = ["py312", "test"]
+test-py313 = ["py313", "test"]
+test-py314 = ["py314", "test"]
+build = ["py312", "build"]
+
+[tasks]
+setup = "python -m pip install --no-deps --no-build-isolation -e ."
+test = { cmd = "pytest tests/unit", depends-on = ["setup"] }
+test-cov = { cmd = "pytest --cov=bokeh_sampledata --cov-report=xml --color=yes tests/unit", depends-on = ["setup"] }
+
+[feature.dev.tasks]
+lint = "ruff check src tests tools"
+format-check = "ruff format --check src tests tools"
+isort-check = "isort --check-only src tests tools"
+typecheck = "mypy src tests tools"
+check = { depends-on = ["lint", "format-check", "isort-check", "typecheck"] }
+
+[feature.build.tasks]
+build-py = "python -m build --no-isolation"
+build-conda = "python tools/build_conda.py"
+
+[feature.dev.tasks.regenerate-boundaries]
+cmd = "python tools/generate_boundaries.py work/ne_50m_admin_0_countries.zip"
+
+[feature.dev.tasks.test-regeneration]
+cmd = "pytest tests/unit/bokeh_sampledata/test_boundaries.py"
+env = { NATURAL_EARTH_ARCHIVE = "work/ne_50m_admin_0_countries.zip" }
+depends-on = ["setup"]
