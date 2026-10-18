@@ -91,6 +91,6 @@ manifest records original input hashes and every repaired identifier.
 
 REPRODUCIBILITY
 
-See tools/README.md in the source distribution for checksum-verified input
+See tools/README.md in the source repository for checksum-verified input
 retrieval and deterministic regeneration using the committed Pixi lockfile.
 The manifest records counts, input/output checksums and generation versions.

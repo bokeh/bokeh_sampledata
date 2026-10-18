@@ -1,6 +1,0 @@
-include tools/README.md
-include tools/generate_boundaries.py
-include pixi.toml
-include pixi.lock
-include tools/check_dependencies.py
-include tools/test_wheel.py
