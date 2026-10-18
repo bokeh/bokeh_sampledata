@@ -4,3 +4,4 @@ include pixi.toml
 include pixi.lock
 include tools/build_conda.py
 include conda/recipe.yaml
+recursive-include docs *.md

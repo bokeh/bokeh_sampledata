@@ -8,6 +8,9 @@
 
 The permanent ``data`` dictionary is loaded on first access.
 Use ``records()`` for Shapely-native polygons and metadata.
+See ``docs/geographic_boundaries.md`` in the source distribution for examples,
+compatibility details, and data provenance. Source terms and attribution also
+ship in ``_data/geographic_boundaries.LICENSE.txt``.
 
 The data is indexed by the two letter state code (e.g., 'CA', 'TX') and has the
 following structure:
@@ -70,6 +73,10 @@ if TYPE_CHECKING:
 
 def records() -> list[StateRecord]:
     """Return 51 state/DC records in code order, with Shapely geometry.
+
+    Each dictionary has ``code`` (uppercase postal abbreviation), ``name``,
+    ``region``, and ``geometry`` (Shapely Polygon or MultiPolygon). Parts and
+    holes are preserved; all geometries are valid and nonempty.
 
     Coordinates retain the Census NAD83 longitude/latitude degrees without
     reprojection. Each call returns fresh records; ``data`` is independent.

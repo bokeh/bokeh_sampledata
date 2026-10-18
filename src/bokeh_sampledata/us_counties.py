@@ -8,6 +8,9 @@
 
 The permanent ``data`` dictionary is loaded on first access.
 Use ``records()`` for Shapely-native polygons and metadata.
+See ``docs/geographic_boundaries.md`` in the source distribution for examples,
+compatibility details, and data provenance. Source terms and attribution also
+ship in ``_data/geographic_boundaries.LICENSE.txt``.
 
 The data is indexed by two-tuples of ``(state_id, county_id)`` that
 have the following dictionaries as values:
@@ -92,6 +95,12 @@ def records(state: str | None = None) -> list[CountyRecord]:
     (including DC and territories). Unknown two-letter codes return an empty
     list; names, numeric FIPS codes, whitespace, and other formats raise
     ``ValueError``. Filtering uses an index before geometry decoding.
+
+    Each dictionary has ``fips`` (five-digit string), ``state_fips`` (two
+    digits), ``county_fips`` (three digits), ``state`` (uppercase postal code),
+    ``name``, ``detailed_name``, and ``geometry`` (Shapely Polygon or
+    MultiPolygon). Parts and holes are preserved; all geometries are valid
+    and nonempty.
 
     Coordinates retain the Census NAD83 longitude/latitude degrees without
     reprojection. Each call returns fresh records; ``data`` is independent.
