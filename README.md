@@ -83,6 +83,13 @@ necessarily legal sovereignty or any particular government's boundary claims.
 See Natural Earth's [disputed boundaries policy](https://www.naturalearthdata.com/about/disputed-boundaries-policy/).
 Natural Earth data is [public domain](https://www.naturalearthdata.com/about/terms-of-use/),
 including commercial use and redistribution; attribution is not required.
+These terms are compatible with distributing the dataset alongside BSD-3-Clause
+software; the Natural Earth data itself remains public domain.
+
+The installed package includes a [boundary provenance and license notice](src/bokeh_sampledata/_data/geographic_boundaries.LICENSE.txt),
+which also records the limits of the inherited US data provenance. The US
+boundaries reuse existing Bokeh inputs distributed under the repository's BSD
+license; their original upstream licensing was not separately documented.
 
 Storage and reproducible regeneration are described in
 [tools/README.md](tools/README.md). The manifest records source checksums,

@@ -9,6 +9,7 @@ package:
 source:
   - path: ${{ env.get("WHEEL_PATH") }}
   - path: ../LICENSE.txt
+  - path: ../src/bokeh_sampledata/_data/geographic_boundaries.LICENSE.txt
 
 build:
   number: 0
@@ -45,7 +46,9 @@ tests:
 
 about:
   license: BSD-3-Clause
-  license_file: LICENSE.txt
+  license_file:
+    - LICENSE.txt
+    - geographic_boundaries.LICENSE.txt
   summary: Sample datasets for Bokeh examples
   homepage: https://bokeh.org
   documentation: https://docs.bokeh.org
