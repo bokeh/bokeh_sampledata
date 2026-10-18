@@ -13,7 +13,7 @@ loading or decompressing all county geometries. Runtime requires only Shapely
 and the standard library, alongside the package's existing dependencies.
 The public records API is independent of these implementation choices.
 
-Run from the repository root. Downloads stay in ignored `work/`; Pixi manages
+Run from the repository root. Downloads stay in ignored `work/`. Pixi manages
 the environment under `.pixi/`:
 
 ```sh
@@ -40,7 +40,7 @@ vacuumed database produce byte-identical output with the same toolchain.
 The checked-in generation used the locked default Pixi environment on macOS
 Apple Silicon: CPython 3.12.15, SQLite 3.54.1, zlib 1.3.2, Shapely 2.2.0 /
 GEOS 3.14.1 and PyShp 2.3.1. Different SQLite, zlib, or GEOS
-versions can change binary bytes; use the recorded versions for exact
+versions can change binary bytes. Use the recorded versions for exact
 checksums and review/rebaseline the manifest deliberately on upgrades.
 The script accepts `--source-dir` to select the US input directory and `--output work/geographic_boundaries.db` for comparison
 without replacing the packaged artifact. The source archives and CSV inputs remain outside the package. Commit both the database and its
@@ -53,7 +53,7 @@ pixi run --locked test-regeneration
 ```
 
 The task sets `NATURAL_EARTH_ARCHIVE` to the downloaded archive. Without that
-environment variable, the regeneration test skips; other tests
+environment variable, the regeneration test skips. Other tests
 require no archive or PyShp. The test regenerates twice and compares the bytes
 to each other and the checked-in database. Run it with the recorded generation
 toolchain. CI includes Shapely in its locked test environments to exercise the runtime API on all

@@ -6,7 +6,7 @@ requires-pixi = ">=0.76.1"
 
 [dependencies]
 pip = "*"
-setuptools = ">=69.5.1"
+setuptools = ">=77.0.3"
 setuptools-git-versioning = "*"
 wheel = "*"
 # Keep synchronized with [project.dependencies] in pyproject.toml and conda/recipe.yaml.
@@ -47,7 +47,10 @@ ruff = "0.15.4.*"
 mypy = ">=1.19"
 pandas-stubs = "*"
 types-shapely = "*"
-isort = "6.0.1.*"
+packaging = "*"
+pyyaml = "*"
+types-pyyaml = "*"
+tomli = "*"
 python-build = "*"
 pyshp = "2.3.1.*"
 
@@ -64,6 +67,7 @@ test-py312 = ["py312", "test"]
 test-py313 = ["py313", "test"]
 test-py314 = ["py314", "test"]
 build = ["py312", "build"]
+wheel-test = ["py312", "test"]
 
 [tasks]
 setup = "python -m pip install --no-deps --no-build-isolation -e ."
@@ -73,9 +77,9 @@ test-cov = { cmd = "pytest --cov=bokeh_sampledata --cov-report=xml --color=yes t
 [feature.dev.tasks]
 lint = "ruff check src tests tools"
 format-check = "ruff format --check src tests tools"
-isort-check = "isort --check-only src tests tools"
+dependency-check = "python tools/check_dependencies.py"
 typecheck = "mypy src tests tools"
-check = { depends-on = ["lint", "format-check", "isort-check", "typecheck"] }
+check = { depends-on = ["lint", "format-check", "dependency-check", "typecheck"] }
 
 [feature.build.tasks]
 build-py = "python -m build --no-isolation"
@@ -88,3 +92,6 @@ cmd = "python tools/generate_boundaries.py work/ne_50m_admin_0_countries.zip"
 cmd = "pytest tests/unit/bokeh_sampledata/test_boundaries.py"
 env = { NATURAL_EARTH_ARCHIVE = "work/ne_50m_admin_0_countries.zip" }
 depends-on = ["setup"]
+
+[feature.test.tasks]
+test-wheel = "python tools/test_wheel.py"

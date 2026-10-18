@@ -4,33 +4,78 @@
 #
 # The full license is in the file LICENSE.txt, distributed with this software.
 # -----------------------------------------------------------------------------
-"""This modules exposes geometry data for Unites States.
+"""Geometry records for US counties and county equivalents.
 
-The permanent ``data`` dictionary is loaded on first access.
-Use ``records()`` for Shapely-native polygons and metadata.
-See ``docs/geographic_boundaries.md`` in the source distribution for examples,
-compatibility details, and data provenance. Source terms and attribution also
-ship in ``_data/geographic_boundaries.LICENSE.txt``.
+``records()`` returns 3,233 dictionaries in FIPS order, each containing
+``fips`` (five-digit string), ``state_fips`` (two-digit string), ``county_fips``
+(three-digit string), ``state`` (uppercase postal abbreviation), ``name``,
+``detailed_name``, and ``geometry`` (a Shapely Polygon or MultiPolygon).
+Shapely is a standard package dependency.
 
-The data is indexed by two-tuples of ``(state_id, county_id)`` that
-have the following dictionaries as values:
+.. code-block:: python
 
-.. code-block:: ipython
+    from bokeh_sampledata.us_counties import records
 
-    In [25]: data[(1,1)]
-    Out[25]:
-    {
-        'name': 'Autauga',
-        'detailed name': 'Autauga County, Alabama',
-        'state': 'al',
-        'lats': [32.4757, ..., 32.48112],
-        'lons': [-86.41182, ..., -86.41187]
-    }
+    counties = records()
+    texas = records(state="TX")
+    geometry = texas[0]["geometry"]
 
-Entries for ``'name'`` can have duplicates for certain states (e.g. Virginia).
-The combination of ``'detailed name'`` and ``'state'`` will always be unique.
+The optional ``state`` argument accepts two-letter ASCII postal abbreviations
+in either case, including DC and territories. Filtering uses an index before
+geometry decoding. Unknown two-letter codes return an empty list. Names,
+numeric FIPS codes, whitespace, and other formats raise ``ValueError``.
+For example, Autauga County has ``fips="01001"``, ``state_fips="01"``, and
+``county_fips="001"``.
+
+Coordinates retain the Census NAD83 longitude/latitude degrees without
+reprojection. Polygon parts and interior holes are preserved. All geometries
+are valid and nonempty. Each call returns fresh dictionaries and geometries.
+
+Source and license
+~~~~~~~~~~~~~~~~~~
+
+Geometry comes from Bokeh's historical boundary samples. Coordinate comparison
+identifies simplified Census TIGER/Line geometry matching the official 2009
+release at the source rounding precision. The exact acquisition vintage and
+export intermediary remain unrecorded. These are historical samples.
+
+The Census source metadata permits use and redistribution with acknowledgement
+to the Census Bureau. Source: U.S. Census Bureau, TIGER/Line Shapefiles.
+These terms are compatible with distribution alongside BSD-3-Clause software.
+The packaged ``_data/geographic_boundaries.LICENSE.txt`` contains the source
+links, comparison evidence, attribution, and remaining provenance uncertainties.
+
+Invalid geometry in 45 counties is repaired using Shapely ``make_valid``,
+retaining polygonal components and discarding collapsed line/point remnants.
+The packaged ``geographic_boundaries.json`` manifest records their identifiers.
+Source metadata, including character replacement artifacts, is retained.
+Sixteen duplicate Puerto Rico FIPS rows use the last source row, matching the
+legacy dictionary.
 
 .. bokeh-sampledata-xref:: us_counties
+
+Legacy plotting data
+~~~~~~~~~~~~~~~~~~~~
+
+The historical ``data`` attribute is retained for compatibility. New code
+should use ``records()``. It is loaded and cached on first access, independently
+of ``records()``. Importing the module performs no boundary I/O.
+
+``data`` maps numeric ``(state_id, county_id)`` tuples to dictionaries containing
+``name``, ``detailed_name``, ``state`` (lowercase postal abbreviation), ``lats``,
+and ``lons``. Names can repeat within a state. The combination of
+``detailed_name`` and ``state`` is unique. Coordinates are NumPy float64 arrays
+with NaN separators between polygon exteriors. Interior holes are omitted. Both APIs
+use the same geometry dataset, so repairs, ring ordering, and closing points
+can change coordinates from the historical arrays.
+
+.. code-block:: python
+
+    from bokeh_sampledata.us_counties import data
+
+    autauga = data[(1, 1)]
+    latitudes = autauga["lats"]
+    longitudes = autauga["lons"]
 
 """
 
@@ -93,17 +138,17 @@ def records(state: str | None = None) -> list[CountyRecord]:
 
     ``state`` accepts a two-letter postal abbreviation, case-insensitively
     (including DC and territories). Unknown two-letter codes return an empty
-    list; names, numeric FIPS codes, whitespace, and other formats raise
+    list. Names, numeric FIPS codes, whitespace, and other formats raise
     ``ValueError``. Filtering uses an index before geometry decoding.
 
     Each dictionary has ``fips`` (five-digit string), ``state_fips`` (two
     digits), ``county_fips`` (three digits), ``state`` (uppercase postal code),
     ``name``, ``detailed_name``, and ``geometry`` (Shapely Polygon or
-    MultiPolygon). Parts and holes are preserved; all geometries are valid
+    MultiPolygon). Parts and holes are preserved. All geometries are valid
     and nonempty.
 
     Coordinates retain the Census NAD83 longitude/latitude degrees without
-    reprojection. Each call returns fresh records; ``data`` is independent.
+    reprojection. Each call returns fresh records. ``data`` is independent.
     """
     if state is not None:
         if not isinstance(state, str) or len(state) != 2 or not state.isascii() or not state.isalpha():

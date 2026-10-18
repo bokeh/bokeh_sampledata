@@ -4,4 +4,5 @@ include pixi.toml
 include pixi.lock
 include tools/build_conda.sh
 include conda/recipe.yaml
-recursive-include docs *.md
+include tools/check_dependencies.py
+include tools/test_wheel.py

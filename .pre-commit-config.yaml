@@ -46,7 +46,9 @@ repos:
         types: [python]
         pass_filenames: false
 
-  - repo: https://github.com/pycqa/isort
-    rev: 6.0.1
-    hooks:
-    - id: isort
+      - id: dependencies
+        name: runtime dependency consistency
+        entry: pixi run --locked dependency-check
+        language: system
+        files: ^(pyproject\.toml|pixi\.toml|conda/recipe\.yaml|tools/check_dependencies\.py)$
+        pass_filenames: false

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=69.5.1", "setuptools-git-versioning"]
+requires = ["setuptools>=77.0.3", "setuptools-git-versioning"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -18,13 +18,13 @@ authors = [
   {email = "info@bokeh.org"},
   {name = "Bokeh Team"}
 ]
-license = {file = "LICENSE.txt"}
+license = "BSD-3-Clause"
+license-files = ["LICENSE.txt", "src/bokeh_sampledata/_data/geographic_boundaries.LICENSE.txt"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Developers",
     "Intended Audience :: End Users/Desktop",
-    "License :: OSI Approved :: BSD License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
@@ -45,15 +45,6 @@ where = ["src"]
 enabled = true
 dev_template = "{tag}+{ccount}.g{sha}"
 dirty_template = "{tag}+{ccount}.g{sha}.dirty"
-
-[tool.isort]
-force_grid_wrap = 4
-line_length = 100
-multi_line_output = 3
-combine_as_imports = true
-
-indented_import_headings = false
-include_trailing_comma = true
 
 [tool.mypy]
 python_version = "3.10"
@@ -79,6 +70,9 @@ ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 120
-lint.select = ["B", "COM", "E", "F", "RUF", "TID", "UP", "W"]
+lint.select = ["B", "COM", "E", "F", "I", "RUF", "TID", "UP", "W"]
 lint.ignore = ["COM812"]
 target-version = "py310"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true

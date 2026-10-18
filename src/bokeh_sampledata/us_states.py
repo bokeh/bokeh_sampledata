@@ -4,29 +4,64 @@
 #
 # The full license is in the file LICENSE.txt, distributed with this software.
 # -----------------------------------------------------------------------------
-"""Geometry data for US States.
+"""Geometry records for US states and the District of Columbia.
 
-The permanent ``data`` dictionary is loaded on first access.
-Use ``records()`` for Shapely-native polygons and metadata.
-See ``docs/geographic_boundaries.md`` in the source distribution for examples,
-compatibility details, and data provenance. Source terms and attribution also
-ship in ``_data/geographic_boundaries.LICENSE.txt``.
-
-The data is indexed by the two letter state code (e.g., 'CA', 'TX') and has the
-following structure:
+``records()`` returns 51 dictionaries in state-code order, each containing
+``code`` (uppercase postal abbreviation), ``name``, ``region``, and ``geometry``
+(a Shapely Polygon or MultiPolygon). Shapely is a standard package dependency.
 
 .. code-block:: python
 
-    In [4]: data["OR"]
-    Out[4]:
-    {
-        'name': 'Oregon',
-        'region': 'Northwest',
-        'lats': [46.29443, ..., 46.26068],
-        'lons': [-124.03622, ..., -124.15935]
-    }
+    from bokeh_sampledata.us_states import records
+
+    states = records()
+    oregon = next(state for state in states if state["code"] == "OR")
+    geometry = oregon["geometry"]
+
+Coordinates retain the Census NAD83 longitude/latitude degrees without
+reprojection. Polygon parts and interior holes are preserved. All geometries
+are valid and nonempty. Each call returns fresh dictionaries and geometries.
+
+Source and license
+~~~~~~~~~~~~~~~~~~
+
+Geometry comes from Bokeh's historical boundary samples. Coordinate comparison
+identifies simplified Census TIGER/Line geometry matching the official 2009
+release at the source rounding precision. The exact acquisition vintage and
+export intermediary remain unrecorded. These are historical samples.
+
+The Census source metadata permits use and redistribution with acknowledgement
+to the Census Bureau. Source: U.S. Census Bureau, TIGER/Line Shapefiles.
+These terms are compatible with distribution alongside BSD-3-Clause software.
+The packaged ``_data/geographic_boundaries.LICENSE.txt`` contains the source
+links, comparison evidence, attribution, and remaining provenance uncertainties.
+
+Invalid geometry in Alaska is repaired using Shapely ``make_valid``, retaining
+polygonal components and discarding collapsed line/point remnants. Source
+metadata is retained.
 
 .. bokeh-sampledata-xref:: us_states
+
+Legacy plotting data
+~~~~~~~~~~~~~~~~~~~~
+
+The historical ``data`` attribute is retained for compatibility. New code
+should use ``records()``. It is loaded and cached on first access, independently
+of ``records()``. Importing the module performs no boundary I/O.
+
+``data`` maps two-letter state codes to dictionaries containing ``name``,
+``region``, ``lats``, and ``lons``. Coordinates are NumPy float64 arrays with NaN
+separators between polygon exteriors. Interior holes are omitted. Both APIs
+use the same geometry dataset, so repairs, ring ordering, and closing points
+can change coordinates from the historical arrays.
+
+.. code-block:: python
+
+    from bokeh_sampledata.us_states import data
+
+    oregon = data["OR"]
+    latitudes = oregon["lats"]
+    longitudes = oregon["lons"]
 
 """
 
@@ -76,9 +111,9 @@ def records() -> list[StateRecord]:
 
     Each dictionary has ``code`` (uppercase postal abbreviation), ``name``,
     ``region``, and ``geometry`` (Shapely Polygon or MultiPolygon). Parts and
-    holes are preserved; all geometries are valid and nonempty.
+    holes are preserved. All geometries are valid and nonempty.
 
     Coordinates retain the Census NAD83 longitude/latitude degrees without
-    reprojection. Each call returns fresh records; ``data`` is independent.
+    reprojection. Each call returns fresh records. ``data`` is independent.
     """
     return cast(list[StateRecord], read_records("us_states"))

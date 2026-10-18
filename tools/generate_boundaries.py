@@ -4,7 +4,7 @@
 #
 # The full license is in the file LICENSE.txt, distributed with this software.
 # -----------------------------------------------------------------------------
-"""Rebuild geographic_boundaries.db; see tools/README.md for pinned tooling."""
+"""Rebuild geographic_boundaries.db. See tools/README.md for pinned tooling."""
 
 from __future__ import annotations
 
