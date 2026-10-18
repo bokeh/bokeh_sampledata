@@ -1,0 +1,2 @@
+include scripts/README.md
+include scripts/generate_boundaries.py

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import bokeh_sampledata.us_states as m
 
-ALL = ("data",)
+ALL = ("data", "records")
 
 
 def test___all__() -> None:

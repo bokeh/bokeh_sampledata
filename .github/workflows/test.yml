@@ -33,7 +33,7 @@ jobs:
           pip install pytest pytest-cov
       - name: Build and install package
         run: |
-          pip install .
+          pip install ".[geometry]"
       - name: Run tests
         if: success() || failure()
         run: pytest --cov=bokeh_sampledata --cov-report=xml --color=yes tests/unit

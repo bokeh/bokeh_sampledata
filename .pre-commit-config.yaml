@@ -40,7 +40,7 @@ repos:
     rev: v1.16.1
     hooks:
     - id: mypy
-      additional_dependencies: [pandas-stubs, pytest]
+      additional_dependencies: [pandas-stubs, pytest, shapely, types-shapely, pyshp, "numpy<2.3"]
 
   - repo: https://github.com/pycqa/isort
     rev: 6.0.1

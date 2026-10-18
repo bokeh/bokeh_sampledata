@@ -28,6 +28,9 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
 ]
 
+[project.optional-dependencies]
+geometry = ["shapely >=2.0"]
+
 [project.urls]
 homepage = "https://bokeh.org"
 documentation = "https://docs.bokeh.org"
@@ -69,6 +72,11 @@ implicit_reexport = true
 namespace_packages = true
 warn_return_any = false
 warn_unreachable = true
+
+# PyShp 2.x (used only for regeneration) does not ship type information.
+[[tool.mypy.overrides]]
+module = "shapefile"
+ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 120

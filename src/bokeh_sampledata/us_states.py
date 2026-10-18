@@ -6,7 +6,9 @@
 # -----------------------------------------------------------------------------
 """Geometry data for US States.
 
-This module contains one dict: ``data``.
+The permanent ``data`` dictionary is loaded on first access.
+Use ``records()`` for Shapely-native polygons and metadata (requires the
+``geometry`` extra).
 
 The data is indexed by the two letter state code (e.g., 'CA', 'TX') and has the
 following structure:
@@ -28,21 +30,16 @@ following structure:
 
 from __future__ import annotations
 
-import codecs
-import csv
-import gzip
-import xml.etree.ElementTree as et
-from math import nan
-from typing import TYPE_CHECKING, TypedDict
+from typing import TYPE_CHECKING, TypedDict, cast
 
 import numpy as np
 
-from . import package_path
+from ._boundaries import StateRecord, read_legacy, read_records
 
 if TYPE_CHECKING:
     from numpy.typing import NDArray
 
-__all__ = ("data",)
+__all__ = ("data", "records")
 
 
 class StateData(TypedDict):
@@ -53,36 +50,29 @@ class StateData(TypedDict):
 
 
 def _read_data() -> dict[str, StateData]:
-    data = {}
-
-    with gzip.open(package_path("US_Regions_State_Boundaries.csv.gz")) as f:
-        decoded = codecs.iterdecode(f, "utf-8")
-        next(decoded)
-        reader = csv.reader(decoded, delimiter=",", quotechar='"')
-        for row in reader:
-            region, name, code, geometry, _ = row
-            xml = et.fromstring(geometry)
-            lats: list[float] = []
-            lons: list[float] = []
-            for i, poly in enumerate(xml.findall(".//outerBoundaryIs/LinearRing/coordinates")):
-                if i > 0:
-                    lats.append(nan)
-                    lons.append(nan)
-                assert isinstance(poly.text, str)
-                coords = (c.split(",")[:2] for c in poly.text.split())
-                lat, lon = list(
-                    zip(*[(float(lat), float(lon)) for lon, lat in coords], strict=False),
-                )
-                lats.extend(lat)
-                lons.extend(lon)
-            data[code] = StateData(
-                name=name,
-                region=region,
-                lats=np.array(lats),
-                lons=np.array(lons),
-            )
-
-    return data
+    return cast(dict[str, StateData], read_legacy("us_states"))
 
 
-data = _read_data()
+def __getattr__(name: str) -> object:
+    if name == "data":
+        value = _read_data()
+        globals()["data"] = value
+        return value
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+
+def __dir__() -> list[str]:
+    return sorted(set(globals()) | {"data"})
+
+
+if TYPE_CHECKING:
+    data: dict[str, StateData]
+
+
+def records() -> list[StateRecord]:
+    """Return 51 state/DC records in code order, with Shapely geometry.
+
+    Coordinates are longitude/latitude degrees (WGS84). Requires the
+    ``geometry`` extra. Each call returns fresh records; ``data`` is independent.
+    """
+    return cast(list[StateRecord], read_records("us_states"))

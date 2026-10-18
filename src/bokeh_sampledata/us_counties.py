@@ -6,7 +6,9 @@
 # -----------------------------------------------------------------------------
 """This modules exposes geometry data for Unites States.
 
-This module contains one dict: ``data``.
+The permanent ``data`` dictionary is loaded on first access.
+Use ``records()`` for Shapely-native polygons and metadata (requires the
+``geometry`` extra).
 
 The data is indexed by two-tuples of ``(state_id, county_id)`` that
 have the following dictionaries as values:
@@ -32,19 +34,16 @@ The combination of ``'detailed name'`` and ``'state'`` will always be unique.
 
 from __future__ import annotations
 
-import csv
-import xml.etree.ElementTree as et
-from math import nan
-from typing import TYPE_CHECKING, TypedDict
+from typing import TYPE_CHECKING, TypedDict, cast
 
 import numpy as np
 
-from . import package_path
+from ._boundaries import CountyRecord, read_legacy, read_records
 
 if TYPE_CHECKING:
     from numpy.typing import NDArray
 
-__all__ = ("data",)
+__all__ = ("data", "records")
 
 # -----------------------------------------------------------------------------
 # General API
@@ -68,36 +67,38 @@ class CountyData(TypedDict):
 
 
 def _read_data() -> dict[tuple[int, int], CountyData]:
-    data: dict[tuple[int, int], CountyData] = {}
-
-    with open(package_path("US_Counties.csv"), encoding="utf-8") as f:
-        next(f)
-        reader = csv.reader(f, delimiter=",", quotechar='"')
-        for row in reader:
-            name, _, state, _, geometry, _, _, _, det_name, state_id, county_id, _, _ = row
-            xml = et.fromstring(geometry)
-            lats: list[float] = []
-            lons: list[float] = []
-            for i, poly in enumerate(xml.findall(".//outerBoundaryIs/LinearRing/coordinates")):
-                if i > 0:
-                    lats.append(nan)
-                    lons.append(nan)
-                assert isinstance(poly.text, str)
-                coords = (c.split(",")[:2] for c in poly.text.split())
-                lat, lon = list(
-                    zip(*[(float(lat), float(lon)) for lon, lat in coords], strict=False),
-                )
-                lats.extend(lat)
-                lons.extend(lon)
-            data[(int(state_id), int(county_id))] = CountyData(
-                name=name,
-                detailed_name=det_name,
-                state=state,
-                lats=np.array(lats),
-                lons=np.array(lons),
-            )
-
-    return data
+    return cast(dict[tuple[int, int], CountyData], read_legacy("us_counties"))
 
 
-data = _read_data()
+def __getattr__(name: str) -> object:
+    if name == "data":
+        value = _read_data()
+        globals()["data"] = value
+        return value
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+
+def __dir__() -> list[str]:
+    return sorted(set(globals()) | {"data"})
+
+
+if TYPE_CHECKING:
+    data: dict[tuple[int, int], CountyData]
+
+
+def records(state: str | None = None) -> list[CountyRecord]:
+    """Return county records in padded FIPS order, with Shapely geometry.
+
+    ``state`` accepts a two-letter postal abbreviation, case-insensitively
+    (including DC and territories). Unknown two-letter codes return an empty
+    list; names, numeric FIPS codes, whitespace, and other formats raise
+    ``ValueError``. Filtering uses an index before geometry decoding.
+
+    Coordinates are longitude/latitude degrees (WGS84). Requires the
+    ``geometry`` extra. Each call returns fresh records; ``data`` is independent.
+    """
+    if state is not None:
+        if not isinstance(state, str) or len(state) != 2 or not state.isascii() or not state.isalpha():
+            raise ValueError("state must be a two-letter postal abbreviation")
+        state = state.upper()
+    return cast(list[CountyRecord], read_records("us_counties", state))
