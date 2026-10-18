@@ -89,7 +89,7 @@ dependency. No Font Awesome font or JavaScript code is distributed.
 
 ## Packaged text compression
 
-Larger CSV/JSON datasets and the consolidated stock table are
+Larger CSV/JSON datasets and the consolidated stock and Gapminder tables are
 stored as gzip. Small
 files, the boundary manifest, and formats consumed by external tools remain
 unchanged. Pandas infers gzip from the filename, while dictionary loaders open

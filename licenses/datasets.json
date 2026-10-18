@@ -377,9 +377,7 @@
     {
       "module": "gapminder",
       "files": [
-        "gapminder_fertility.csv",
-        "gapminder_life_expectancy.csv",
-        "gapminder_population.csv",
+        "gapminder.csv.gz",
         "gapminder_regions.csv"
       ],
       "recorded_license": "CC-BY-2.0",
@@ -388,15 +386,16 @@
         "https://www.gapminder.org/data/"
       ],
       "attribution": "Gapminder.org and the original indicator providers where identified by Gapminder.",
-      "notes": "Existing Bokeh license declaration accepted. CSV extracts restricted and aligned to common countries and years. Original spreadsheet identifiers are retained in gapminder.py.",
+      "notes": "Existing Bokeh license declaration accepted. CSV extracts restricted and aligned to common countries and years. Original spreadsheet identifiers are retained in gapminder.py. Numeric indicators are consolidated into country/year rows. Region metadata remains separate to retain its source order.",
       "verified_source_terms": null,
       "sha256": {
-        "gapminder_fertility.csv": "54632dd0ddd89991717b18a591c126d7dbec4ca155d99170927f5beaa360cdfc",
-        "gapminder_life_expectancy.csv": "5468e996cc9de8f66331702c739b40f887a6feb8d31fcf18d12a9d0c5ff274b3",
-        "gapminder_population.csv": "1b988f85ae34c9f042ad9baf30537865620295f1fca8489fe327a5d6729b55b5",
+        "gapminder.csv.gz": "c5b17f285b8cb223385ef8ce16a44a3d0355aefff95ea4744259ab6ff559e367",
         "gapminder_regions.csv": "90330b659a6d2aa10c34f9a7828b8b1c7cfe8873ca9b0dd9dcb8fccb3e4f2034"
       },
-      "license_expression": "CC-BY-2.0"
+      "license_expression": "CC-BY-2.0",
+      "uncompressed_sha256": {
+        "gapminder.csv.gz": "20a076e3abf0ea64a4334d86bf9c936c27aaa40266a69274a00b6afa68609d37"
+      }
     },
     {
       "module": "glucose",

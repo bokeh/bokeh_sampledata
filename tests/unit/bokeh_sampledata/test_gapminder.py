@@ -12,6 +12,7 @@ import pytest
 import bokeh_sampledata.gapminder as m
 
 ALL = (
+    "data",
     "fertility",
     "life_expectancy",
     "population",
@@ -50,3 +51,31 @@ def test_regions_align_by_country_label() -> None:
     aligned = m.regions.reindex(m.fertility.index)
     assert aligned.loc["United States"].to_dict() == {"Group": "America", "ID": "US"}
     assert aligned.loc["China", "Group"] == "East Asia & Pacific"
+
+
+def test_combined_data() -> None:
+    frame = m.data
+    assert frame.shape == (12200, 7)
+    assert list(frame.columns) == [
+        "country",
+        "year",
+        "fertility",
+        "life_expectancy",
+        "population",
+        "region",
+        "country_id",
+    ]
+    assert not frame.duplicated(["country", "year"]).any()
+    assert sorted(frame["year"].unique()) == list(range(1964, 2014))
+    assert pd.api.types.is_integer_dtype(frame["year"])
+    for indicator in ("fertility", "life_expectancy", "population"):
+        wide = frame.pivot(index="country", columns="year", values=indicator)
+        expected = getattr(m, indicator)
+        wide.index.name = "Country"
+        wide.columns = wide.columns.astype(str)
+        wide.columns.name = None
+        pd.testing.assert_frame_equal(wide.reindex(expected.index), expected, check_dtype=False)
+    us = frame[frame["country"] == "United States"]
+    assert us["region"].eq("America").all()
+    assert us["country_id"].eq("US").all()
+    assert frame["region"].notna().all()
