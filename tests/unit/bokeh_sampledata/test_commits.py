@@ -20,3 +20,11 @@ def test___all__() -> None:
 def test_data() -> None:
     assert isinstance(m.data, pd.DataFrame)
     assert len(m.data) == 4916
+
+
+def test_commit_timezone_and_local_clock_times() -> None:
+    assert list(m.data.columns) == ["day", "time"]
+    assert isinstance(m.data.index, pd.DatetimeIndex)
+    assert str(m.data.index.tz) == "US/Central"
+    assert m.data.index[0] == pd.Timestamp("2017-04-22 20:11:58", tz="UTC")
+    assert m.data["time"].tolist() == m.data.index.time.tolist()

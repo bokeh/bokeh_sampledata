@@ -49,6 +49,11 @@ including Shapely as a standard runtime dependency.
 between the Python metadata and Pixi manifest. Ruff handles both linting and
 import sorting.
 
+`check` also runs actionlint on GitHub Actions workflows. The same check runs
+from pre-commit when a workflow changes. Hooks check for merge conflict markers,
+case-conflicting filenames, and private keys, alongside formatting and typing.
+Install the hooks locally with `pixi run --locked pre-commit install`.
+
 ## Releases
 
 Publishing a GitHub release runs `.github/workflows/release.yml`. The workflow

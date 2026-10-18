@@ -42,6 +42,7 @@ numpy = "==1.26.4"
 pandas = "==2.2.3"
 
 [feature.dev.dependencies]
+actionlint = "*"
 pre-commit = "*"
 ruff = "0.15.4.*"
 mypy = ">=1.19"
@@ -76,8 +77,9 @@ test-cov = { cmd = "pytest --cov=bokeh_sampledata --cov-report=xml --color=yes t
 lint = "ruff check src tests tools"
 format-check = "ruff format --check src tests tools"
 dependency-check = "python tools/check_dependencies.py"
+workflow-check = "actionlint"
 typecheck = "mypy src tests tools"
-check = { depends-on = ["lint", "format-check", "dependency-check", "typecheck"] }
+check = { depends-on = ["lint", "format-check", "dependency-check", "workflow-check", "typecheck"] }
 
 [feature.build.tasks]
 build-py = "python -m build --no-isolation"

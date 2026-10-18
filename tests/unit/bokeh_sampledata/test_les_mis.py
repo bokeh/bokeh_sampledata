@@ -19,3 +19,16 @@ def test_data() -> None:
     assert isinstance(m.data, dict)
 
     assert set(m.data.keys()) == {"links", "nodes"}
+
+
+def test_character_graph_references() -> None:
+    nodes = m.data["nodes"]
+    links = m.data["links"]
+    assert len(nodes) == 77
+    assert len(links) == 254
+    assert len({node["name"] for node in nodes}) == len(nodes)
+    assert nodes[0] == {"name": "Myriel", "group": 1}
+    for link in links:
+        assert isinstance(link["source"], int) and 0 <= link["source"] < len(nodes)
+        assert isinstance(link["target"], int) and 0 <= link["target"] < len(nodes)
+        assert link["value"] > 0

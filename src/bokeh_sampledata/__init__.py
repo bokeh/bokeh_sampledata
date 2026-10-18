@@ -16,9 +16,10 @@ from __future__ import annotations
 
 import importlib.metadata as importlib_metadata
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-import pandas as pd
+if TYPE_CHECKING:
+    import pandas as pd
 
 __all__ = ("__version__",)
 
@@ -27,6 +28,8 @@ __version__ = importlib_metadata.version("bokeh_sampledata")
 
 
 def package_csv(name: str, **kw: Any) -> pd.DataFrame:
+    import pandas as pd
+
     return pd.read_csv(package_path(name), **kw)
 
 

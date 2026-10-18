@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import pandas as pd
+import pytest
 
 import bokeh_sampledata.autompg as m
 
@@ -31,4 +32,37 @@ def test_autompg_clean() -> None:
     assert len(m.autompg_clean) == 392
     assert all(x in ["North America", "Europe", "Asia"] for x in m.autompg_clean.origin)
     for x in ["chevy", "chevroelt", "maxda", "mercedes-benz", "toyouta", "vokswagen", "vw"]:
-        assert x not in m.autompg_clean.mfr
+        assert not m.autompg_clean["mfr"].isin([x]).any()
+
+
+@pytest.mark.parametrize(
+    ("spelling", "manufacturer"),
+    [
+        ("chevy", "chevrolet"),
+        ("chevroelt", "chevrolet"),
+        ("maxda", "mazda"),
+        ("mercedes-benz", "mercedes"),
+        ("toyouta", "toyota"),
+        ("vokswagen", "volkswagen"),
+        ("vw", "volkswagen"),
+        ("ford", "ford"),
+    ],
+)
+def test_manufacturer_normalization(spelling: str, manufacturer: str) -> None:
+    raw = pd.DataFrame({"name": [f"{spelling} model"], "origin": [1], "mpg": [25.0]})
+    original = raw.copy(deep=True)
+    cleaned = m._clean_data(raw)
+    assert cleaned["mfr"].tolist() == [manufacturer]
+    assert cleaned["origin"].tolist() == ["North America"]
+    assert cleaned["name"].equals(raw["name"])
+    assert cleaned["mpg"].equals(raw["mpg"])
+    pd.testing.assert_frame_equal(raw, original)
+
+
+def test_origin_labels_preserve_row_order() -> None:
+    raw = pd.DataFrame({"name": ["ford a", "toyota b", "vw c"], "origin": [1, 3, 2]}, index=[5, 2, 9])
+    cleaned = m._clean_data(raw)
+    assert cleaned.index.tolist() == [5, 2, 9]
+    assert cleaned["origin"].tolist() == ["North America", "Asia", "Europe"]
+    assert "mfr" not in raw.columns
+    assert raw["origin"].tolist() == [1, 3, 2]

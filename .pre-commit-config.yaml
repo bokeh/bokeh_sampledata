@@ -13,22 +13,22 @@ repos:
       args: ['-t=3.10-', '--violations']
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: no-commit-to-branch
         name: "don't commit to main branch"
         args: ['--branch', 'main']
-
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
-    - id: trailing-whitespace
-      exclude: ^src/bokeh_sampledata/_data/
-    - id: end-of-file-fixer
-      exclude: ^src/bokeh_sampledata/_data/
-    - id: check-json
-    - id: check-toml
-    - id: check-yaml
+      - id: trailing-whitespace
+        exclude: ^src/bokeh_sampledata/_data/
+      - id: end-of-file-fixer
+        exclude: ^src/bokeh_sampledata/_data/
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: check-merge-conflict
+        args: ['--assume-in-merge']
+      - id: check-case-conflict
+      - id: detect-private-key
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.4
@@ -51,4 +51,11 @@ repos:
         entry: pixi run --locked dependency-check
         language: system
         files: ^(pyproject\.toml|pixi\.toml|tools/check_dependencies\.py)$
+        pass_filenames: false
+
+      - id: actionlint
+        name: GitHub Actions workflow checks
+        entry: pixi run --locked workflow-check
+        language: system
+        files: ^\.github/workflows/.*\.ya?ml$
         pass_filenames: false

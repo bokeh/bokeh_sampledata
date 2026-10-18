@@ -33,9 +33,9 @@ __all__ = ("daylight_warsaw_2013",)
 
 def _read_data() -> pd.DataFrame:
     df = package_csv("daylight_warsaw_2013.csv", parse_dates=False)
-    df["Date"] = pd.to_datetime(df.Date).map(lambda x: pd.to_datetime(x).date())
-    df["Sunrise"] = pd.to_datetime(df.Sunrise, format="%H:%M:%S").map(lambda x: x.time())
-    df["Sunset"] = pd.to_datetime(df.Sunset, format="%H:%M:%S").map(lambda x: x.time())
+    df["Date"] = pd.to_datetime(df.Date).dt.date
+    df["Sunrise"] = pd.to_datetime(df.Sunrise, format="%H:%M:%S").dt.time
+    df["Sunset"] = pd.to_datetime(df.Sunset, format="%H:%M:%S").dt.time
     return df
 
 
