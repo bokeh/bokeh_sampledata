@@ -17,8 +17,9 @@ geometry = texas[0]["geometry"]  # Shapely Polygon or MultiPolygon
 ```
 
 These functions return lists of fresh dictionaries in stable identifier order.
-Coordinates are longitude, latitude in WGS84 degrees, with polygon parts and
-interior rings preserved. All packaged geometries are nonempty and valid.
+Coordinates are longitude, latitude in degrees, with polygon parts and
+interior rings preserved. US coordinates retain the Census NAD83 source;
+Natural Earth coordinates are WGS84. No reprojection is applied. All packaged geometries are nonempty and valid.
 The APIs do not depend on the packaged storage format.
 
 | Module | Count | Metadata beside `geometry` |
@@ -56,9 +57,11 @@ package. No GeoPandas or PyArrow dependency is required.
 
 US geometry is derived directly from the repository's historical
 `US_Regions_State_Boundaries.csv.gz` and `US_Counties.csv` at revision `4195d5e`,
-not from a new or current census release. Upstream vintage and original
-attribution are not recorded in those files, so these are historical sample
-boundaries, not authoritative current administrative geography. Existing
+not from a new or current census release. Coordinate comparison identifies
+simplified Census TIGER/Line geometry: all state vertices and over 99.99% of
+county vertices match the official 2009 release at the source rounding
+precision. The exact acquisition vintage and export intermediary remain
+unrecorded; these are historical samples, not current administrative geography. Existing
 metadata (including source character replacement artifacts) is retained.
 Sixteen duplicate Puerto Rico FIPS rows use the last source row, matching the
 legacy dictionary. Unlike the historical plotting arrays, records also read
@@ -87,9 +90,11 @@ These terms are compatible with distributing the dataset alongside BSD-3-Clause
 software; the Natural Earth data itself remains public domain.
 
 The installed package includes a [boundary provenance and license notice](src/bokeh_sampledata/_data/geographic_boundaries.LICENSE.txt),
-which also records the limits of the inherited US data provenance. The US
-boundaries reuse existing Bokeh inputs distributed under the repository's BSD
-license; their original upstream licensing was not separately documented.
+which records the US source evidence and remaining uncertainties. The US
+geometry matches [Census TIGER/Line sources](https://www2.census.gov/geo/tiger/TIGER2009/).
+Their embedded metadata declares the shapefiles not copyrighted and permits
+use in products/publications with Census acknowledgement. The notice includes
+that credit; these terms are compatible with BSD redistribution.
 
 Storage and reproducible regeneration are described in
 [tools/README.md](tools/README.md). The manifest records source checksums,

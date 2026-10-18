@@ -45,11 +45,44 @@ from bokeh/bokeh_sampledata revision:
 4195d5e5c3094ef578be168778c7e9501138f921
 https://github.com/bokeh/bokeh_sampledata/tree/4195d5e5c3094ef578be168778c7e9501138f921/src/bokeh_sampledata/_data
 
-That repository distributes the inputs under its Bokeh BSD-3-Clause license.
-No separate upstream attribution, acquisition date, or source-specific license
-was recorded with those files. This notice preserves that known provenance;
-it does not assert an independently verified public-domain origin for them.
-They are historical samples, not authoritative current administrative data.
+Geometry source identified by comparison: U.S. Department of Commerce,
+U.S. Census Bureau, Geography Division, TIGER/Line Shapefiles. Verified against
+the official 2009 current-state/current-county national releases:
+https://www2.census.gov/geo/tiger/TIGER2009/tl_2009_us_state.zip
+https://www2.census.gov/geo/tiger/TIGER2009/tl_2009_us_county.zip
+
+Source credit: U.S. Census Bureau, Geography Division.
+
+The XML metadata inside both archives states that the TIGER/Line shapefiles
+are not copyrighted and are free to use in products or publications, with
+acknowledgement to the Census Bureau as source. TIGER/Line and Census TIGER
+are Census Bureau registered trademarks. These terms permit redistribution
+alongside BSD-3-Clause software; retain the Census source acknowledgement.
+The boundaries are for statistical purposes, not legal land descriptions or
+determinations of jurisdiction, ownership or entitlement. Source coordinates
+are NAD83 longitude/latitude; this conversion does not reproject them.
+
+Comparison evidence: all 51 state identifiers and all 3,233 county identifiers
+occur in the 2009 reference. Every one of 14,134 distinct state vertices and
+506,908 of 506,926 distinct county vertices matches a vertex of the respective
+Census feature within 0.0000051 degrees on each axis. Counts deduplicate points
+within each feature and use the final source row for duplicate county FIPS.
+The 18 unmatched county vertices occur in 11 features; eight belong to the
+coarse Caldwell County, Missouri (29025) polygon. This is strong evidence of
+simplified, rounded Census geometry, not a byte-identical original export.
+
+The state CSV is byte-identical to the file committed to Bokeh on October 10,
+2013 (commit 993f6709b50e4d8ec2e332aae5d21c6246e836b2). The loaders were added
+on October 7, 2013 (commit 5dd06b424072da46d910aacf282e59bef314d7fc), when
+counties were downloaded from Bokeh's own S3 bucket. Google Fusion Tables is
+a plausible intermediary, but an exact export/table attribution was not
+recovered. The exact original release year, simplification procedure and
+origin of the additional region/color metadata remain unrecorded; 2009 is the
+verified matching reference, not an asserted exact acquisition vintage.
+
+The Bokeh repository's BSD-3-Clause license covers its distributed software
+and contributions; it is not by itself evidence of the original data rights.
+The Census source metadata supplies the independently verified data terms.
 
 Conversion preserves polygon interiors and repairs invalid polygon geometry,
 retaining polygonal components and discarding collapsed line/point remnants.

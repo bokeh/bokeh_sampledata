@@ -93,8 +93,8 @@ def records(state: str | None = None) -> list[CountyRecord]:
     list; names, numeric FIPS codes, whitespace, and other formats raise
     ``ValueError``. Filtering uses an index before geometry decoding.
 
-    Coordinates are longitude/latitude degrees (WGS84). Each call returns
-    fresh records; ``data`` is independent.
+    Coordinates retain the Census NAD83 longitude/latitude degrees without
+    reprojection. Each call returns fresh records; ``data`` is independent.
     """
     if state is not None:
         if not isinstance(state, str) or len(state) != 2 or not state.isascii() or not state.isalpha():

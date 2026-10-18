@@ -71,7 +71,7 @@ if TYPE_CHECKING:
 def records() -> list[StateRecord]:
     """Return 51 state/DC records in code order, with Shapely geometry.
 
-    Coordinates are longitude/latitude degrees (WGS84). Each call returns
-    fresh records; ``data`` is independent.
+    Coordinates retain the Census NAD83 longitude/latitude degrees without
+    reprojection. Each call returns fresh records; ``data`` is independent.
     """
     return cast(list[StateRecord], read_records("us_states"))
