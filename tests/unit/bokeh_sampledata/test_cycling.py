@@ -32,3 +32,12 @@ def test_cycling() -> None:
         "time",
     }
     assert set(c.cycling.columns) == expected_columns
+
+
+def test_elapsed_workout_times() -> None:
+    elapsed = c.cycling["time"]
+    assert pd.api.types.is_timedelta64_dtype(elapsed)
+    assert elapsed.is_monotonic_increasing
+    assert elapsed.iloc[0] == pd.Timedelta(0)
+    assert elapsed.iloc[-1] > pd.Timedelta(0)
+    assert all(pd.api.types.is_numeric_dtype(c.cycling[column]) for column in c.cycling.columns if column != "time")

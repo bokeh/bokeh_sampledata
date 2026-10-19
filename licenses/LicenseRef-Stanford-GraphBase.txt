@@ -1,0 +1,13 @@
+The Stanford GraphBase is copyright 1993 by Stanford University
+
+These files may be freely copied and distributed, provided that
+no changes whatsoever are made. All users are asked to help keep
+the Stanford GraphBase sources consistent and ``uncorrupted,''
+identical everywhere in the world. Changes are permissible only
+if the changed file is given a new name, different from the names of
+existing files listed below, and only if the changed file is
+clearly identified as not being part of the Stanford GraphBase.
+The author has tried his best to produce correct and useful programs,
+in order to help promote computer science research, but no warranty
+of any kind should be assumed.
+

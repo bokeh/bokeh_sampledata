@@ -8,7 +8,11 @@
 
 License: `CC0`_
 
-Sourced from: https://www.kaggle.com/datasets/arshid/iris-flower-dataset
+Historical Bokeh extract of the Sample Superstore demonstration dataset.
+Tableau publishes Sample Superstore files at
+https://public.tableau.com/app/learn/sample-data.
+The precise source of this historical extract is unrecorded. A similarly named
+Kaggle upload carries a CC0 label, but byte identity has not been verified.
 
 This module contains one pandas Dataframe: ``data``.
 
@@ -26,4 +30,4 @@ from . import package_csv
 
 __all__ = ("data",)
 
-data = package_csv("SampleSuperstore.csv")
+data = package_csv("SampleSuperstore.csv.gz")

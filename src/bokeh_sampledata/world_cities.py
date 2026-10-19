@@ -6,9 +6,9 @@
 # -----------------------------------------------------------------------------
 """Names and locations of world cities with at least 5000 inhabitants.
 
-License: `CC BY 2.0`_
+License: `CC BY 3.0 <https://creativecommons.org/licenses/by/3.0/>`_
 
-Sourced from http://www.geonames.org/export/ (*cities5000.zip*)
+Sourced from https://www.geonames.org/export/ (*cities5000.zip*)
 
 This module contains one pandas Dataframe: ``data``.
 
@@ -26,4 +26,4 @@ from . import package_csv
 
 __all__ = ("data",)
 
-data = package_csv("world_cities.csv", na_filter=False)
+data = package_csv("world_cities.csv.gz", na_filter=False)

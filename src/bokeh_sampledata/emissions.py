@@ -4,7 +4,7 @@
 #
 # The full license is in the file LICENSE.txt, distributed with this software.
 # -----------------------------------------------------------------------------
-"""CO2 emmisions of selected countries in the years from 1950 to 2012.
+"""CO2 emissions of selected countries in the years from 1950 to 2012.
 Note that not all countries have values for the whole time range.
 
 License: `Public Domain`_
@@ -25,4 +25,4 @@ from . import package_csv
 
 __all__ = ("data",)
 
-data = package_csv("emissions.csv")
+data = package_csv("emissions.csv.gz")

@@ -33,5 +33,6 @@ data = package_csv(
     names=["day", "datetime"],
     index_col="datetime",
 )
-data.index = pd.to_datetime(data.index, utc=True).tz_convert("US/Central")
-data["time"] = data.index.time
+_index = pd.to_datetime(data.index, utc=True).tz_convert("US/Central")
+data.index = _index
+data["time"] = _index.time

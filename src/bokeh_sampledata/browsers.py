@@ -6,11 +6,19 @@
 # -----------------------------------------------------------------------------
 """Browser market share by version from November 2013.
 
-License: `CC BY-SA 3.0`_
+The statistics are licensed under `CC BY-SA 3.0`_. Credit
+`Statcounter Global Stats <https://gs.statcounter.com/>`_ with a link when
+reusing them, as requested in https://gs.statcounter.com/faq.
+The CSV is a historical extract.
 
-Sourced from http://gs.statcounter.com/#browser_version-ww-monthly-201311-201311-bar
-
-Icon images sourced from https://github.com/alrra/browser-logos
+The browser icons are from `Font Awesome Free 6.7.2
+<https://github.com/FortAwesome/Font-Awesome/tree/6.7.2/svgs/brands>`_,
+Copyright 2024 Fonticons, Inc., under `CC BY 4.0
+<https://creativecommons.org/licenses/by/4.0/>`_. Bokeh rasterizes, colors,
+and pads the SVG outlines to 32-by-32 PNGs. Attribution and source links are
+embedded in each PNG and recorded in ``licenses/datasets.json``.
+The upstream notice ships in ``licenses/Font-Awesome.txt``.
+Brand icons identify their respective browsers and do not imply endorsement.
 
 This module contains one pandas Dataframe: ``browsers_nov_2013``.
 
@@ -18,8 +26,8 @@ This module contains one pandas Dataframe: ``browsers_nov_2013``.
 
 :bokeh-dataframe:`bokeh.sampledata.browsers.browsers_nov_2013`
 
-The module also contains a dictionary ``icons`` with base64-encoded PNGs of the
-logos for Chrome, Firefox, Safari, Opera, and IE.
+The module also contains a dictionary ``icons`` with 32-by-32 PNG browser icons
+for Chrome, Firefox, Safari, Opera, and IE.
 
 .. bokeh-sampledata-xref:: browsers
 
@@ -38,9 +46,9 @@ __all__ = ("browsers_nov_2013", "icons")
 
 def _read_data() -> pd.DataFrame:
     df = package_csv("browsers_nov_2013.csv", names=("Version", "Share"), skiprows=1)
-    versions: pd.Series[str] = df["Version"].map(lambda x: x.rsplit(" ", 1))
-    df["Browser"] = versions.map(lambda x: x[0])
-    df["VersionNumber"] = versions.map(lambda x: x[1] if len(x) == 2 else "0")
+    versions = df["Version"].str.rsplit(" ", n=1, expand=True)
+    df["Browser"] = versions[0]
+    df["VersionNumber"] = versions[1].fillna("0")
     return df
 
 

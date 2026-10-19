@@ -6,6 +6,10 @@
 # -----------------------------------------------------------------------------
 """Route data (including altitude) for a bike race in Eastern Europe.
 
+License: BSD-3-Clause, under the original Bokeh contribution terms.
+Source credit: Mateusz Paprocki, Bokeh PR #1197 (2014).
+The BSD notice is in the top-level ``LICENSE.txt``.
+
 Sourced from https://bikemaraton.com.pl
 
 This module contains one pandas Dataframe: ``obiszow_mtb_xcm``.

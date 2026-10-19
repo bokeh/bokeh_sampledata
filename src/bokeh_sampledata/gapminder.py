@@ -4,14 +4,32 @@
 #
 # The full license is in the file LICENSE.txt, distributed with this software.
 # -----------------------------------------------------------------------------
-"""Four of the datasets from Gapminder.
+"""Fertility, life expectancy, population, and region information from Gapminder.
 
 License: `CC BY 2.0`_
 
+Credit Gapminder.org and the original indicator providers where identified by
+Gapminder. These extracts restrict and align the original countries and years.
+
 Sourced from https://www.gapminder.org/data/
 
-This module contains four pandas Dataframes: ``fertility``, ``life_expectancy``,
-``population``, and ``regions``.
+The ``data`` DataFrame has one row per country and year, covering 244 countries
+from 1964 through 2013. Its columns are ``country``, ``year``, ``fertility``,
+``life_expectancy``, ``population``, ``region``, and ``country_id``. Fertility
+is children per woman, life expectancy is years, and population is persons.
+Missing source values remain missing. Region and identifier fields come from
+the historical Gapminder region table.
+
+For example, select a year with ``data[data["year"] == 2010]`` or a country
+with ``data[data["country"] == "United States"]``.
+
+.. rubric:: ``data``
+
+:bokeh-dataframe:`bokeh.sampledata.gapminder.data`
+
+The module also provides the country-by-year DataFrames ``fertility``,
+``life_expectancy``, and ``population``, with string year columns, and the
+country-indexed ``regions`` metadata table.
 
 .. rubric:: ``fertility``
 
@@ -35,49 +53,44 @@ This module contains four pandas Dataframes: ``fertility``, ``life_expectancy``,
 
 from __future__ import annotations
 
+import pandas as pd
+
 from . import package_csv
 
-__all__ = ("fertility", "life_expectancy", "population", "regions")
+__all__ = ("data", "fertility", "life_expectancy", "population", "regions")
 
-fertility = package_csv("gapminder_fertility.csv", index_col="Country", encoding="utf-8")
-life_expectancy = package_csv(
-    "gapminder_life_expectancy.csv",
-    index_col="Country",
-    encoding="utf-8",
-)
-population = package_csv("gapminder_population.csv", index_col="Country", encoding="utf-8")
+_INDICATORS = ("fertility", "life_expectancy", "population")
+
+
+def _read_data() -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
+    # Read original numeric spellings so each legacy year column retains its dtype.
+    rows = package_csv("gapminder.csv.gz", dtype=dict.fromkeys(_INDICATORS, str))
+    tables = {}
+    for indicator in _INDICATORS:
+        table = rows.pivot(index="country", columns="year", values=indicator)
+        table = table.reindex(rows["country"].drop_duplicates())
+        table = table.apply(pd.to_numeric)
+        table.index.name = "Country"
+        table.columns = table.columns.astype(str)
+        table.columns.name = None
+        tables[indicator] = table
+        rows[indicator] = pd.to_numeric(rows[indicator])
+    return rows, tables
+
+
 regions = package_csv("gapminder_regions.csv", index_col="Country", encoding="utf-8")
+data, _tables = _read_data()
+data = data.join(regions.rename(columns={"Group": "region", "ID": "country_id"}), on="country", validate="many_to_one")
+fertility = _tables["fertility"]
+life_expectancy = _tables["life_expectancy"]
+population = _tables["population"]
+del _tables
 
 # Original data is from Gapminder - www.gapminder.org.
-# The google docs links are maintained by gapminder
-#
-# The following script was used to get the data from gapminder
-# and process it into the csvs stored in bokeh's sampledata.
+# These original spreadsheet URLs are historical identifiers. Some no longer
+# resolve. Current downloads and documentation are at https://www.gapminder.org/data/
 #
 # population_url = "http://spreadsheets.google.com/pub?key=phAwcNAVuyj0XOoBL_n5tAQ&output=xls"
 # fertility_url = "http://spreadsheets.google.com/pub?key=phAwcNAVuyj0TAlJeCEzcGQ&output=xls"
 # life_expectancy_url = "http://spreadsheets.google.com/pub?key=tiAiXcrneZrUnnJ9dBU-PAw&output=xls"
 # regions_url = "https://docs.google.com/spreadsheets/d/1OxmGUNWeADbPJkQxVPupSOK5MbAECdqThnvyPrwG5Os/pub?gid=1&output=xls"
-#
-# def _get_data(url):
-#     # Get the data from the url and return only 1962 - 2013
-#     df = pd.read_excel(url, index_col=0)
-#     df = df.unstack().unstack()
-#     df = df[(df.index >= 1964) & (df.index <= 2013)]
-#     df = df.unstack().unstack()
-#     return df
-#
-# fertility_df = _get_data(fertility_url)
-# life_expectancy_df = _get_data(life_expectancy_url)
-# population_df = _get_data(population_url)
-# regions_df = pd.read_excel(regions_url, index_col=0)
-#
-# # have common countries across all data
-# fertility_df = fertility_df.drop(fertility_df.index.difference(life_expectancy_df.index))
-# population_df = population_df.drop(population_df.index.difference(life_expectancy_df.index))
-# regions_df = regions_df.drop(regions_df.index.difference(life_expectancy_df.index))
-#
-# fertility_df.to_csv('gapminder_fertility.csv')
-# population_df.to_csv('gapminder_population.csv')
-# life_expectancy_df.to_csv('gapminder_life_expectancy.csv')
-# regions_df.to_csv('gapminder_regions.csv')

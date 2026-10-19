@@ -1,0 +1,1007 @@
+{
+  "reviewed": "2026-10-18",
+  "scope": "All files packaged under bokeh_sampledata/_data. Paths are relative to that directory.",
+  "statuses": {
+    "source-verified": "Publisher terms were inspected. This does not imply a byte-for-byte match to the current upstream data or verified acquisition-time terms.",
+    "embedded-notice": "The packaged file itself supplies its notice.",
+    "existing-notice": "Existing Bokeh license declaration accepted unless contrary evidence was found. No independent recovery of the original acquisition notice is required for this audit.",
+    "maintainer-confirmed": "Source and terms confirmed directly by the maintainer who obtained the data.",
+    "original-bokeh-data": "Original assets created for Bokeh under BSD-3-Clause. Generation method and input provenance are recorded in the inventory."
+  },
+  "datasets": [
+    {
+      "module": "airport_routes",
+      "files": [
+        "airports.csv",
+        "routes.csv.gz"
+      ],
+      "recorded_license": "Public domain (OurAirports records and U.S. government BTS compilation)",
+      "status": "source-verified",
+      "sources": [
+        "https://ourairports.com/data/",
+        "https://transtats.bts.gov/PREZIP/On_Time_Reporting_Carrier_On_Time_Performance_1987_present_2026_7.zip",
+        "https://www.bts.gov/explore-topics-and-geography/modes/aviation/number-40-technical-directive-reporting-time"
+      ],
+      "attribution": "OurAirports contributors for airport locations. U.S. Department of Transportation, Bureau of Transportation Statistics, Reporting Carrier On-Time Performance, July 2026, for flight records.",
+      "notes": "Derived distinct reporting operating-carrier/origin/destination combinations from completed, non-diverted flights observed at least four times in July 2026. Carrier codes represent reporting operating carriers, with DOT carrier identifiers. Airport records use OurAirports IDs, not old OpenFlights IDs. BTS PBI is matched to the same airport labeled DJT in the OurAirports snapshot. Keep the 502 prior OurAirports airports plus 12 newly required endpoints, including territories. Some airports have no routes in this month. Not a schedule or complete airline network. Public-domain status is recorded directly, with source credit retained.",
+      "verified_source_terms": "Public domain (OurAirports records and U.S. government BTS compilation)",
+      "sha256": {
+        "airports.csv": "a49b8ae18c01720eeb67711203efe6e0e9627917c82863ceb80b13b526006986",
+        "routes.csv.gz": "c1bab7a00e50c911629a31b7f5d261f0cb602dc276416234dd52f1d5671fd967"
+      },
+      "license_expression": null,
+      "uncompressed_sha256": {
+        "routes.csv.gz": "e150deb0a1323714b7d6df2cdebba9db6596608615b0497f25f18173b1774935"
+      },
+      "source_files": {
+        "ontime_2026_7.zip": {
+          "sha256": "61d657eb17f5b6f800ed2f05262a2223c5edf66fe7d9cfb3598c6664a34ed0b6"
+        },
+        "ourairports.csv": {
+          "sha256": "0499dbd88de2fc735ac5c09f59796ccc3af544e17ffda807f793c0c6fe6c3d75"
+        }
+      },
+      "replaces": {
+        "files": [
+          "airports.csv",
+          "routes.csv"
+        ],
+        "sources": [
+          "https://nginx.openflights.org/data"
+        ],
+        "recorded_license": "ODbL-1.0",
+        "license_expression": "ODbL-1.0 AND LicenseRef-DbCL-1.0",
+        "sha256": {
+          "airports.csv": "8044fcebc9e44312e6e180c40edb4a39846308edc172ebc23da9c904d7b844e0",
+          "routes.csv": "633a68bab557b5cfc849f1add925b0d002e19518903522e46ea5118cda4dcffb"
+        }
+      }
+    },
+    {
+      "module": "airports",
+      "files": [
+        "airports.json"
+      ],
+      "recorded_license": "Public domain",
+      "status": "existing-notice",
+      "sources": [
+        "https://www.usgs.gov/national-map-supporting-themes",
+        "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer/27"
+      ],
+      "attribution": "U.S. Geological Survey, National Map service, snapshot recorded as 2015-10-15.",
+      "notes": "Historical extract obtained on 2015-10-15 from the retired services.nationalmap.gov service. Current program and airport layer citations describe the successor service, not an exact reproduction of the extract. Existing public-domain declaration retained.",
+      "verified_source_terms": null,
+      "sha256": {
+        "airports.json": "ace626de215fb188357da496a11d1f3a3f0225764ac5ded8b0e617fe5e1957bc"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "anscombe",
+      "files": [
+        "anscombe.csv"
+      ],
+      "recorded_license": "Public domain",
+      "status": "maintainer-confirmed",
+      "sources": [
+        "https://doi.org/10.1080/00031305.1973.10478966"
+      ],
+      "attribution": "Francis J. Anscombe (1973), Graphs in Statistical Analysis, The American Statistician 27(1), 17\u201321.",
+      "notes": "Historical scientific numerical data, accepted as public domain on maintainer instruction. No Wikipedia prose or artwork is included.",
+      "verified_source_terms": "Public domain",
+      "sha256": {
+        "anscombe.csv": "a74d8c6be5e61ffad24fa65bc88df5fc87446d6ee64258aa39fd49db9fa12aec"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "antibiotics",
+      "files": [
+        "antibiotics.csv"
+      ],
+      "recorded_license": "MIT",
+      "status": "source-verified",
+      "sources": [
+        "https://gist.github.com/borgar/cd32f1d804951034b224"
+      ],
+      "attribution": "Will Burtin (1951), via Mike Bostock and Borgar \u00deorsteinsson.",
+      "notes": "The source gist .block explicitly declares MIT. Its full original copyright/permission notice is not supplied in the gist. Do not invent a copyright year or substitute another author\u2019s MIT notice. Recover the original notice if required for an independently copyrightable contribution.",
+      "verified_source_terms": "MIT declaration in source gist",
+      "sha256": {
+        "antibiotics.csv": "0345b5a0a4a8f16c026810e316d5d387a6c5c5f5df5e9589a2ec5442ac76eccb"
+      },
+      "license_expression": "MIT"
+    },
+    {
+      "module": "autompg",
+      "files": [
+        "auto-mpg.csv"
+      ],
+      "recorded_license": "CC0-1.0",
+      "status": "existing-notice",
+      "sources": [
+        "https://lib.stat.cmu.edu/datasets/cars.desc",
+        "https://lib.stat.cmu.edu/datasets/cars.data",
+        "https://community.amstat.org/jointscsg-section/dataexpo/dataexpobefore1993",
+        "https://ww2.amstat.org/sections/graphics/datasets/Data_Expo_83_86_88.zip"
+      ],
+      "attribution": "David Donoho and Ernesto Ramos (1982), PRIMDATA: Data Sets for Use With PRIM-H, CRCARS dataset. Published in the 1983 American Statistical Association Data Exposition and archived by StatLib.",
+      "notes": "The original ASA instructions explicitly identify the 1982 CRCARS compilation. ASA and StatLib copies of cars.data are byte-identical. All 392 packaged rows, including names and numeric values, match the 406-record original in order after removing its 14 incomplete records. Only CSV serialization and column names differ. Existing Bokeh CC0 declaration retained under the maintainer instruction to accept existing declarations absent contrary evidence. The original exposition instructions contain no explicit license grant. No EPA/FuelEconomy.gov origin is asserted, and the present-day UCI license is not used to replace the historical Bokeh declaration.",
+      "verified_source_terms": null,
+      "sha256": {
+        "auto-mpg.csv": "7de0ecb3489c54523818af3daa65115dd87cc3737ad007b93ec31a74536787a7"
+      },
+      "license_expression": "CC0-1.0",
+      "source_files": {
+        "cars.data": {
+          "sha256": "6567aa512481186ea47241ccc147918bbf1fd8ec75715398e043a5c7f38551a7"
+        },
+        "cars.desc": {
+          "sha256": "1731fd191eb09799feaa0cf55bed2c97ef12bc2de020e6e4f27fd7762238078b"
+        }
+      }
+    },
+    {
+      "module": "autompg2",
+      "files": [
+        "auto-mpg2.csv"
+      ],
+      "recorded_license": "Public domain",
+      "status": "source-verified",
+      "sources": [
+        "https://www.fueleconomy.gov/",
+        "https://www.fueleconomy.gov/feg/ws/index.shtml",
+        "https://ggplot2.tidyverse.org/reference/mpg.html"
+      ],
+      "attribution": "U.S. Environmental Protection Agency vehicle fuel economy data, provided through FuelEconomy.gov by DOE and EPA.",
+      "notes": "Public-domain U.S. government vehicle fuel economy records for 1999 and 2008 models. Ultimate source is FuelEconomy.gov/EPA. The selection was distributed as ggplot2 mpg. No ggplot2 code or documentation is included. This is distinct from the older StatLib/UCI Auto MPG dataset.",
+      "verified_source_terms": "Public-domain U.S. government data",
+      "sha256": {
+        "auto-mpg2.csv": "30876856f44d498e0f36f61581a4766dfcd662525a76fcfe402d1afc166ee260"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "browsers",
+      "files": [
+        "browsers_nov_2013.csv"
+      ],
+      "recorded_license": "CC-BY-SA-3.0",
+      "status": "source-verified",
+      "sources": [
+        "https://gs.statcounter.com/faq",
+        "https://gs.statcounter.com/browser-version-market-share/all/worldwide/#monthly-201311-201311-bar"
+      ],
+      "attribution": "Statcounter Global Stats, November 2013 browser-version market shares.",
+      "notes": "Historical CSV extract. Statcounter expressly permits redistribution under CC-BY-SA-3.0 with linked source attribution. Retain the credit and license notice. ShareAlike applies to covered adaptations of this data, not independent Bokeh code.",
+      "verified_source_terms": "CC-BY-SA-3.0",
+      "sha256": {
+        "browsers_nov_2013.csv": "7cc8f84904cef4e0570cda3f5113ed568baded411c173ee520a7de4ab3fb291f"
+      },
+      "license_expression": "CC-BY-SA-3.0"
+    },
+    {
+      "module": "browsers.icons",
+      "files": [
+        "icons/chrome_32x32.png",
+        "icons/firefox_32x32.png",
+        "icons/ie_32x32.png",
+        "icons/opera_32x32.png",
+        "icons/safari_32x32.png"
+      ],
+      "recorded_license": "CC-BY-4.0",
+      "status": "source-verified",
+      "sources": [
+        "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/chrome.svg",
+        "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/firefox.svg",
+        "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/internet-explorer.svg",
+        "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/opera.svg",
+        "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/safari.svg",
+        "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/LICENSE.txt"
+      ],
+      "attribution": "Font Awesome Free 6.7.2, Copyright 2024 Fonticons, Inc. https://fontawesome.com. Icons licensed under CC BY 4.0. Brands are trademarks of their respective owners.",
+      "notes": "SVG brand outlines are rasterized, colored and centered with padding in 32-by-32 transparent PNGs using @resvg/resvg-js 2.6.2. The shape fits a 28-by-28 area. No fonts or Font Awesome code are distributed. Each PNG embeds attribution, its exact source URL, license link, and the transformation description. The original proprietary PNGs are replaced by these upstream licensed icon renderings.",
+      "verified_source_terms": "CC-BY-4.0 for SVG icons. Brand icons are used only to identify their respective products.",
+      "sha256": {
+        "icons/chrome_32x32.png": "aa03423a32c503f69fc17d87a34a7ee53baeb51de4698c4f47dc93d038ac6287",
+        "icons/firefox_32x32.png": "ad7b73d1f15fd23da4de16f9169f6f990f328402340c1845e4c95324125f6a62",
+        "icons/ie_32x32.png": "bb20c61cd16060f951be75990bdb944cdb14147098d4f18e769a3bb6848609d0",
+        "icons/opera_32x32.png": "38f317e4ac6172efc1365459c20cd86b68aa00ffebdd7bb6c3c243dc41c19193",
+        "icons/safari_32x32.png": "baa30664f77865c0a3e673406b0c40638fcc1c48454f543f4055ab69d0d3e959"
+      },
+      "replaces": {
+        "sources": [
+          "https://github.com/alrra/browser-logos",
+          "https://github.com/alrra/browser-logos/tree/53b2beeafc30ba35e621e80d91c1bf143fb6f319",
+          "https://github.com/bokeh/bokeh/commit/9c79c893be8c8cce4a78d70b6e0e797d6eec47f7",
+          "https://www.mozilla.org/en-US/foundation/trademarks/policy/",
+          "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+          "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/permissions",
+          "https://partnermarketinghub.withgoogle.com/support/faq/",
+          "https://brand.opera.com/"
+        ],
+        "attribution": "Chrome: Google. Firefox: Mozilla. Internet Explorer: Microsoft. Opera: Opera. Safari: Apple.",
+        "notes": "All five PNGs match Git blob hashes in browser-logos revision 53b2beeafc30ba35e621e80d91c1bf143fb6f319 (2014-05-14). Internet Explorer was renamed from internet-explorer_32x32.png to ie_32x32.png. The original upstream README expressly reserves all logos and trademarks to their owners and provides no blanket redistribution grant. Current owner policies vary. Microsoft restricts use of its product icons, Apple requires permission for its graphical symbols except specified uses, and Google and Mozilla allow specified descriptive/educational uses. None of the inspected notices establishes a general open redistribution grant for all five historical PNGs. Do not apply the repository MIT license to these logos.",
+        "sha256": {
+          "icons/chrome_32x32.png": "8e53f3cfbe030a2955087a73499cb0842a3a2ef4f9740dcd5ff5bc67aada8aa6",
+          "icons/firefox_32x32.png": "5e6cd4ae8fdf09221e5cbbf41d6cad8198b44217d8732e466b8e736af228c000",
+          "icons/ie_32x32.png": "126cdffc0f3782cfe6943b24fe3d26251c5df41c2a689f4cee955161faff3a71",
+          "icons/opera_32x32.png": "f8c196da90bc34f6623f7853699a9ef6afb36f4c60074167b3e7812a6f2fcc10",
+          "icons/safari_32x32.png": "4a97c41cd03a581fd5041d0137dcdf45f8edeed11374293984d15d7b6fe8bb5b"
+        },
+        "files": [
+          "icons/chrome_32x32.png",
+          "icons/firefox_32x32.png",
+          "icons/ie_32x32.png",
+          "icons/opera_32x32.png",
+          "icons/safari_32x32.png"
+        ]
+      },
+      "license_expression": "CC-BY-4.0",
+      "source_files": {
+        "svgs/brands/chrome.svg": {
+          "url": "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/chrome.svg",
+          "sha256": "ef053c1e413b8277ee9d2be128bdb8d2d859e2177cf4b6c23364c6b91b26967c"
+        },
+        "svgs/brands/firefox.svg": {
+          "url": "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/firefox.svg",
+          "sha256": "abf13045eb5d50cb529469c49ca5127734e87c2e3fe95ce0652a4449ea768e32"
+        },
+        "svgs/brands/internet-explorer.svg": {
+          "url": "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/internet-explorer.svg",
+          "sha256": "ba0a408c710e2c946f58ec090bca9b0de63a041e35f1337bfc272b34ca48b220"
+        },
+        "svgs/brands/opera.svg": {
+          "url": "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/opera.svg",
+          "sha256": "8ee877b92853e88cefff3eb17680cca27d4028b65e6acfb5b5e64705bce46706"
+        },
+        "svgs/brands/safari.svg": {
+          "url": "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/svgs/brands/safari.svg",
+          "sha256": "5cc317ebd96c1745a01934ff7c32da141ceaee9ea0da2ff7755e31061ae92cdf"
+        },
+        "LICENSE.txt": {
+          "url": "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.7.2/LICENSE.txt",
+          "sha256": "9b914eae88817d63b576eab5aafde7068c7a1abae125d7cdfb034f1da43a9afc"
+        }
+      }
+    },
+    {
+      "module": "commits",
+      "files": [
+        "commits.txt.gz"
+      ],
+      "recorded_license": "Public domain",
+      "status": "existing-notice",
+      "sources": [],
+      "attribution": "Historical Bokeh sample of GitHub commit activity, 2012\u20132016.",
+      "notes": "Existing Bokeh license declaration accepted. ",
+      "verified_source_terms": null,
+      "sha256": {
+        "commits.txt.gz": "2c01b59860c25e7e2032448799bb18b78875a285bf77deff862b3e80c7475238"
+      },
+      "license_expression": null,
+      "uncompressed_sha256": {
+        "commits.txt.gz": "7fb79be64c386708fda36f9741c617b76dfedb3f3f3cb1aab4766a0c33f043a4"
+      }
+    },
+    {
+      "module": "cows",
+      "files": [
+        "cows.csv"
+      ],
+      "recorded_license": "Public domain",
+      "status": "existing-notice",
+      "sources": [],
+      "attribution": "Butterfat measurements for five cattle breeds, historical Bokeh sample.",
+      "notes": "Existing Bokeh license declaration accepted. ",
+      "verified_source_terms": null,
+      "sha256": {
+        "cows.csv": "0eccfb3d8125568d7e245f642ea17fafc16aac72911aa3d70f37bca2fbf90b1f"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "cycling",
+      "files": [
+        "cycling.csv.gz"
+      ],
+      "recorded_license": "CC0-1.0",
+      "status": "existing-notice",
+      "sources": [],
+      "attribution": "Personal cycling data contributed to Bokeh.",
+      "notes": "Existing Bokeh license declaration accepted. Personal cycling data contributed to Bokeh.",
+      "verified_source_terms": null,
+      "sha256": {
+        "cycling.csv.gz": "db885ae392cdb93d4e5c6e02296df894430e476960e0a2138acfcec82bb0c2ce"
+      },
+      "license_expression": "CC0-1.0",
+      "uncompressed_sha256": {
+        "cycling.csv.gz": "db05a16d4ff53fa3b06158a83f817fd64de8b58438930c252c6e3f8540c6fd9e"
+      }
+    },
+    {
+      "module": "degrees",
+      "files": [
+        "percent-bachelors-degrees-women-usa.csv"
+      ],
+      "recorded_license": "CC0-1.0",
+      "status": "existing-notice",
+      "sources": [
+        "https://www.kaggle.com/datasets/sureshsrinivas/bachelorsdegreewomenusa"
+      ],
+      "attribution": "Suresh Srinivas, bachelor\u2019s degrees earned by women, via Kaggle.",
+      "notes": "Existing Bokeh license declaration accepted. ",
+      "verified_source_terms": null,
+      "sha256": {
+        "percent-bachelors-degrees-women-usa.csv": "c0fd40c53a908e8569dc7b56ea5dc46df5b3ca808c3012d99aa1185376e28294"
+      },
+      "license_expression": "CC0-1.0"
+    },
+    {
+      "module": "emissions",
+      "files": [
+        "emissions.csv.gz"
+      ],
+      "recorded_license": "Public domain",
+      "status": "existing-notice",
+      "sources": [],
+      "attribution": "Historical Bokeh CO2 emissions sample, 1950\u20132012.",
+      "notes": "Existing Bokeh license declaration accepted. ",
+      "verified_source_terms": null,
+      "sha256": {
+        "emissions.csv.gz": "c279f93b48874bfa5ad4924be161eb2dd51805e1ee882c419c7bcfe392dc7a7f"
+      },
+      "license_expression": null,
+      "uncompressed_sha256": {
+        "emissions.csv.gz": "abf0771f920a651f4d31254a2d2336bec78a15aa21936cc058ae91d2d5154c13"
+      }
+    },
+    {
+      "module": "forensic_glass",
+      "files": [
+        "forensic_glass.csv"
+      ],
+      "recorded_license": "Public domain",
+      "status": "existing-notice",
+      "sources": [
+        "https://archive.ics.uci.edu/dataset/42/glass+identification"
+      ],
+      "attribution": "Glass Identification data, historical Bokeh sample.",
+      "notes": "Existing public-domain declaration accepted. Similarity to a differently licensed current mirror does not establish a contradiction for this historical sample.",
+      "verified_source_terms": null,
+      "sha256": {
+        "forensic_glass.csv": "e566a8259cde26e55f15462dba6a6384b77d8772702d407a5befc2afb67b3712"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "gapminder",
+      "files": [
+        "gapminder.csv.gz",
+        "gapminder_regions.csv"
+      ],
+      "recorded_license": "CC-BY-2.0",
+      "status": "existing-notice",
+      "sources": [
+        "https://www.gapminder.org/data/"
+      ],
+      "attribution": "Gapminder.org and the original indicator providers where identified by Gapminder.",
+      "notes": "Existing Bokeh license declaration accepted. CSV extracts restricted and aligned to common countries and years. Original spreadsheet identifiers are retained in gapminder.py. Numeric indicators are consolidated into country/year rows. Region metadata remains separate to retain its source order.",
+      "verified_source_terms": null,
+      "sha256": {
+        "gapminder.csv.gz": "c5b17f285b8cb223385ef8ce16a44a3d0355aefff95ea4744259ab6ff559e367",
+        "gapminder_regions.csv": "90330b659a6d2aa10c34f9a7828b8b1c7cfe8873ca9b0dd9dcb8fccb3e4f2034"
+      },
+      "license_expression": "CC-BY-2.0",
+      "uncompressed_sha256": {
+        "gapminder.csv.gz": "20a076e3abf0ea64a4334d86bf9c936c27aaa40266a69274a00b6afa68609d37"
+      }
+    },
+    {
+      "module": "glucose",
+      "files": [
+        "CGM.csv.gz"
+      ],
+      "recorded_license": "Public domain",
+      "status": "maintainer-confirmed",
+      "sources": [
+        "https://github.com/bokeh/bokeh/commit/e5680ea999de55f5dfd9b36c95e3ac22ee4adeaa"
+      ],
+      "attribution": "Blood glucose measurements supplied directly to Bryan Van de Ven by a personal acquaintance.",
+      "notes": "Bryan Van de Ven confirmed on 2026-10-18 that the data was obtained directly from a personal acquaintance and freely given as public domain. The existing sample is retained. The donor\u2019s identity is not published.",
+      "verified_source_terms": "Public-domain dedication confirmed by the receiving maintainer.",
+      "sha256": {
+        "CGM.csv.gz": "91fdad8325541a4487d88cb59b2fc9f6ed821c7c01eaabed0606bbb7089be8de"
+      },
+      "license_expression": null,
+      "uncompressed_sha256": {
+        "CGM.csv.gz": "7adf3b557411df4791e89eb9d36e9efcaf3d3d8dd1da40e0d42173ec134d052b"
+      }
+    },
+    {
+      "module": "haar_cascade",
+      "files": [
+        "haarcascade_frontalface_default.xml"
+      ],
+      "recorded_license": "Intel OpenCV BSD-style file notice",
+      "status": "source-verified",
+      "sources": [
+        "https://raw.githubusercontent.com/opencv/opencv/4.4.0/data/haarcascades/haarcascade_frontalface_default.xml",
+        "https://raw.githubusercontent.com/opencv/opencv/4.4.0/data/readme.txt"
+      ],
+      "attribution": "Copyright (C) 2000 Intel Corporation. Created by Rainer Lienhart. Embedded copyright, redistribution conditions, and disclaimer retained unmodified.",
+      "notes": "Restored the original Haar model byte-identically from OpenCV 4.4.0. Its embedded terms permit redistribution in source and binary form, with or without modification, with notice retention and no Intel endorsement. The former MIT label was incorrect. A complete notice copy is bundled separately for documentation.",
+      "verified_source_terms": "Intel OpenCV BSD-style file notice",
+      "sha256": {
+        "haarcascade_frontalface_default.xml": "0f7d4527844eb514d4a4948e822da90fbb16a34a0bbbbc6adc6498747a5aafb0"
+      },
+      "license_expression": "LicenseRef-Intel-OpenCV",
+      "previous_license": "MIT (incorrect)"
+    },
+    {
+      "module": "iris",
+      "files": [
+        "iris.csv"
+      ],
+      "recorded_license": "CC0-1.0",
+      "status": "existing-notice",
+      "sources": [
+        "https://www.kaggle.com/datasets/arshid/iris-flower-dataset"
+      ],
+      "attribution": "Fisher\u2019s Iris data, via Arshid\u2019s Kaggle dataset.",
+      "notes": "Existing Bokeh license declaration accepted. ",
+      "verified_source_terms": null,
+      "sha256": {
+        "iris.csv": "9cc1c345c71bcc9b486b74cbf6063fa66f4bb5e0f603a4b3c3471ec2e5e8e355"
+      },
+      "license_expression": "CC0-1.0"
+    },
+    {
+      "module": "les_mis",
+      "files": [
+        "les_mis.json"
+      ],
+      "recorded_license": "Stanford GraphBase file notice and original BSD community grouping",
+      "status": "source-verified",
+      "sources": [
+        "https://www-cs-faculty.stanford.edu/~knuth/sgb.html",
+        "https://www-cs-faculty.stanford.edu/pub/sgb/sgb.tar.gz"
+      ],
+      "attribution": "Derived from jean.dat, The Stanford GraphBase, Copyright 1993 Stanford University (Donald E. Knuth). This renamed JSON is not part of the Stanford GraphBase. Independent community grouping by Bokeh contributors.",
+      "notes": "The 77 node labels and all 254 encounter links reproduce the historical graph. Independently regenerated from unmodified jean.dat. Deterministic Louvain grouping replaces the Bostock community labels whose early licensing could not be established. The source notice permits renamed, identified derivatives. No GraphBase source file is modified or redistributed under its original name.",
+      "verified_source_terms": "Stanford GraphBase file notice and original BSD community grouping",
+      "sha256": {
+        "les_mis.json": "df2f995fae7f07268f816528941ab9ef2344da957d4f7b5413e3a3606be44129"
+      },
+      "license_expression": "LicenseRef-Stanford-GraphBase AND BSD-3-Clause",
+      "source_files": {
+        "jean.dat": {
+          "sha256": "2ebefa5a2eb6b461307d48e0445f664e657d85a4085efc89aaeb24e5e674746a"
+        }
+      }
+    },
+    {
+      "module": "lincoln",
+      "files": [
+        "lincoln_weather.csv"
+      ],
+      "recorded_license": "Public domain",
+      "status": "existing-notice",
+      "sources": [],
+      "attribution": "Lincoln, Nebraska, daily temperatures for 2016, historical Bokeh sample.",
+      "notes": "Existing Bokeh license declaration accepted. ",
+      "verified_source_terms": null,
+      "sha256": {
+        "lincoln_weather.csv": "5e61412c924eed96506430b1f1089543fd172e286f10592cc4a4845d6fc845f3"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "movies_data",
+      "files": [
+        "movies.db"
+      ],
+      "recorded_license": "CC0-1.0",
+      "status": "source-verified",
+      "sources": [
+        "https://www.wikidata.org/wiki/Wikidata:Copyright",
+        "https://query.wikidata.org/"
+      ],
+      "attribution": "Wikidata contributors.",
+      "notes": "Wikidata snapshot retrieved 2026-10-18. Contains 17,472 films, publication years 1940-2014, in the full legacy omdb/tomatoes schemas. Values are supplied by Wikidata. IMDb ratings/votes, user scores/counts, editorial Consensus, images, DVD dates and websites are NULL where no source is available. No synthetic metrics or editorial review text are included. Fresh/Rotten are approximate counts derived from rounded Tomatometer percentages. BoxOffice is maximum reported USD gross, often worldwide, with geographic scope varying by source statement. Oscar category counts can be incomplete. Missing filterable text is empty string for compatibility.",
+      "verified_source_terms": "Wikidata structured data is available under CC0-1.0.",
+      "sha256": {
+        "movies.db": "1d9c6a02e488d0354b2309e16130c58820a91ac2ce417e814c5964f9579a65ac"
+      },
+      "license_expression": "CC0-1.0",
+      "replaces": {
+        "files": [
+          "movies.db"
+        ],
+        "sources": [
+          "https://www.omdbapi.com/"
+        ],
+        "recorded_license": "CC-BY-NC-4.0",
+        "license_expression": "CC-BY-NC-4.0",
+        "sha256": {
+          "movies.db": "f3233f214298e92d374c9df019a0fd506c855c76bff11c9411beaaeb02361ea3"
+        }
+      },
+      "selection": "Films with IMDb identifiers, publication dates 1940-2014 and Rotten Tomatoes score statements. Include animated, documentary and feature-film subclasses. English labels fall back to multilingual labels.",
+      "transformation": "Select the latest available score for each scoring method, ordered by statement date and then review count. Convert scores to the legacy scales. Derive approximate Fresh and Rotten counts from the review count and rounded Tomatometer percentage. Use the maximum reported USD box-office gross per film. Count distinct recorded Academy Award categories from film statements and statements qualified as awards for that work. Retain all legacy columns. Missing filterable text is an empty string and other unavailable values are NULL."
+    },
+    {
+      "module": "mtb",
+      "files": [
+        "obiszow_mtb_xcm.csv"
+      ],
+      "recorded_license": "BSD-3-Clause (Bokeh contribution)",
+      "status": "existing-notice",
+      "sources": [
+        "https://github.com/bokeh/bokeh/commit/7992b5b2bb1e65ef0e9b7436e3ed78e81b8be39d",
+        "https://github.com/bokeh/bokeh/blob/7992b5b2bb1e65ef0e9b7436e3ed78e81b8be39d/LICENSE.txt",
+        "https://github.com/bokeh/bokeh/pull/1197",
+        "https://bikemaraton.com.pl"
+      ],
+      "attribution": "Mateusz Paprocki, original Bokeh data contribution. Bike Maraton, Obisz\u00f3w MTB XCM route.",
+      "notes": "Byte-identical to the CSV contributed to Bokeh on 2014-09-12. The contribution discussion identifies one lap of the upcoming Polish MTB marathon championship in Obisz\u00f3w. The module also credits the Bike Maraton event website. Accepted under the original Bokeh repository BSD license, which accompanied the contributed data without a file-specific exception. Bryan Van de Ven confirmed on 2026-10-18 that these contributions may use the current Bokeh BSD notice without retaining a separate historical notice.",
+      "verified_source_terms": null,
+      "sha256": {
+        "obiszow_mtb_xcm.csv": "bcb57ea688602ce1c83ffc7c6ffb1ed05694bc2caca1aeade4af1a203f210b72"
+      },
+      "license_expression": "BSD-3-Clause"
+    },
+    {
+      "module": "olympics2014",
+      "files": [
+        "olympics2014.json"
+      ],
+      "recorded_license": "BSD-3-Clause (Bokeh contribution)",
+      "status": "existing-notice",
+      "sources": [
+        "https://github.com/bokeh/bokeh/commit/d69647adb68e1cc4453180edcfcb18dc3f327321",
+        "https://github.com/bokeh/bokeh/blob/d69647adb68e1cc4453180edcfcb18dc3f327321/LICENSE.txt"
+      ],
+      "attribution": "Bryan Van de Ven, original Bokeh data contribution. 2014 Olympic medal counts, compiled from public news sources.",
+      "notes": "The packaged JSON is structurally identical to the medal-count compilation contributed to Bokeh on 2014-02-28, with only serialization differences. Accepted under the original Bokeh repository BSD license, which accompanied the contributed data without a file-specific exception. Bryan Van de Ven confirmed on 2026-10-18 that these contributions may use the current Bokeh BSD notice without retaining a separate historical notice.",
+      "verified_source_terms": null,
+      "sha256": {
+        "olympics2014.json": "adb483c5709de1a6de62fd794421aa8da1a89749f988d8da5770b77fa5f1e05b"
+      },
+      "license_expression": "BSD-3-Clause"
+    },
+    {
+      "module": "penguins",
+      "files": [
+        "penguins.csv"
+      ],
+      "recorded_license": "CC0-1.0",
+      "status": "source-verified",
+      "sources": [
+        "https://allisonhorst.github.io/palmerpenguins/",
+        "https://github.com/mwaskom/seaborn-data/blob/master/penguins.csv"
+      ],
+      "attribution": "Kristen Gorman and Palmer Station Antarctica LTER. Palmerpenguins by Allison Horst, Alison Hill and Kristen Gorman (2020), DOI: 10.5281/zenodo.3960218.",
+      "notes": "Simplified dataset via seaborn-data. The original project explicitly dedicates the data under CC0.",
+      "verified_source_terms": "CC0-1.0",
+      "sha256": {
+        "penguins.csv": "e07636bd8af74260099ea2f8678e2eabbf35def579940cc76f67061ee16c06c1"
+      },
+      "license_expression": "CC0-1.0"
+    },
+    {
+      "module": "perceptions",
+      "files": [
+        "probly.csv",
+        "numberly.csv"
+      ],
+      "recorded_license": "MIT",
+      "status": "source-verified",
+      "sources": [
+        "https://github.com/zonination/perceptions",
+        "https://github.com/zonination/perceptions/blob/master/LICENSE"
+      ],
+      "attribution": "Copyright (c) 2016 Zoni Nation. Survey responses gathered through Reddit r/SampleSize.",
+      "notes": "The upstream MIT notice is reproduced verbatim in MIT.txt.",
+      "verified_source_terms": "MIT",
+      "sha256": {
+        "probly.csv": "235c1b22fc8bd096f8235b93e8d4801bcaf5b6f042dd90cc81a0d3afa45e4ee9",
+        "numberly.csv": "805b648ddde5fcb70c8471b29b2fd417f10f9548725ccff4210021b7c16e75b6"
+      },
+      "license_expression": "MIT"
+    },
+    {
+      "module": "periodic_table",
+      "files": [
+        "elements.csv"
+      ],
+      "recorded_license": "Public domain",
+      "status": "existing-notice",
+      "sources": [],
+      "attribution": "Historical Bokeh periodic table sample.",
+      "notes": "Existing Bokeh license declaration accepted. ",
+      "verified_source_terms": null,
+      "sha256": {
+        "elements.csv": "921968bfbd481b60166f30464dfa04c5120abee30899662ac1d07667ebcad74c"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "population",
+      "files": [
+        "population.csv.gz"
+      ],
+      "recorded_license": "CC-BY-3.0-IGO",
+      "status": "source-verified",
+      "sources": [
+        "https://population.un.org/wpp/",
+        "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_PopulationByAge5GroupSex_Medium.csv.gz",
+        "https://creativecommons.org/licenses/by/3.0/igo/"
+      ],
+      "attribution": "United Nations, Department of Economic and Social Affairs, Population Division (2024). World Population Prospects 2024, Online Edition. Copyright July 2024 United Nations.",
+      "notes": "Select Medium-variant records for World, regions, subregions, and countries/areas (LocTypeID 1-4), at five-year intervals from 1950 through 2100. Reshape PopMale and PopFemale to legacy Sex/Value rows. Convert source thousands to persons rounded to the nearest person. Preserve UN LocID values and source location names. The July 2024 workbook explicitly grants CC BY 3.0 IGO. Changes do not imply UN endorsement.",
+      "verified_source_terms": "CC-BY-3.0-IGO",
+      "sha256": {
+        "population.csv.gz": "97d34d53cc2bcb2cbaf04186096f096652ab0e80808d7f66ad6a71c4fe903f55"
+      },
+      "license_expression": "CC-BY-3.0-IGO",
+      "uncompressed_sha256": {
+        "population.csv.gz": "39582d52f1f3480de0ef6663c6f7e150840a8fd28c35be58cde08bb0a7e1cefe"
+      },
+      "source_files": {
+        "WPP2024_PopulationByAge5GroupSex_Medium.csv.gz": {
+          "sha256": "a04d7d1486a5eb2832cc812d599448f0a71e8ac9e1e7e6fa4066673d6a2487cd"
+        },
+        "WPP2024_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT.xlsx": {
+          "sha256": "98e34d9b65b53858cd08a57a566e45050b08093ad85ba5714fe6fbd78055ae6d"
+        }
+      },
+      "replaces": {
+        "files": [
+          "WPP2012_SA_DB03_POPULATION_QUINQUENNIAL.csv"
+        ],
+        "sources": [
+          "https://web.archive.org/web/20140304000000/http://www.un.org/en/aboutun/terms/"
+        ],
+        "recorded_license": "The 2013 source workbook says all rights reserved. The historical Bokeh CC-BY-3.0-IGO label is not supported by that acquisition-era notice.",
+        "license_expression": null,
+        "sha256": {
+          "WPP2012_SA_DB03_POPULATION_QUINQUENNIAL.csv": "d7b50b12c34614c45e41b942938eb256e2ec7551250eff211ea5ce745fcfd3b4"
+        }
+      }
+    },
+    {
+      "module": "sample_geojson",
+      "files": [
+        "sample_geojson.geojson"
+      ],
+      "recorded_license": "Open Government Licence v2.0",
+      "status": "source-verified",
+      "sources": [
+        "https://github.com/JeniT/nhs-choices/tree/7651daedf0",
+        "https://web.archive.org/web/20150102155125/http://www.nhs.uk/aboutnhschoices/contactus/pages/freedom-of-information.aspx",
+        "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/"
+      ],
+      "attribution": "Contains public sector information licensed under the Open Government Licence v2.0. NHS Choices data converted to GeoJSON by Jeni Tennison.",
+      "notes": "Historical 25 NHS England area-team points, byte-identical to LAT.geojson in JeniT/nhs-choices revision 7651daedf0 dated 2014-02-22. The archived NHS Choices download page confirms the OGL grant. Contact and address fields are historical. The earlier November 2015 snapshot date was not an acquisition date established by the upstream revision.",
+      "verified_source_terms": "Open Government Licence v2.0",
+      "sha256": {
+        "sample_geojson.geojson": "139cdf8532d6b09815acf6f267ad00850d5bd45be65ac5b02860b7c6d68bb305"
+      },
+      "license_expression": "OGL-UK-2.0"
+    },
+    {
+      "module": "sample_superstore",
+      "files": [
+        "SampleSuperstore.csv.gz"
+      ],
+      "recorded_license": "CC0-1.0",
+      "status": "existing-notice",
+      "sources": [
+        "https://public.tableau.com/app/learn/sample-data",
+        "https://www.kaggle.com/datasets/bravehart101/sample-supermarket-dataset"
+      ],
+      "attribution": "Sample Superstore, historical Bokeh sample.",
+      "notes": "Existing Bokeh CC0 declaration retained. Tableau publishes Sample Superstore demonstration data. A Kaggle upload with the same name and file size carries an uploader-supplied CC0 label, but size alone does not establish this extract's provenance or byte identity. The exact historical acquisition source is unrecorded.",
+      "verified_source_terms": null,
+      "sha256": {
+        "SampleSuperstore.csv.gz": "ff11c60a6a0af97c20a2c46158a861893fc4891b5639f2273d0fcc87e7573c5d"
+      },
+      "license_expression": "CC0-1.0",
+      "uncompressed_sha256": {
+        "SampleSuperstore.csv.gz": "ce8db84b6b049b19177ecdc43e46f8da6ce9c3d1784da4bf5dcf597c8b763611"
+      }
+    },
+    {
+      "module": "sea_surface_temperature",
+      "files": [
+        "sea_surface_temperature.csv.gz"
+      ],
+      "recorded_license": "Free to use and redistribute",
+      "status": "existing-notice",
+      "sources": [
+        "https://data.neracoos.org/erddap/tabledap/B01_ocean_agg.html",
+        "https://data.neracoos.org/erddap/info/B01_ocean_agg/index.html"
+      ],
+      "attribution": "NERACOOS, dataset B01_sbe37_all, historical sea surface temperature extract.",
+      "notes": "Historical extract from dataset B01_sbe37_all. The current B01_ocean_agg station archive confirms free use and redistribution. Sampled timestamps exist in the current archive but temperatures differ slightly, so the original extract is retained unchanged.",
+      "verified_source_terms": "The data may be used and redistributed for free but is not intended for legal use, since it may contain inaccuracies.",
+      "sha256": {
+        "sea_surface_temperature.csv.gz": "529155ac773634b0dca439781a839487640db92e2bdb597e372a2b0ba0ffbff0"
+      },
+      "license_expression": "LicenseRef-NERACOOS",
+      "license_text": "The data may be used and redistributed for free but is not intended for legal use, since it may contain inaccuracies.\nNeither the data Contributor, University of Maine, IOOS, NOAA, State of Maine nor the United States Government, nor any of their employees or contractors, makes any warranty, express or implied, including warranties of merchantability and fitness for a particular purpose, or assumes any legal liability for the accuracy, completeness, or usefulness, of this information.",
+      "uncompressed_sha256": {
+        "sea_surface_temperature.csv.gz": "7ec0442d98f892500b9e0655a315e916c98e6940dc7f7b4a019769be5e15923e"
+      }
+    },
+    {
+      "module": "sprint",
+      "files": [
+        "sprint.csv"
+      ],
+      "recorded_license": "BSD-3-Clause (Bokeh contribution)",
+      "status": "existing-notice",
+      "sources": [
+        "https://github.com/bokeh/bokeh/commit/fc1d5c4fed16d7a30647b75fd2c44333065a4ef8",
+        "https://github.com/bokeh/bokeh/blob/fc1d5c4fed16d7a30647b75fd2c44333065a4ef8/LICENSE.txt",
+        "https://github.com/bokeh/bokeh/pull/1484",
+        "https://archive.nytimes.com/www.nytimes.com/interactive/2012/08/05/sports/olympics/the-100-meter-dash-one-race-every-medalist-ever.html"
+      ],
+      "attribution": "Mateusz Paprocki, original Bokeh data contribution. Historical Olympic sprint results compiled from public news sources.",
+      "notes": "Byte-identical to the CSV contributed to Bokeh on 2014-12-01. The original PR identifies the New York Times 2012 interactive as the example it reproduces. These are tabulated Olympic sprint results. Accepted under the original Bokeh repository BSD license, which accompanied the contributed data without a file-specific exception. Bryan Van de Ven confirmed on 2026-10-18 that these contributions may use the current Bokeh BSD notice without retaining a separate historical notice.",
+      "verified_source_terms": null,
+      "sha256": {
+        "sprint.csv": "1803911737298054ec215dfefaaa657cbeab618c9d3351aad1e7588c71b7352e"
+      },
+      "license_expression": "BSD-3-Clause"
+    },
+    {
+      "module": "stocks",
+      "files": [
+        "stocks.csv.gz"
+      ],
+      "recorded_license": "Public domain",
+      "status": "source-verified",
+      "sources": [
+        "https://web.archive.org/web/20150411011214/https://www.quandl.com/data/WIKI",
+        "https://data.nasdaq.com/databases/WIKIP",
+        "https://www.kaggle.com/datasets/marketneutral/quandl-wiki-prices-us-equites/versions/1"
+      ],
+      "attribution": "Quandl WIKI Prices. Archived copy supplied by marketneutral on Kaggle.",
+      "notes": "Historical prices supplied as is by the source, without an independent accuracy guarantee. Extract the original Bokeh date ranges through 2013-03-01 from the WIKI_PRICES.csv archive. Preserve unadjusted open, high, low, close and volume, and the source adjusted close. Convert integral volume to integer and sort chronologically. WIKI GOOGL supplies the pre-2014 Google history exposed as the legacy GOOG dictionary. All original trading dates and row counts are preserved. Adjusted close reflects the archived source snapshot, including corporate actions after the selected dates, rather than the former 2013 export. Store all five series in one gzip CSV with a legacy ticker column.",
+      "verified_source_terms": "The archived Quandl publisher page declares the WIKI data public domain and explicitly permits copying, distribution and inclusion in commercial or noncommercial products.",
+      "sha256": {
+        "stocks.csv.gz": "5abadf99b2d394f920120a27de6f0df129859d71d4cfb0bf661bcc99446ab1fd"
+      },
+      "replaces": {
+        "sources": [
+          "https://github.com/bokeh/bokeh/commit/aadae019f42b846dc15a1956b1fa0ab9f521d546",
+          "https://github.com/bokeh/bokeh/commit/44770ba6da0019bfcb18514b6d1b61fe582836bc",
+          "https://uk.help.yahoo.com/kb/finance/article-data-availability-yahoo-finance-sln2310.html"
+        ],
+        "attribution": "Yahoo Finance historical stock CSV exports for AAPL, FB, GOOG, IBM and MSFT, supplied to Bokeh by Bryan Van de Ven in 2013.",
+        "notes": "Historical Bokeh samples were Yahoo Finance CSV exports. This extract uses Quandl WIKI values and retains the same trading dates and Python API.",
+        "sha256": {
+          "AAPL.csv": "855f0b122ac0e4c5b9464d1862f6c56bcd2c1cd7eb94db6fa6c798546964dff8",
+          "FB.csv": "85a671cce990c65a466345136ce3e849f6bd0e264a138306728f5dcb5e9e698c",
+          "GOOG.csv": "69754634a56ad48422ea769734225f00a92d55750052e3e8e3adbca18116f495",
+          "IBM.csv": "869438773969350798819547aed0ea16cf9e92ccde84c00069f72c144978d6b1",
+          "MSFT.csv": "b3d95da3b72a786616c10b196999c5fc2f7e42dc37be0723ae9038a9244f0f82"
+        },
+        "files": [
+          "AAPL.csv",
+          "FB.csv",
+          "GOOG.csv",
+          "IBM.csv",
+          "MSFT.csv"
+        ]
+      },
+      "license_expression": null,
+      "uncompressed_sha256": {
+        "stocks.csv.gz": "e73fe05d106b7da1abe8f947264c514afd02cef5c9db4864b9437c84d6bd6069"
+      },
+      "source_archive_sha256": "adfd226694c6f3ec2c56b585d973764180a39a3ec516601721e90096dc1de94f",
+      "source_file_sha256": "ca7fb174c7948db85638917d25ff65d438e27d5cb23675da784c54db01e3d003"
+    },
+    {
+      "module": "titanic",
+      "files": [
+        "titanic_all.csv"
+      ],
+      "recorded_license": "Public domain",
+      "status": "existing-notice",
+      "sources": [],
+      "attribution": "Historical Titanic passenger sample.",
+      "notes": "Existing Bokeh license declaration accepted. ",
+      "verified_source_terms": null,
+      "sha256": {
+        "titanic_all.csv": "05b0f524a4c9737bb963e828364628d8f9e8da1945033bc635e4287890327048"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "unemployment",
+      "files": [
+        "unemployment09.csv.gz"
+      ],
+      "recorded_license": "Public domain",
+      "status": "source-verified",
+      "sources": [
+        "https://www.bls.gov/lau/",
+        "https://www.bls.gov/opub/copyright-information.htm"
+      ],
+      "attribution": "U.S. Bureau of Labor Statistics, county unemployment rates, 2009.",
+      "notes": "The module identifies BLS. BLS states its publications are public domain except previously copyrighted photographs and illustrations. The exact historical export is not recorded.",
+      "verified_source_terms": "U.S. government public-domain data",
+      "sha256": {
+        "unemployment09.csv.gz": "bd63221b8ee7079cca70efe86e5f716bf8ef8d5302fccd134028cc55cb0a114e"
+      },
+      "license_expression": null,
+      "uncompressed_sha256": {
+        "unemployment09.csv.gz": "53943b7485f9446f3776ddc3956a96f2edd273290180ce3f1e749a3259c1aa28"
+      }
+    },
+    {
+      "module": "unemployment1948",
+      "files": [
+        "unemployment1948.csv"
+      ],
+      "recorded_license": "Public domain",
+      "status": "source-verified",
+      "sources": [
+        "https://www.bls.gov/cps/prev_yrs.htm",
+        "https://www.bls.gov/opub/copyright-information.htm"
+      ],
+      "attribution": "U.S. Bureau of Labor Statistics, monthly unemployment rates, 1948\u20132013.",
+      "notes": "The module identifies BLS. BLS states its publications are public domain except previously copyrighted photographs and illustrations. The exact historical export is not recorded.",
+      "verified_source_terms": "U.S. government public-domain data",
+      "sha256": {
+        "unemployment1948.csv": "28fbd344cc6910abd507151610824461b1321793fb75e130efd85e4d9334b201"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "us_cities",
+      "files": [
+        "us_cities.json.gz"
+      ],
+      "recorded_license": "CC-BY-3.0",
+      "status": "source-verified",
+      "sources": [
+        "https://www.geonames.org/export/",
+        "https://download.geonames.org/export/dump/readme.txt",
+        "https://web.archive.org/web/20130517180548/http://download.geonames.org/export/dump/readme.txt"
+      ],
+      "attribution": "GeoNames geographical database. https://www.geonames.org/",
+      "notes": "Historical cities5000 GeoNames extract. The acquisition-era readme grants CC BY 3.0, contrary to the later Bokeh CC BY 2.0 label. The current source has moved to CC BY 4.0. Original GeoNames credit retained.",
+      "verified_source_terms": "Creative Commons Attribution 3.0 License, confirmed in the 2013 and 2017 source readme snapshots.",
+      "sha256": {
+        "us_cities.json.gz": "c802de0caf85b95b0d25aa28515f727e4c5d0949a40c64ad2550f94a9f4ad47d"
+      },
+      "license_expression": "CC-BY-3.0",
+      "uncompressed_sha256": {
+        "us_cities.json.gz": "44243f7a039ec147948bbff16192a7e74c9394e04a29eae4aa6f2d5d0faea86a"
+      }
+    },
+    {
+      "module": "world_cities",
+      "files": [
+        "world_cities.csv.gz"
+      ],
+      "recorded_license": "CC-BY-3.0",
+      "status": "source-verified",
+      "sources": [
+        "https://www.geonames.org/export/",
+        "https://download.geonames.org/export/dump/readme.txt",
+        "https://web.archive.org/web/20130517180548/http://download.geonames.org/export/dump/readme.txt"
+      ],
+      "attribution": "GeoNames geographical database. https://www.geonames.org/",
+      "notes": "Historical cities5000 GeoNames extract. The acquisition-era readme grants CC BY 3.0, contrary to the later Bokeh CC BY 2.0 label. The current source has moved to CC BY 4.0. Original GeoNames credit retained.",
+      "verified_source_terms": "Creative Commons Attribution 3.0 License, confirmed in the 2013 and 2017 source readme snapshots.",
+      "sha256": {
+        "world_cities.csv.gz": "ea004b67a5db5d8d8ebe12880fae16cd8e8547ad89190baa2eaac5de43b6ef23"
+      },
+      "license_expression": "CC-BY-3.0",
+      "uncompressed_sha256": {
+        "world_cities.csv.gz": "888caef73316f8e016145ec5e9ce46d9058e8752dbc288e44293b7c598e60e90"
+      }
+    },
+    {
+      "module": "us_holidays",
+      "files": [
+        "USHolidays.ics"
+      ],
+      "recorded_license": "BSD-3-Clause",
+      "status": "original-bokeh-data",
+      "sources": [
+        "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/"
+      ],
+      "attribution": "Bokeh contributors. Federal holiday rules referenced to the U.S. Office of Personnel Management.",
+      "notes": "Independently generated for nominal holiday years 2000-2030. US-OPM marks observed dates for Monday-Friday federal employees, including New Year 2000 observed on 1999-12-31. Restores six additional Easter-based observances alongside Easter Sunday, and retains selected cultural dates. Federal names follow OPM. No Mozilla calendar text or recurrence records are copied.",
+      "verified_source_terms": "BSD-3-Clause",
+      "sha256": {
+        "USHolidays.ics": "81f291d42ac02f2dcb1fac916d15a6830ec3031a3bd2eedb2d68755b2fa6f837"
+      },
+      "license_expression": "BSD-3-Clause",
+      "replaces": {
+        "files": [
+          "USHolidays.ics"
+        ],
+        "sources": [
+          "https://www.thunderbird.net/en-US/calendar/holidays/"
+        ],
+        "recorded_license": "CC-BY-SA-3.0",
+        "license_expression": "CC-BY-SA-3.0",
+        "sha256": {
+          "USHolidays.ics": "158a684866c40bc7d729491b185e9aeec260f964031d99c01aab2735bfc22823"
+        }
+      }
+    },
+    {
+      "module": "us_marriages_divorces",
+      "files": [
+        "us_marriages_divorces.csv"
+      ],
+      "recorded_license": "Public domain",
+      "status": "existing-notice",
+      "sources": [
+        "https://www.cdc.gov/nchs/nvss/marriage-divorce.htm"
+      ],
+      "attribution": "U.S. Centers for Disease Control and Prevention, National Center for Health Statistics, marriage and divorce statistics, 1867\u20132014. Data organized by Randal S. Olson.",
+      "notes": "Existing Bokeh license declaration accepted. ",
+      "verified_source_terms": null,
+      "sha256": {
+        "us_marriages_divorces.csv": "def8460a0e28fcac47ab360a0f04b89a344ef6d8dea1466df5180caea82da3f7"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "us_states, us_counties, world_countries",
+      "files": [
+        "geographic_boundaries.db",
+        "geographic_boundaries.json"
+      ],
+      "recorded_license": "Census public-domain data and Natural Earth public domain",
+      "status": "source-verified",
+      "sources": [
+        "https://www2.census.gov/geo/tiger/TIGER2009/",
+        "https://www.naturalearthdata.com/about/terms-of-use/"
+      ],
+      "attribution": "U.S. Census Bureau, TIGER/Line Shapefiles. Natural Earth, Admin 0 countries, 1:50m, version 5.1.1.",
+      "notes": "See geographic-boundaries.txt for the detailed source evidence, original input hashes, repair/format changes and unresolved US acquisition vintage. The companion JSON is generated Bokeh provenance metadata.",
+      "verified_source_terms": "Public-domain sources with Census acknowledgement",
+      "sha256": {
+        "geographic_boundaries.db": "0770c2d5a588c3fd23186e04c26bd4874b152fc7a7bf077f83c606b6cd4d8b15",
+        "geographic_boundaries.json": "fd2c8e94a97157d373d90812cfb41353efa0cc19d83c758da3d22226e6d747be"
+      },
+      "license_expression": null
+    },
+    {
+      "module": "daylight",
+      "files": [],
+      "recorded_license": "BSD-3-Clause",
+      "license_expression": "BSD-3-Clause",
+      "status": "original-bokeh-data",
+      "sources": [
+        "https://gml.noaa.gov/grad/solcalc/calcdetails.html"
+      ],
+      "attribution": "Bokeh contributors. Calculations follow NOAA Solar Calculator equations.",
+      "notes": "No dataset file is packaged. The annual API and legacy Warsaw DataFrame are calculated at runtime. Replaces the former published Warsaw CSV.",
+      "sha256": {},
+      "replaces": {
+        "files": [
+          "daylight_warsaw_2013.csv"
+        ],
+        "sources": [
+          "https://www.sunrisesunset.com/faqs.asp#other_usage"
+        ],
+        "recorded_license": "Free reuse, with a link or reference requested by the publisher.",
+        "license_expression": null,
+        "sha256": {
+          "daylight_warsaw_2013.csv": "20f74b396cf0c5e77f999616ca096b3d18090fb6498a01dc840e9ad1bf896ce6"
+        }
+      }
+    }
+  ]
+}

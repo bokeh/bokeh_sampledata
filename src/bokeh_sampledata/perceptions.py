@@ -6,7 +6,9 @@
 # -----------------------------------------------------------------------------
 """Provides access to ``probly.csv`` and ``numberly.csv``.
 
-License: `MIT license`_
+License: `MIT license`_. Copyright (c) 2016 Zoni Nation.
+The original notice ships in ``licenses/MIT.txt``.
+Survey responses were collected through Reddit's r/SampleSize community.
 
 Sourced from: https://github.com/zonination/perceptions
 

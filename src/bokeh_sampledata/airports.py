@@ -8,8 +8,10 @@
 
 License: `Public Domain`_
 
-Sourced from USGS service `http://services.nationalmap.gov` on October 15, 2015.
-In the meantime this service was deactivated and is not available anymore.
+Historical extract from a retired USGS National Map service, obtained on
+October 15, 2015. Current program information is available from `The National
+Map supporting themes <https://www.usgs.gov/national-map-supporting-themes>`_.
+The current airport layer may differ from this historical extract.
 
 This module contains one pandas Dataframe: ``data``.
 

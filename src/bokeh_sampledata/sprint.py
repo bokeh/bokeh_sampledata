@@ -6,7 +6,12 @@
 # -----------------------------------------------------------------------------
 """Historical results for Olympic sprints by year.
 
-Sourced from public news sources.
+License: BSD-3-Clause, under the original Bokeh contribution terms.
+Source credit: Mateusz Paprocki, Bokeh PR #1484 (2014).
+The BSD notice is in the top-level ``LICENSE.txt``.
+
+The original example reproduces the `New York Times 2012 Olympic sprint
+visualization <https://archive.nytimes.com/www.nytimes.com/interactive/2012/08/05/sports/olympics/the-100-meter-dash-one-race-every-medalist-ever.html>`_.
 
 This module contains one pandas Dataframe: ``sprint``.
 

@@ -6,43 +6,55 @@ ci:
 
 repos:
   - repo: https://github.com/netromdk/vermin
-    rev: v1.6.0
+    rev: db02e9e95a3f89da1788e268ef3fb506187f35db  # frozen: v1.6.0
     hooks:
     - id: vermin
       name: check minimum Python version
       args: ['-t=3.10-', '--violations']
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
     hooks:
       - id: no-commit-to-branch
         name: "don't commit to main branch"
         args: ['--branch', 'main']
-
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
-    - id: trailing-whitespace
-    - id: end-of-file-fixer
-    - id: check-json
-    - id: check-toml
-    - id: check-yaml
-      exclude: conda/meta.yaml
+      - id: trailing-whitespace
+        exclude: ^(src/bokeh_sampledata/_data/|licenses/.*\.txt$)
+      - id: end-of-file-fixer
+        exclude: ^(src/bokeh_sampledata/_data/|licenses/.*\.txt$)
+      - id: check-symlinks
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+        exclude: ^src/bokeh_sampledata/_data/
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: check-merge-conflict
+        args: ['--assume-in-merge']
+      - id: check-case-conflict
+      - id: detect-private-key
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.1
+    rev: a27a2e47c7751b639d2b5badf0ef6ff11fee893f  # frozen: v0.15.4
     hooks:
-    - id: ruff
+    - id: ruff-check
       args: ['--fix']
     - id: ruff-format
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.16.1
+  - repo: local
     hooks:
-    - id: mypy
-      additional_dependencies: [pandas-stubs, pytest]
+      - id: dependencies
+        name: runtime dependency consistency
+        entry: python tools/check_dependencies.py
+        language: python
+        additional_dependencies: [packaging==26.3]
+        files: ^(pyproject\.toml|pixi\.toml|tools/check_dependencies\.py)$
+        pass_filenames: false
 
-  - repo: https://github.com/pycqa/isort
-    rev: 6.0.1
-    hooks:
-    - id: isort
+      - id: actionlint
+        name: GitHub Actions workflow checks
+        entry: actionlint
+        language: python
+        additional_dependencies: [actionlint-py==1.7.12.25, shellcheck-py==0.11.0.1]
+        files: ^\.github/workflows/.*\.ya?ml$
+        pass_filenames: false
