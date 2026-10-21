@@ -957,23 +957,22 @@
       "license_expression": null
     },
     {
-      "module": "us_states, us_counties, world_countries",
+      "module": "us_states, us_counties",
       "files": [
         "geographic_boundaries.db",
         "geographic_boundaries.json"
       ],
-      "recorded_license": "Census public-domain data and Natural Earth public domain",
+      "recorded_license": "Census public domain data",
       "status": "source-verified",
       "sources": [
-        "https://www2.census.gov/geo/tiger/TIGER2009/",
-        "https://www.naturalearthdata.com/about/terms-of-use/"
+        "https://www2.census.gov/geo/tiger/TIGER2009/"
       ],
-      "attribution": "U.S. Census Bureau, TIGER/Line Shapefiles. Natural Earth, Admin 0 countries, 1:50m, version 5.1.1.",
+      "attribution": "U.S. Census Bureau, TIGER/Line Shapefiles.",
       "notes": "See geographic-boundaries.txt for the detailed source evidence, original input hashes, repair/format changes and unresolved US acquisition vintage. The companion JSON is generated Bokeh provenance metadata.",
       "verified_source_terms": "Public-domain sources with Census acknowledgement",
       "sha256": {
-        "geographic_boundaries.db": "0770c2d5a588c3fd23186e04c26bd4874b152fc7a7bf077f83c606b6cd4d8b15",
-        "geographic_boundaries.json": "fd2c8e94a97157d373d90812cfb41353efa0cc19d83c758da3d22226e6d747be"
+        "geographic_boundaries.db": "e58bcdeaca9dc5854e2b06f83ffc9e925a4b916bd01fd9bb24d74404fa7e9328",
+        "geographic_boundaries.json": "c95a39cea3b12921915be0f78179a3b08a72682006d72256fe1a5e2eb9ec79c2"
       },
       "license_expression": null
     },

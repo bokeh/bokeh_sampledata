@@ -2,6 +2,14 @@
 
 This package contains sample datasets for use with Bokeh examples.
 
+## Changes in 2026.1
+
+The `world_countries` dataset has been removed, including its API and bundled
+country boundary data. Country borders encode choices about disputed territories
+that this sample-data package is not equipped to maintain. Applications that
+used `bokeh_sampledata.world_countries` must obtain boundary data from a provider
+whose boundary policy suits their needs.
+
 ## Development and packaging
 
 Use [Pixi](https://pixi.sh) >=0.76.1 from the repository root. Commit `pixi.toml`

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import importlib
+import importlib.util
 import json
 import os
 import sqlite3
@@ -121,7 +122,6 @@ for module in (states, counties):
             {"fips", "state_fips", "county_fips", "state", "name", "detailed_name", "geometry"},
             "fips",
         ),
-        ("world_countries", 242, {"id", "name", "iso_a2", "iso_a3", "continent", "region", "geometry"}, "id"),
     ],
 )
 def test_records(name: str, count: int, fields: set[str], identifier: str) -> None:
@@ -140,9 +140,6 @@ def test_records(name: str, count: int, fields: set[str], identifier: str) -> No
         if name == "us_counties":
             assert len(record["fips"]) == 5
             assert record["fips"] == record["state_fips"] + record["county_fips"]
-        if name == "world_countries":
-            assert record["iso_a2"] is None or len(record["iso_a2"]) == 2
-            assert record["iso_a3"] is None or len(record["iso_a3"]) == 3
     assert {r["geometry"].geom_type for r in records} == {"Polygon", "MultiPolygon"}
     if name != "us_states":
         assert any(
@@ -197,6 +194,13 @@ def test_packaged_manifest() -> None:
     assert not package_path("US_Regions_State_Boundaries.csv.gz").exists()
 
 
+def test_packaged_boundaries_only_contain_us_data() -> None:
+    with sqlite3.connect(package_path("geographic_boundaries.db")) as connection:
+        tables = {row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type = 'table'")}
+    assert tables == {"us_states", "us_counties"}
+    assert importlib.util.find_spec("bokeh_sampledata.world_countries") is None
+
+
 def test_no_geopandas_or_pyarrow() -> None:
     subprocess.run(
         [
@@ -206,8 +210,8 @@ def test_no_geopandas_or_pyarrow() -> None:
 import sys
 sys.modules['geopandas'] = None
 sys.modules['pyarrow'] = None
-from bokeh_sampledata import us_states, us_counties, world_countries
-assert us_states.records() and us_counties.records('TX') and world_countries.records()
+from bokeh_sampledata import us_states, us_counties
+assert us_states.records() and us_counties.records('TX')
 """,
         ],
         check=True,
@@ -215,7 +219,7 @@ assert us_states.records() and us_counties.records('TX') and world_countries.rec
 
 
 @pytest.mark.skipif(
-    "NATURAL_EARTH_ARCHIVE" not in os.environ, reason="regeneration requires the verified source archive"
+    "BOUNDARY_SOURCE_DIR" not in os.environ, reason="regeneration requires the verified US source files"
 )
 def test_deterministic_generation(tmp_path: Path) -> None:
     # Opt-in regeneration test: no downloads or generation dependencies at runtime.
@@ -223,7 +227,8 @@ def test_deterministic_generation(tmp_path: Path) -> None:
     command = [
         sys.executable,
         str(ROOT / "tools/generate_boundaries.py"),
-        os.environ["NATURAL_EARTH_ARCHIVE"],
+        "--source-dir",
+        os.environ["BOUNDARY_SOURCE_DIR"],
         "--output",
         str(output),
     ]

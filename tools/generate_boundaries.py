@@ -12,22 +12,18 @@ import argparse
 import csv
 import gzip
 import hashlib
-import io
 import json
 import sqlite3
 import sys
 import xml.etree.ElementTree as ET
-import zipfile
 from pathlib import Path
 from typing import Any
 
-import shapefile
 import shapely
 from shapely.geometry import (
     GeometryCollection,
     MultiPolygon,
     Polygon,
-    shape,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,7 +32,6 @@ US_SHA256 = {
     "US_Counties.csv": "db5efb4678f92006ffdf4bad2a1b6decbb4bf0b91ba15dadcc103a2a04718708",
     "US_Regions_State_Boundaries.csv.gz": "6384a4be00b233adee9d30784485f45bc5afb0ad8d01ad874fc4abe5170ee665",
 }
-ARCHIVE_SHA256 = "5fed433373581fa648920435f937d95f2d3c0200e067409c6478dcdf1b853139"
 
 
 def digest(path: Path) -> str:
@@ -60,9 +55,7 @@ def kml_geometry(text: str) -> Polygon | MultiPolygon:
     return parts[0] if len(parts) == 1 else MultiPolygon(parts)
 
 
-def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
-    if digest(archive) != ARCHIVE_SHA256:
-        raise ValueError("Natural Earth archive checksum mismatch")
+def generate(output: Path, source_dir: Path) -> dict[str, Any]:
     for name, expected in US_SHA256.items():
         if digest(source_dir / name) != expected:
             raise ValueError(f"US source checksum mismatch: {name}")
@@ -70,7 +63,6 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
     rows: dict[str, list[tuple[str, str | None, str, bytes]]] = {
         "us_states": [],
         "us_counties": [],
-        "world_countries": [],
     }
 
     def add(table: str, identifier: str, state: str | None, metadata: dict[str, Any], geometry: Any) -> None:
@@ -126,29 +118,6 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
                 ),
                 kml_geometry(row["geometry"]),
             )
-    with zipfile.ZipFile(archive) as archive_file:
-        stem = "ne_50m_admin_0_countries"
-        if archive_file.read(stem + ".VERSION.txt").strip() != b"5.1.1":
-            raise ValueError("Unexpected Natural Earth version")
-        reader = shapefile.Reader(
-            **{ext: io.BytesIO(archive_file.read(f"{stem}.{ext}")) for ext in ("shp", "shx", "dbf")}, encoding="utf-8"
-        )
-        for feature in reader.iterShapeRecords():
-            if feature.record is None or feature.shape is None:
-                raise ValueError("Natural Earth feature is missing its record or shape")
-            attributes = feature.record.as_dict()
-            identifier = attributes["ADM0_A3"]
-            if not isinstance(identifier, str):
-                raise ValueError("Natural Earth ADM0_A3 must be a string")
-            metadata = dict(
-                id=identifier,
-                name=attributes["NAME_EN"],
-                iso_a2=None if attributes["ISO_A2_EH"] == "-99" else attributes["ISO_A2_EH"],
-                iso_a3=None if attributes["ISO_A3_EH"] == "-99" else attributes["ISO_A3_EH"],
-                continent=attributes["CONTINENT"],
-                region=attributes["REGION_UN"],
-            )
-            add("world_countries", identifier, None, metadata, shape(feature.shape.__geo_interface__))
     # Match the historical dictionary's last-row-wins handling of duplicate FIPS.
     for table, records in rows.items():
         rows[table] = list({record[0]: record for record in records}.values())
@@ -169,7 +138,6 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
         db.execute("VACUUM")
     manifest = dict(
         inputs={name: digest(source_dir / name) for name in ("US_Counties.csv", "US_Regions_State_Boundaries.csv.gz")},
-        natural_earth_archive_sha256=ARCHIVE_SHA256,
         counts={table: len(records) for table, records in rows.items()},
         repairs=repairs,
         shapely=shapely.__version__,
@@ -177,7 +145,6 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
         sqlite=sqlite3.sqlite_version,
         python=sys.version.split()[0],
         geometry_encoding="WKB",
-        pyshp=shapefile.__version__,
         bytes=output.stat().st_size,
         sha256=digest(output),
     )
@@ -187,8 +154,7 @@ def generate(archive: Path, output: Path, source_dir: Path) -> dict[str, Any]:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("archive", type=Path)
     parser.add_argument("--output", type=Path, default=DATA / "geographic_boundaries.db")
     parser.add_argument("--source-dir", type=Path, default=ROOT / "work/boundary-sources")
     args = parser.parse_args()
-    print(json.dumps(generate(args.archive, args.output, args.source_dir), indent=2))
+    print(json.dumps(generate(args.output, args.source_dir), indent=2))
