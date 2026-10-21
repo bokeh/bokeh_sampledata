@@ -1,9 +1,8 @@
 {
-  "bytes": 15101952,
+  "bytes": 13316096,
   "counts": {
     "us_counties": 3233,
-    "us_states": 51,
-    "world_countries": 242
+    "us_states": 51
   },
   "geometry_encoding": "WKB",
   "geos": "3.14.1",
@@ -11,8 +10,6 @@
     "US_Counties.csv": "db5efb4678f92006ffdf4bad2a1b6decbb4bf0b91ba15dadcc103a2a04718708",
     "US_Regions_State_Boundaries.csv.gz": "6384a4be00b233adee9d30784485f45bc5afb0ad8d01ad874fc4abe5170ee665"
   },
-  "natural_earth_archive_sha256": "5fed433373581fa648920435f937d95f2d3c0200e067409c6478dcdf1b853139",
-  "pyshp": "2.3.1",
   "python": "3.12.15",
   "repairs": {
     "us_counties": [
@@ -66,7 +63,7 @@
       "AK"
     ]
   },
-  "sha256": "0770c2d5a588c3fd23186e04c26bd4874b152fc7a7bf077f83c606b6cd4d8b15",
+  "sha256": "e58bcdeaca9dc5854e2b06f83ffc9e925a4b916bd01fd9bb24d74404fa7e9328",
   "shapely": "2.2.0",
   "sqlite": "3.54.1"
 }

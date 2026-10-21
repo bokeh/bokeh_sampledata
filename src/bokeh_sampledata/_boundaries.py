@@ -36,20 +36,10 @@ class CountyRecord(TypedDict):
     geometry: Polygon | MultiPolygon
 
 
-class CountryRecord(TypedDict):
-    id: str
-    name: str
-    iso_a2: str | None
-    iso_a3: str | None
-    continent: str
-    region: str
-    geometry: Polygon | MultiPolygon
-
-
 def read_records(table: str, state: str | None = None) -> list[Any]:
     from shapely import from_wkb
 
-    if table not in {"us_states", "us_counties", "world_countries"}:
+    if table not in {"us_states", "us_counties"}:
         raise ValueError(f"Unknown boundary table: {table}")
     query = f"SELECT metadata, geometry FROM {table}"
     parameters: tuple[str, ...] = ()

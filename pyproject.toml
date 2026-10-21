@@ -65,11 +65,6 @@ namespace_packages = true
 warn_return_any = false
 warn_unreachable = true
 
-# PyShp 2.x (used only for regeneration) does not ship type information.
-[[tool.mypy.overrides]]
-module = "shapefile"
-ignore_missing_imports = true
-
 [tool.ruff]
 line-length = 120
 lint.select = ["B", "COM", "E", "F", "I", "NPY", "PGH", "PT", "RUF", "T10", "TID", "UP", "W"]

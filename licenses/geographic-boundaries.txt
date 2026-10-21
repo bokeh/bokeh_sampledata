@@ -4,39 +4,6 @@ This notice accompanies geographic_boundaries.db and its JSON manifest.
 Bokeh's software license is in the distribution's LICENSE.txt. The following
 source-specific information applies to the boundary data.
 
-WORLD COUNTRIES
-
-Source: Natural Earth, Admin 0 countries, 1:50 million scale, version 5.1.1.
-Authors: Natural Earth contributors, led by Tom Patterson and Nathaniel Vaughn
-Kelso. Voluntary credit: Made with Natural Earth.
-
-Dataset page:
-https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/
-Download:
-https://naturalearth.s3.amazonaws.com/50m_cultural/ne_50m_admin_0_countries.zip
-Archive SHA-256:
-5fed433373581fa648920435f937d95f2d3c0200e067409c6478dcdf1b853139
-
-Natural Earth declares all versions of its raster and vector map data public
-domain. Its terms allow modification, redistribution, and commercial use.
-Permission and attribution are not required. This permits inclusion and
-redistribution alongside Bokeh's BSD-3-Clause software without imposing
-additional licensing obligations. The source data remains public domain.
-Its inclusion does not turn it into exclusively BSD-licensed data.
-
-Terms verified October 18, 2026:
-https://www.naturalearthdata.com/about/terms-of-use/
-
-Boundaries are provided as represented in the Natural Earth source data.
-They include countries and territories. Identifiers may be missing, shared,
-or unofficial. Natural Earth provides the data without assurances of accuracy
-or fitness. See its boundary policy:
-https://www.naturalearthdata.com/about/disputed-boundaries-policy/
-
-Bokeh retains selected source metadata and converts the shapes to little-endian
-2D WKB in SQLite. No simplification or reprojection is applied. No country
-geometry required validity repair with the recorded generation toolchain.
-
 US STATES AND COUNTIES
 
 These are re-encodings of existing Bokeh sample data, not newly acquired

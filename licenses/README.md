@@ -35,7 +35,7 @@ package. Existing declarations are retained unless contrary evidence was found.
 - Airport locations use public-domain OurAirports records. The real route network
   derives from July 2026 U.S. DOT/BTS flight reports, with source credit retained.
 - NERACOOS permission and disclaimer wording is recorded directly in the inventory.
-- Census and Natural Earth boundary terms and provenance are in
+- Census boundary terms and provenance are in
   [geographic-boundaries.txt](geographic-boundaries.txt).
 - Original historical Bokeh contributions use the top-level BSD notice, as
   confirmed by the maintainer. The glucose and Anscombe public-domain statements

@@ -59,7 +59,6 @@ types-shapely = "*"
 packaging = "*"
 tomli = "*"
 python-build = "*"
-pyshp = "2.3.1.*"
 
 [feature.build.dependencies]
 python-build = "*"
@@ -96,11 +95,11 @@ check = { depends-on = ["lint", "format-check", "dependency-check", "workflow-ch
 build-py = "python -m build --no-isolation"
 
 [feature.dev.tasks.regenerate-boundaries]
-cmd = "python tools/generate_boundaries.py work/ne_50m_admin_0_countries.zip"
+cmd = "python tools/generate_boundaries.py"
 
 [feature.dev.tasks.test-regeneration]
 cmd = "pytest tests/unit/bokeh_sampledata/test_boundaries.py"
-env = { NATURAL_EARTH_ARCHIVE = "work/ne_50m_admin_0_countries.zip" }
+env = { BOUNDARY_SOURCE_DIR = "work/boundary-sources" }
 depends-on = ["setup"]
 
 [feature.test.tasks]
