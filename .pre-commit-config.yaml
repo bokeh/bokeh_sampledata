@@ -6,7 +6,7 @@ ci:
 
 repos:
   - repo: https://github.com/netromdk/vermin
-    rev: db02e9e95a3f89da1788e268ef3fb506187f35db  # frozen: v1.6.0
+    rev: d650a487f5bfb392179d2e4a738cf550a3773fcb  # frozen: v1.9.2
     hooks:
     - id: vermin
       name: check minimum Python version
@@ -35,7 +35,7 @@ repos:
       - id: detect-private-key
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: a27a2e47c7751b639d2b5badf0ef6ff11fee893f  # frozen: v0.15.4
+    rev: f368fb366ff7f2f808dd324b83a6d32267799e19  # frozen: v0.17.2
     hooks:
     - id: ruff-check
       args: ['--fix']
