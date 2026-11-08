@@ -58,6 +58,45 @@
       }
     },
     {
+      "module": "airport_weather",
+      "files": [
+        "airport_weather.csv"
+      ],
+      "recorded_license": "CC BY 4.0",
+      "status": "source-verified",
+      "sources": [
+        "https://github.com/fivethirtyeight/data/tree/master/us-weather-history",
+        "https://github.com/fivethirtyeight/data#readme"
+      ],
+      "attribution": "FiveThirtyEight, U.S. Weather History, based on Weather Underground data.",
+      "notes": "Combined all rows from KHOU, KJAX, KMDW, KPHL, KPHX, KSEA in airport order. Added the ICAO airport code and normalized dates to YYYY-MM-DD. All source weather fields are retained.",
+      "verified_source_terms": "FiveThirtyEight licenses its published datasets under CC BY 4.0 unless otherwise noted. The U.S. Weather History README identifies Weather Underground as its source.",
+      "sha256": {
+        "airport_weather.csv": "2032d97cfb71b0187bcbcd6400fbefc02e176b25df5782cb8b5f6cefd1f35e0b"
+      },
+      "license_expression": "CC-BY-4.0",
+      "source_files": {
+        "KHOU.csv": {
+          "sha256": "2a5e20b7def44f9fc8974af09ea81689843fd57c1877f7443f4a89f1fedf9d61"
+        },
+        "KJAX.csv": {
+          "sha256": "55e41f45c3c6c89641499fb6d5c172f7bab74a88b4a2d24fe3017c7fbda666fb"
+        },
+        "KMDW.csv": {
+          "sha256": "d7d7891d2cbbd23a98ba84981c946e2f12b259650fc11ce9e20ff5d4ea27e978"
+        },
+        "KPHL.csv": {
+          "sha256": "881f4832767132fd7f300f9173e0ef05946bf8c841dca4293948359060791e76"
+        },
+        "KPHX.csv": {
+          "sha256": "4e33a42ad9239601c87ccac97f2cb15254caf7c3a6ae99352c9764a090d96278"
+        },
+        "KSEA.csv": {
+          "sha256": "fbf8aa80e56cd48440f0837fc175293817add8d769ed1665c5d2b39818718cc5"
+        }
+      }
+    },
+    {
       "module": "airports",
       "files": [
         "airports.json"
