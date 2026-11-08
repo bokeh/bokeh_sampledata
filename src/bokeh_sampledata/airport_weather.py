@@ -6,6 +6,8 @@
 # -----------------------------------------------------------------------------
 """Daily weather for Houston Hobby, Chicago Midway, and Seattle-Tacoma.
 
+License: `CC BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`_.
+
 The CSV covers July 1, 2014 through June 30, 2015. It includes observed,
 historical average, and record temperatures in degrees Fahrenheit, plus
 precipitation in inches. The ``airport`` column contains ICAO airport codes.
@@ -13,8 +15,6 @@ precipitation in inches. The ``airport`` column contains ICAO airport codes.
 FiveThirtyEight published the data in
 `U.S. Weather History <https://github.com/fivethirtyeight/data/tree/master/us-weather-history>`_
 using observations and historical statistics from Weather Underground.
-The dataset is available under
-`CC BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`_.
 Bokeh combined the three airport files and standardized the dates to ISO format.
 
 .. bokeh-sampledata-xref:: airport_weather
