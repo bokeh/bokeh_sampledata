@@ -15,6 +15,7 @@
 
 # HTML files
 *.html
+!licenses/NOAA-NWS-disclaimer.html
 
 # dev files
 *.patch

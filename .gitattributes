@@ -1,3 +1,4 @@
 # Preserve dataset and upstream license bytes for provenance checksums.
 src/bokeh_sampledata/_data/** -text
 licenses/*.txt -text
+licenses/*.html -text

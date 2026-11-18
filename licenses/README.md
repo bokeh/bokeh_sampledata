@@ -34,6 +34,10 @@ package. Existing declarations are retained unless contrary evidence was found.
   in the module and inventory. Its license is in `CC-BY-3.0-IGO.txt`.
 - Airport locations use public-domain OurAirports records. The real route network
   derives from July 2026 U.S. DOT/BTS flight reports, with source credit retained.
+- Wind observations retain the NOAA/NWS public-domain declaration and source credit.
+  The global METAR snapshot, column mapping, raw and curated hashes, and acquisition
+  date are recorded in the inventory. The publisher terms are preserved in
+  [NOAA-NWS-disclaimer.html](NOAA-NWS-disclaimer.html).
 - NERACOOS permission and disclaimer wording is recorded directly in the inventory.
 - Census boundary terms and provenance are in
   [geographic-boundaries.txt](geographic-boundaries.txt).
