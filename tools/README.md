@@ -93,3 +93,19 @@ gzip streams directly. No extraction cache or additional dependency is needed.
 Preserve the original bytes when compressing data. Use level 9, an empty gzip
 filename, and timestamp zero. The inventory records both the packaged hash and
 the uncompressed content hash so a storage change does not obscure provenance.
+
+## Curating wind observations
+
+Download the NOAA METAR cache once and retain that raw snapshot outside the package.
+Run the deterministic curation script against the saved file:
+
+```sh
+python tools/curate_wind_observations.py metars.cache.csv.gz src/bokeh_sampledata/_data/wind_observations.csv.gz
+```
+
+This keeps ten reported columns, renames them, sorts by station, and writes gzip
+with no filename and a zero timestamp. It normalizes invalid coordinate pairs and
+the elevation sentinel 9999 to missing values. It does not fill missing values
+or filter calm or variable winds. Update the acquisition date, observation window, source
+and output hashes in `licenses/datasets.json` when intentionally replacing the
+snapshot. Updating the snapshot is separate from running an example.

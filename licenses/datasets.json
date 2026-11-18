@@ -1040,6 +1040,48 @@
           "daylight_warsaw_2013.csv": "20f74b396cf0c5e77f999616ca096b3d18090fb6498a01dc840e9ad1bf896ce6"
         }
       }
+    },
+    {
+      "module": "wind_observations",
+      "files": [
+        "wind_observations.csv.gz"
+      ],
+      "recorded_license": "Public domain under NOAA/NWS reuse terms, unless specifically annotated otherwise",
+      "status": "source-verified",
+      "sources": [
+        "https://aviationweather.gov/data/api/#cache",
+        "https://aviationweather.gov/data/cache/metars.cache.csv.gz",
+        "https://www.weather.gov/disclaimer"
+      ],
+      "attribution": "NOAA/National Weather Service, Aviation Weather Center. Worldwide METAR station observations, snapshot acquired November 18, 2026.",
+      "notes": "Bokeh-curated extract of 5,091 station reports, with observation times from 2026-11-18T20:25:00Z through 2026-11-18T21:51:00Z. Keep ten columns, rename them according to column_mapping, sort by station_id, and compress with an empty gzip filename and mtime=0. Preserve reported values, calm winds, missing measurements, and absent directions. No interpolation or imputation. Direction is the wind-from bearing in degrees clockwise from true north, speed and gust in knots, temperature and dewpoint in degrees Celsius, elevation in meters. This extract is not a live feed or official NOAA product, and no NOAA/NWS endorsement is implied. Recreate using tools/curate_wind_observations.py and the original cache whose hash is recorded below. Normalize invalid latitude/longitude pairs (source latitude -99.99 or -99.999) and the source elevation sentinel 9999 to missing values.",
+      "verified_source_terms": "NWS information is public domain unless specifically noted otherwise. Retain source credit, do not imply NOAA/NWS endorsement, and do not present modified material as official government information.",
+      "license_expression": null,
+      "sha256": {
+        "wind_observations.csv.gz": "c99ca03cb013ed9cb18a51b1e4d45bc96ce12cfaf1214e594a1b9227c1a917a7"
+      },
+      "uncompressed_sha256": {
+        "wind_observations.csv.gz": "230760ef9910f481b1d9a64a3249e50b097ab26107e35de0a523539faa1fa7b4"
+      },
+      "source_files": {
+        "metars.cache.csv.gz": {
+          "url": "https://aviationweather.gov/data/cache/metars.cache.csv.gz",
+          "retrieved": "2026-11-18",
+          "sha256": "5ce076f740ad84d19e0be7d4cdf32917bf68c7704aad6dc066ed882068954772"
+        }
+      },
+      "column_mapping": {
+        "station_id": "station",
+        "observation_time": "time",
+        "latitude": "latitude",
+        "longitude": "longitude",
+        "wind_dir_degrees": "direction",
+        "wind_speed_kt": "speed",
+        "wind_gust_kt": "gust",
+        "temp_c": "temperature",
+        "dewpoint_c": "dewpoint",
+        "elevation_m": "elevation"
+      }
     }
   ]
 }

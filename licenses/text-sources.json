@@ -45,5 +45,9 @@
     "source_member": "README",
     "excerpt": "Complete copyright, permission, and disclaimer paragraph.",
     "sha256": "b64f25fdf5e074e21e6c43d3998ff22406b4a9d1945162d5e3121b6712eb8164"
+  },
+  "NOAA-NWS-disclaimer.html": {
+    "source": "https://www.weather.gov/disclaimer",
+    "sha256": "c08c1597ebd52b31e3ba749f76d2217c290dcd16dc894cb4c109655566ecbbd1"
   }
 }
